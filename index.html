@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #0d6efd;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .credits-header {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .credits-header a {
+            color: #8bb9fe;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .credits-header a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .credits-header i {
+            margin-right: 5px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            color: #6c757d;
+        }
+
+        #searchInput {
+            padding-left: 35px;
+            border-radius: 20px;
+            border: 1px solid #ced4da;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-responsive {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .table {
+            margin-bottom: 0;
+        }
+
+        .table thead th {
+            background-color: #0d6efd;
+            color: white;
+            border: none;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .table tbody tr:nth-of-type(odd) {
+            background-color: rgba(0, 0, 0, .02);
+        }
+
+        .table tbody tr:hover {
+            background-color: rgba(13, 110, 253, .1);
+        }
+
+        .status-available {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .status-full {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .last-updated {
+            text-align: right;
+            font-size: 0.9em;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .badge {
+            font-size: 0.8em;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .badge-available {
+            background-color: #d1e7dd;
+            color: #0f5132;
+        }
+
+        .badge-full {
+            background-color: #f8d7da;
+            color: #842029;
+        }
+
+        .filters {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .filter-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 120px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #0d6efd;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        @media (max-width: 768px) {
+
+            .filter-item,
+            .stat-card {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="credits-header">
+            <span>Made with ❤️ by Rayed Riasat | </span>
+            <a href="https://www.facebook.com/rayed.riasat.5" target="_blank"><i class="bi bi-facebook"></i>Facebook</a>
+            <a href="https://www.linkedin.com/in/rayed-riasat-rabbi/" target="_blank"><i
+                    class="bi bi-linkedin"></i>LinkedIn</a>
+        </div>
+
+        <h1>Course Information</h1>
+        <div class="last-updated" id="lastUpdated"></div>
+
+        <div class="stats" id="statsContainer">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+
+        <div class="filters">
+            <div class="filter-item">
+                <select id="courseFilter" class="form-select">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <select id="facultyFilter" class="form-select">
+                    <option value="">All Faculty</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <select id="statusFilter" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Full">Full</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search for anything...">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" id="courseTable">
+                <thead>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Section</th>
+                        <th>Faculty</th>
+                        <th>Course Time</th>
+                        <th>Available Seats</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="courseTableBody">
+                    <tr>
+                        <td colspan="6">
+                            <div class="loading-spinner">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Store the course data
+        let courseData = [];
+        let filteredData = [];
+
+        // Function to fetch course data from JSON file
+        async function fetchCourseData() {
+            try {
+                const response = await fetch('course_data.json');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Update last updated time
+                if (data.lastUpdated) {
+                    document.getElementById('lastUpdated').textContent = `Last updated: ${new Date(data.lastUpdated).toLocaleString()}`;
+                }
+
+                return data.courses || [];
+            } catch (error) {
+                console.error('Error fetching course data:', error);
+                document.getElementById('courseTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-danger text-center p-4">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Error loading course data. Please check if course_data.json exists in the same directory.
+                        </td>
+                    </tr>
+                `;
+                return [];
+            }
+        }
+
+        // Function to populate the table with course data
+        function populateTable(courses) {
+            const tableBody = document.getElementById('courseTableBody');
+            tableBody.innerHTML = '';
+
+            if (courses.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="no-results">
+                            <i class="bi bi-search me-2"></i>
+                            No courses found matching your criteria.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            courses.forEach(course => {
+                const row = document.createElement('tr');
+
+                // Calculate available seats
+                const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                const status = availableSeats > 0 ? "Available" : "Full";
+
+                // Create cells for each column
+                const codeCell = document.createElement('td');
+                codeCell.textContent = course.CourseCode;
+
+                const sectionCell = document.createElement('td');
+                sectionCell.textContent = course.Section;
+
+                const facultyCell = document.createElement('td');
+                facultyCell.textContent = course.Faculty;
+
+                const timeCell = document.createElement('td');
+                timeCell.textContent = course.CourseTime;
+
+                const seatsCell = document.createElement('td');
+                seatsCell.textContent = `${availableSeats}/${course.TotalSeat}`;
+
+                const statusCell = document.createElement('td');
+                const statusBadge = document.createElement('span');
+                statusBadge.textContent = status;
+                statusBadge.className = `badge ${status === 'Available' ? 'badge-available' : 'badge-full'}`;
+                statusCell.appendChild(statusBadge);
+
+                // Append cells to the row
+                row.appendChild(codeCell);
+                row.appendChild(sectionCell);
+                row.appendChild(facultyCell);
+                row.appendChild(timeCell);
+                row.appendChild(seatsCell);
+                row.appendChild(statusCell);
+
+                // Append the row to the table body
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to populate filter dropdowns
+        function populateFilters(courses) {
+            const courseFilter = document.getElementById('courseFilter');
+            const facultyFilter = document.getElementById('facultyFilter');
+
+            // Clear existing options except the first one
+            while (courseFilter.options.length > 1) {
+                courseFilter.remove(1);
+            }
+
+            while (facultyFilter.options.length > 1) {
+                facultyFilter.remove(1);
+            }
+
+            // Get unique course codes
+            const uniqueCourses = [...new Set(courses.map(course => course.CourseCode))];
+            uniqueCourses.sort();
+
+            // Get unique faculty names
+            const uniqueFaculty = [...new Set(courses.map(course => course.Faculty))];
+            uniqueFaculty.sort();
+
+            // Add course options
+            uniqueCourses.forEach(code => {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = code;
+                courseFilter.appendChild(option);
+            });
+
+            // Add faculty options
+            uniqueFaculty.forEach(faculty => {
+                const option = document.createElement('option');
+                option.value = faculty;
+                option.textContent = faculty;
+                facultyFilter.appendChild(option);
+            });
+        }
+
+        // Function to update statistics
+        function updateStats(courses) {
+            const statsContainer = document.getElementById('statsContainer');
+
+            // Calculate statistics
+            const totalCourses = courses.length;
+
+            // Count available courses
+            const availableCourses = courses.filter(course => {
+                const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                return availableSeats > 0;
+            }).length;
+
+            // Count full courses
+            const fullCourses = totalCourses - availableCourses;
+
+            // Count unique course codes
+            const uniqueCourses = new Set(courses.map(course => course.CourseCode)).size;
+
+            // Create stats HTML
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalCourses}</div>
+                    <div class="stat-label">Total Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${uniqueCourses}</div>
+                    <div class="stat-label">Unique Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${availableCourses}</div>
+                    <div class="stat-label">Available Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${fullCourses}</div>
+                    <div class="stat-label">Full Sections</div>
+                </div>
+            `;
+        }
+
+        // Function to filter the table based on selected filters and search term
+        function filterTable() {
+            const courseFilter = document.getElementById('courseFilter').value;
+            const facultyFilter = document.getElementById('facultyFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredData = courseData.filter(course => {
+                // Calculate available seats for status filtering
+                const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                const status = availableSeats > 0 ? "Available" : "Full";
+
+                // Apply course filter
+                if (courseFilter && course.CourseCode !== courseFilter) {
+                    return false;
+                }
+
+                // Apply faculty filter
+                if (facultyFilter && course.Faculty !== facultyFilter) {
+                    return false;
+                }
+
+                // Apply status filter
+                if (statusFilter && status !== statusFilter) {
+                    return false;
+                }
+
+                // Apply search filter
+                if (searchTerm) {
+                    return (
+                        course.CourseCode.toLowerCase().includes(searchTerm) ||
+                        course.Section.toString().toLowerCase().includes(searchTerm) ||
+                        course.Faculty.toLowerCase().includes(searchTerm) ||
+                        course.CourseTime.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                return true;
+            });
+
+            populateTable(filteredData);
+        }
+
+        // Initialize the page when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', async function () {
+            // Fetch initial data
+            courseData = await fetchCourseData();
+
+            // Set filtered data initially to all data
+            filteredData = [...courseData];
+
+            // Populate filters and table
+            populateFilters(courseData);
+            populateTable(filteredData);
+            updateStats(filteredData);
+
+            // Add event listeners for filters and search
+            document.getElementById('courseFilter').addEventListener('change', filterTable);
+            document.getElementById('facultyFilter').addEventListener('change', filterTable);
+            document.getElementById('statusFilter').addEventListener('change', filterTable);
+            document.getElementById('searchInput').addEventListener('input', filterTable);
+        });
+    </script>
+</body>
+
+</html>
