@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -10,38 +10,41 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #050c16;
+            color: #e9ecef;
             padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background-color: white;
+            background-color: #091428;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            border: 1px solid #0f2547;
         }
 
         h1 {
-            color: #0d6efd;
+            color: #4dabf7;
             text-align: center;
             margin-bottom: 20px;
             font-weight: 600;
         }
 
         .credits-header {
-            background-color: #343a40;
+            background-color: #0a1a30;
             color: white;
             text-align: center;
             padding: 10px 0;
             margin-bottom: 20px;
             border-radius: 8px;
             font-size: 0.9em;
+            border: 1px solid #0f2547;
         }
 
         .credits-header a {
-            color: #8bb9fe;
+            color: #90caf9;
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.3s;
@@ -71,51 +74,63 @@
         #searchInput {
             padding-left: 35px;
             border-radius: 20px;
-            border: 1px solid #ced4da;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #0f2547;
+            background-color: #0a1a30;
+            color: #e9ecef;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .table-responsive {
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #0f2547;
         }
 
         .table {
             margin-bottom: 0;
+            min-width: 800px;
+            /* Ensures table doesn't shrink too much */
         }
 
         .table thead th {
-            background-color: #0d6efd;
+            background-color: #0a2351;
             color: white;
             border: none;
             position: sticky;
             top: 0;
             z-index: 10;
+            white-space: nowrap;
+        }
+
+        .table tbody tr {
+            border-color: #0f2547;
         }
 
         .table tbody tr:nth-of-type(odd) {
-            background-color: rgba(0, 0, 0, .02);
+            background-color: rgba(10, 35, 81, 0.2);
         }
 
         .table tbody tr:hover {
-            background-color: rgba(13, 110, 253, .1);
+            background-color: rgba(25, 118, 210, 0.15);
         }
 
         .status-available {
-            color: #198754;
+            color: #4caf50;
             font-weight: bold;
         }
 
         .status-full {
-            color: #dc3545;
+            color: #f44336;
             font-weight: bold;
         }
 
         .last-updated {
             text-align: right;
             font-size: 0.9em;
-            color: #6c757d;
+            color: #90caf9;
             margin-bottom: 10px;
         }
 
@@ -129,7 +144,7 @@
         .no-results {
             text-align: center;
             padding: 40px;
-            color: #6c757d;
+            color: #90caf9;
             font-style: italic;
         }
 
@@ -140,13 +155,13 @@
         }
 
         .badge-available {
-            background-color: #d1e7dd;
-            color: #0f5132;
+            background-color: #1b5e20;
+            color: #c8e6c9;
         }
 
         .badge-full {
-            background-color: #f8d7da;
-            color: #842029;
+            background-color: #b71c1c;
+            color: #ffcdd2;
         }
 
         .filters {
@@ -161,6 +176,12 @@
             min-width: 150px;
         }
 
+        .form-select {
+            background-color: #0a1a30;
+            color: #e9ecef;
+            border-color: #0f2547;
+        }
+
         .stats {
             display: flex;
             gap: 15px;
@@ -171,22 +192,32 @@
         .stat-card {
             flex: 1;
             min-width: 120px;
-            background-color: white;
+            background-color: #0a1a30;
             padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             text-align: center;
+            border: 1px solid #0f2547;
         }
 
         .stat-value {
             font-size: 1.8em;
             font-weight: bold;
-            color: #0d6efd;
+            color: #4dabf7;
         }
 
         .stat-label {
             font-size: 0.9em;
-            color: #6c757d;
+            color: #90caf9;
+        }
+
+        /* Horizontal scrolling indicator for mobile */
+        .scroll-indicator {
+            display: none;
+            text-align: center;
+            color: #90caf9;
+            margin-bottom: 10px;
+            font-size: 0.8em;
         }
 
         @media (max-width: 768px) {
@@ -194,6 +225,17 @@
             .filter-item,
             .stat-card {
                 min-width: 100%;
+            }
+
+            .scroll-indicator {
+                display: block;
+            }
+
+            /* Force table to be scrollable horizontally */
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin-bottom: 15px;
             }
         }
     </style>
@@ -238,6 +280,10 @@
         <div class="search-container">
             <i class="bi bi-search search-icon"></i>
             <input type="text" id="searchInput" class="form-control" placeholder="Search for anything...">
+        </div>
+
+        <div class="scroll-indicator">
+            <i class="bi bi-arrow-left-right"></i> Swipe horizontally to view all columns
         </div>
 
         <div class="table-responsive">
@@ -320,7 +366,21 @@
                 return;
             }
 
+            // Create a Set to track unique course identifiers to prevent duplicates
+            const processedCourses = new Set();
+
             courses.forEach(course => {
+                // Create a unique identifier for each course (combination of code, section, and time)
+                const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+
+                // Skip if we've already processed this course
+                if (processedCourses.has(courseIdentifier)) {
+                    return;
+                }
+
+                // Add to processed set
+                processedCourses.add(courseIdentifier);
+
                 const row = document.createElement('tr');
 
                 // Calculate available seats
