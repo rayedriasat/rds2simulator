@@ -220,6 +220,86 @@
             font-size: 0.8em;
         }
 
+        /* New styles for comparison feature */
+        .comparison-toggle {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .btn-toggle {
+            background-color: #0a1a30;
+            color: #e9ecef;
+            border: 1px solid #0f2547;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            margin: 0 5px;
+        }
+
+        .btn-toggle.active {
+            background-color: #1e88e5;
+            color: white;
+        }
+
+        .btn-toggle:hover:not(.active) {
+            background-color: #0f2547;
+        }
+
+        .change-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .change-increased {
+            background-color: #4caf50;
+        }
+
+        .change-decreased {
+            background-color: #f44336;
+        }
+
+        .change-none {
+            background-color: #90a4ae;
+        }
+
+        .change-row {
+            animation: highlight-change 2s ease-in-out;
+        }
+
+        @keyframes highlight-change {
+            0% {
+                background-color: rgba(25, 118, 210, 0.3);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .changes-summary {
+            background-color: #0a1a30;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #0f2547;
+            display: none;
+        }
+
+        .changes-summary h5 {
+            color: #4dabf7;
+            margin-bottom: 15px;
+        }
+
+        .change-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
         @media (max-width: 768px) {
 
             .filter-item,
@@ -253,6 +333,41 @@
         <h1>Course Information</h1>
         <div class="last-updated" id="lastUpdated"></div>
 
+        <!-- Comparison toggle buttons -->
+        <div class="comparison-toggle">
+            <button id="viewCurrentBtn" class="btn-toggle active">View Current Data</button>
+            <button id="viewChangesBtn" class="btn-toggle">View Changes</button>
+        </div>
+
+        <!-- Changes summary section -->
+        <div class="changes-summary" id="changesSummary">
+            <h5><i class="bi bi-arrow-repeat me-2"></i>Changes Summary</h5>
+            <div class="change-stat" id="previousDataTimeContainer">
+                <span>Comparing with data from:</span>
+                <span id="previousDataTime">Loading...</span>
+            </div>
+            <div class="change-stat">
+                <span>Courses that filled up:</span>
+                <span id="filledUpCount">0</span>
+            </div>
+            <div class="change-stat">
+                <span>Courses that opened up:</span>
+                <span id="openedUpCount">0</span>
+            </div>
+            <div class="change-stat">
+                <span>Courses with increased enrollment:</span>
+                <span id="increasedCount">0</span>
+            </div>
+            <div class="change-stat">
+                <span>Courses with decreased enrollment:</span>
+                <span id="decreasedCount">0</span>
+            </div>
+            <div class="change-stat">
+                <span>Total changes:</span>
+                <span id="totalChangesCount">0</span>
+            </div>
+        </div>
+
         <div class="stats" id="statsContainer">
             <!-- Stats will be populated by JavaScript -->
         </div>
@@ -275,6 +390,16 @@
                     <option value="Full">Full</option>
                 </select>
             </div>
+            <div class="filter-item" id="changeFilterContainer" style="display: none;">
+                <select id="changeFilter" class="form-select">
+                    <option value="">All Changes</option>
+                    <option value="increased">Increased Enrollment</option>
+                    <option value="decreased">Decreased Enrollment</option>
+                    <option value="filledUp">Filled Up</option>
+                    <option value="openedUp">Opened Up</option>
+                    <option value="noChange">No Change</option>
+                </select>
+            </div>
         </div>
 
         <div class="search-container">
@@ -290,6 +415,7 @@
             <table class="table table-hover" id="courseTable">
                 <thead>
                     <tr>
+                        <th id="changeHeader" style="display: none;">Change</th>
                         <th>Course Code</th>
                         <th>Section</th>
                         <th>Faculty</th>
@@ -300,7 +426,7 @@
                 </thead>
                 <tbody id="courseTableBody">
                     <tr>
-                        <td colspan="6">
+                        <td colspan="7">
                             <div class="loading-spinner">
                                 <div class="spinner-border text-primary" role="status">
                                     <span class="visually-hidden">Loading...</span>
@@ -316,7 +442,9 @@
     <script>
         // Store the course data
         let courseData = [];
+        let oldCourseData = [];
         let filteredData = [];
+        let isViewingChanges = false;
 
         // Function to fetch course data from JSON file
         async function fetchCourseData() {
@@ -339,12 +467,38 @@
                 console.error('Error fetching course data:', error);
                 document.getElementById('courseTableBody').innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-danger text-center p-4">
+                        <td colspan="7" class="text-danger text-center p-4">
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
                             Error loading course data. Please check if course_data.json exists in the same directory.
                         </td>
                     </tr>
                 `;
+                return [];
+            }
+        }
+
+        // Function to fetch old course data
+        async function fetchOldCourseData() {
+            try {
+                const response = await fetch('OLDcourse_data.json');
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                // Update previous data timestamp if available
+                if (data.lastUpdated) {
+                    document.getElementById('previousDataTime').textContent = new Date(data.lastUpdated).toLocaleString();
+                } else {
+                    document.getElementById('previousDataTime').textContent = "Unknown date";
+                }
+
+                return data.courses || [];
+            } catch (error) {
+                console.error('Error fetching old course data:', error);
+                document.getElementById('previousDataTime').textContent = "Error loading previous data";
                 return [];
             }
         }
@@ -357,7 +511,7 @@
             if (courses.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="6" class="no-results">
+                        <td colspan="7" class="no-results">
                             <i class="bi bi-search me-2"></i>
                             No courses found matching your criteria.
                         </td>
@@ -408,6 +562,35 @@
                 statusBadge.textContent = status;
                 statusBadge.className = `badge ${status === 'Available' ? 'badge-available' : 'badge-full'}`;
                 statusCell.appendChild(statusBadge);
+
+                // Add change indicator cell if viewing changes
+                if (isViewingChanges && course.change) {
+                    const changeCell = document.createElement('td');
+
+                    if (course.change !== 'none') {
+                        const changeIndicator = document.createElement('span');
+                        changeIndicator.className = `change-indicator change-${course.change}`;
+                        changeCell.appendChild(changeIndicator);
+
+                        let changeText = '';
+                        if (course.change === 'increased') {
+                            changeText = `+${course.changeDiff} seats taken`;
+                        } else if (course.change === 'decreased') {
+                            changeText = `-${Math.abs(course.changeDiff)} seats taken`;
+                        } else if (course.change === 'filledUp') {
+                            changeText = 'Filled up';
+                        } else if (course.change === 'openedUp') {
+                            changeText = 'Opened up';
+                        }
+
+                        changeCell.appendChild(document.createTextNode(changeText));
+                        row.classList.add('change-row');
+                    } else {
+                        changeCell.textContent = 'No change';
+                    }
+
+                    row.appendChild(changeCell);
+                }
 
                 // Append cells to the row
                 row.appendChild(codeCell);
@@ -499,6 +682,73 @@
                     <div class="stat-label">Full Sections</div>
                 </div>
             `;
+
+            // If viewing changes, add change statistics
+            if (isViewingChanges) {
+                const changedCourses = courses.filter(course => course.change && course.change !== 'none');
+
+                const increasedCourses = courses.filter(course => course.change === 'increased').length;
+                const decreasedCourses = courses.filter(course => course.change === 'decreased').length;
+                const filledUpCourses = courses.filter(course => course.change === 'filledUp').length;
+                const openedUpCourses = courses.filter(course => course.change === 'openedUp').length;
+
+                statsContainer.innerHTML += `
+                    <div class="stat-card">
+                        <div class="stat-value">${changedCourses.length}</div>
+                        <div class="stat-label">Changed Sections</div>
+                    </div>
+                `;
+
+                // Update changes summary
+                document.getElementById('filledUpCount').textContent = filledUpCourses;
+                document.getElementById('openedUpCount').textContent = openedUpCourses;
+                document.getElementById('increasedCount').textContent = increasedCourses;
+                document.getElementById('decreasedCount').textContent = decreasedCourses;
+                document.getElementById('totalChangesCount').textContent = changedCourses.length;
+            }
+        }
+
+        // Function to compare old and new course data
+        function compareCoursesData(newCourses, oldCourses) {
+            // Create maps for faster lookup
+            const oldCoursesMap = new Map();
+
+            oldCourses.forEach(course => {
+                const key = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+                oldCoursesMap.set(key, course);
+            });
+
+            // Process each new course to detect changes
+            return newCourses.map(newCourse => {
+                const key = `${newCourse.CourseCode}-${newCourse.Section}-${newCourse.CourseTime}`;
+                const oldCourse = oldCoursesMap.get(key);
+
+                // If no old course data, mark as new (though this is unlikely in this context)
+                if (!oldCourse) {
+                    return { ...newCourse, change: 'new', changeDiff: parseInt(newCourse.TakenSeat) };
+                }
+
+                const oldTakenSeats = parseInt(oldCourse.TakenSeat);
+                const newTakenSeats = parseInt(newCourse.TakenSeat);
+                const oldAvailableSeats = parseInt(oldCourse.TotalSeat) - oldTakenSeats;
+                const newAvailableSeats = parseInt(newCourse.TotalSeat) - newTakenSeats;
+
+                let change = 'none';
+                const changeDiff = newTakenSeats - oldTakenSeats;
+
+                // Determine change type
+                if (oldAvailableSeats > 0 && newAvailableSeats === 0) {
+                    change = 'filledUp';
+                } else if (oldAvailableSeats === 0 && newAvailableSeats > 0) {
+                    change = 'openedUp';
+                } else if (changeDiff > 0) {
+                    change = 'increased';
+                } else if (changeDiff < 0) {
+                    change = 'decreased';
+                }
+
+                return { ...newCourse, change, changeDiff };
+            });
         }
 
         // Function to filter the table based on selected filters and search term
@@ -507,6 +757,7 @@
             const facultyFilter = document.getElementById('facultyFilter').value;
             const statusFilter = document.getElementById('statusFilter').value;
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const changeFilter = isViewingChanges ? document.getElementById('changeFilter').value : '';
 
             filteredData = courseData.filter(course => {
                 // Calculate available seats for status filtering
@@ -528,6 +779,11 @@
                     return false;
                 }
 
+                // Apply change filter when viewing changes
+                if (isViewingChanges && changeFilter && course.change !== changeFilter) {
+                    return false;
+                }
+
                 // Apply search filter
                 if (searchTerm) {
                     return (
@@ -544,10 +800,42 @@
             populateTable(filteredData);
         }
 
+        // Function to toggle between current view and changes view
+        function toggleView(viewChanges) {
+            isViewingChanges = viewChanges;
+
+            // Toggle active class on buttons
+            document.getElementById('viewCurrentBtn').classList.toggle('active', !viewChanges);
+            document.getElementById('viewChangesBtn').classList.toggle('active', viewChanges);
+
+            // Toggle visibility of change-related elements
+            document.getElementById('changeHeader').style.display = viewChanges ? 'table-cell' : 'none';
+            document.getElementById('changeFilterContainer').style.display = viewChanges ? 'block' : 'none';
+            document.getElementById('changesSummary').style.display = viewChanges ? 'block' : 'none';
+
+            // Update the data and filters
+            if (viewChanges) {
+                // If we haven't compared the data yet, do it now
+                if (!courseData[0].hasOwnProperty('change')) {
+                    courseData = compareCoursesData(courseData, oldCourseData);
+                }
+            }
+
+            // Update stats and table
+            updateStats(courseData);
+            filterTable();
+        }
+
         // Initialize the page when the DOM is loaded
         document.addEventListener('DOMContentLoaded', async function () {
-            // Fetch initial data
-            courseData = await fetchCourseData();
+            // Fetch both current and old data
+            const [newData, oldData] = await Promise.all([
+                fetchCourseData(),
+                fetchOldCourseData()
+            ]);
+
+            courseData = newData;
+            oldCourseData = oldData;
 
             // Set filtered data initially to all data
             filteredData = [...courseData];
@@ -562,6 +850,11 @@
             document.getElementById('facultyFilter').addEventListener('change', filterTable);
             document.getElementById('statusFilter').addEventListener('change', filterTable);
             document.getElementById('searchInput').addEventListener('input', filterTable);
+            document.getElementById('changeFilter').addEventListener('change', filterTable);
+
+            // Add event listeners for view toggle buttons
+            document.getElementById('viewCurrentBtn').addEventListener('click', () => toggleView(false));
+            document.getElementById('viewChangesBtn').addEventListener('click', () => toggleView(true));
         });
     </script>
 </body>
