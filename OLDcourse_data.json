@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2025-05-15T04:44:45.868Z",
+  "lastUpdated": "2025-05-15T05:59:36.331Z",
   "courses": [
     {
       "CourseCode": "ACT201",
@@ -39,7 +39,7 @@
       "Faculty": "AWKm",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "35",
-      "TakenSeat": "23"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "ACT201",
@@ -183,7 +183,7 @@
       "Faculty": "TBA",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "34"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "ACT201",
@@ -215,7 +215,7 @@
       "Faculty": "Hmm",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "24"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "ACT201",
@@ -239,7 +239,7 @@
       "Faculty": "MOB",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "35",
-      "TakenSeat": "13"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "ACT201",
@@ -383,7 +383,7 @@
       "Faculty": "AUL",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "37",
-      "TakenSeat": "16"
+      "TakenSeat": "17"
     },
     {
       "CourseCode": "ACT202",
@@ -431,7 +431,7 @@
       "Faculty": "NRh",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "37",
-      "TakenSeat": "26"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "ACT202",
@@ -511,7 +511,7 @@
       "Faculty": "RMH1",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "34"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "ACT370",
@@ -519,7 +519,7 @@
       "Faculty": "KSR",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "35",
-      "TakenSeat": "15"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "ACT380",
@@ -543,7 +543,7 @@
       "Faculty": "MGR",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "AMCS502",
@@ -591,7 +591,7 @@
       "Faculty": "BSq",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ANT101",
@@ -599,7 +599,7 @@
       "Faculty": "MHR3",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "ANT101",
@@ -607,7 +607,7 @@
       "Faculty": "RJS",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "60",
-      "TakenSeat": "60"
+      "TakenSeat": "59"
     },
     {
       "CourseCode": "ANT101",
@@ -623,7 +623,7 @@
       "Faculty": "TZf",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "60",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ANT101",
@@ -703,7 +703,7 @@
       "Faculty": "NSdi",
       "CourseTime": "09:40 AM - 12:50 PM MW",
       "TotalSeat": "15",
-      "TakenSeat": "7"
+      "TakenSeat": "8"
     },
     {
       "CourseCode": "ARC121",
@@ -711,7 +711,7 @@
       "Faculty": "RSBR",
       "CourseTime": "09:40 AM - 12:50 PM MW",
       "TotalSeat": "15",
-      "TakenSeat": "3"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ARC121",
@@ -783,7 +783,7 @@
       "Faculty": "AKD1",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "35"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "ARC131",
@@ -791,7 +791,7 @@
       "Faculty": "AKD1",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "18"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ARC131",
@@ -910,8 +910,8 @@
       "Section": "2",
       "Faculty": "MTM2",
       "CourseTime": "02:40 PM - 04:10 PM ST",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "35",
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "ARC261",
@@ -943,7 +943,7 @@
       "Faculty": "HUR",
       "CourseTime": "09:40 AM - 12:50 PM M",
       "TotalSeat": "35",
-      "TakenSeat": "26"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "ARC271",
@@ -1047,7 +1047,7 @@
       "Faculty": "TBA",
       "CourseTime": "09:40 AM - 12:50 PM STR",
       "TotalSeat": "15",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "ARC317",
@@ -1127,7 +1127,7 @@
       "Faculty": "MUN",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "35",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ARC344",
@@ -1159,15 +1159,15 @@
       "Faculty": "NAW",
       "CourseTime": "09:40 AM - 12:50 PM STWR",
       "TotalSeat": "18",
-      "TakenSeat": "18"
+      "TakenSeat": "17"
     },
     {
       "CourseCode": "ARC419",
       "Section": "2",
       "Faculty": "MTM2",
       "CourseTime": "09:40 AM - 12:50 PM STWR",
-      "TotalSeat": "18",
-      "TakenSeat": "18"
+      "TotalSeat": "19",
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ARC437",
@@ -1223,7 +1223,7 @@
       "Faculty": "MFN",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "35",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ARC492",
@@ -1319,7 +1319,7 @@
       "Faculty": "MSIM",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "13"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "BBT221",
@@ -1351,7 +1351,7 @@
       "Faculty": "PYN",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "BBT221",
@@ -1375,7 +1375,7 @@
       "Faculty": "PYN",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BBT230",
@@ -1503,7 +1503,7 @@
       "Faculty": "CAK",
       "CourseTime": "02:40 PM - 05:40 PM T",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "BBT314L",
@@ -1583,7 +1583,7 @@
       "Faculty": "KNH",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "BBT316L",
@@ -1639,7 +1639,7 @@
       "Faculty": "SDL",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "BBT318",
@@ -1647,15 +1647,7 @@
       "Faculty": "SDL",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "12"
-    },
-    {
-      "CourseCode": "BBT318",
-      "Section": "3",
-      "Faculty": "MALM",
-      "CourseTime": "02:40 PM - 04:10 PM ST",
-      "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "BBT318",
@@ -2047,7 +2039,7 @@
       "Faculty": "Rme",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "BEN205",
@@ -2103,7 +2095,7 @@
       "Faculty": "TBA",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "BEN205",
@@ -2143,7 +2135,7 @@
       "Faculty": "TBA",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BIO103",
@@ -2239,7 +2231,7 @@
       "Faculty": "FMJ",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BIO103",
@@ -2263,7 +2255,7 @@
       "Faculty": "FMJ",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "BIO103",
@@ -2279,7 +2271,7 @@
       "Faculty": "NTA",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BIO103",
@@ -2303,7 +2295,7 @@
       "Faculty": "HIM",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "12",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "BIO103",
@@ -2311,7 +2303,7 @@
       "Faculty": "FMJ",
       "CourseTime": "06:00 PM - 07:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "8"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "BIO103",
@@ -2359,7 +2351,7 @@
       "Faculty": "SUBK",
       "CourseTime": "06:00 PM - 07:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BIO103",
@@ -2399,7 +2391,7 @@
       "Faculty": "RHS",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "BIO103",
@@ -3031,7 +3023,7 @@
       "Faculty": "SKK",
       "CourseTime": "02:40 PM - 05:40 PM M",
       "TotalSeat": "20",
-      "TakenSeat": "19"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "BIO202L",
@@ -3127,7 +3119,7 @@
       "Faculty": "AK",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "37"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BUS112",
@@ -3447,7 +3439,7 @@
       "Faculty": "LRn",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BUS135",
@@ -3551,7 +3543,7 @@
       "Faculty": "AYQ",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BUS135",
@@ -3559,7 +3551,7 @@
       "Faculty": "AYQ",
       "CourseTime": "06:00 PM - 07:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "BUS135",
@@ -3583,7 +3575,7 @@
       "Faculty": "ACd",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BUS172",
@@ -3799,7 +3791,7 @@
       "Faculty": "JHK",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "BUS172",
@@ -3943,7 +3935,7 @@
       "Faculty": "MAU3",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "36"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "BUS173",
@@ -4007,7 +3999,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "BUS173",
@@ -4127,7 +4119,7 @@
       "Faculty": "AMTr",
       "CourseTime": "06:00 PM - 07:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "BUS498",
@@ -4615,7 +4607,7 @@
       "Faculty": "Sys",
       "CourseTime": "TBA",
       "TotalSeat": "5",
-      "TakenSeat": "4"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "BUS498",
@@ -4639,7 +4631,7 @@
       "Faculty": "TsA",
       "CourseTime": "TBA",
       "TotalSeat": "5",
-      "TakenSeat": "5"
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "BUS498",
@@ -4999,7 +4991,7 @@
       "Faculty": "AbSa",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "BUS511",
@@ -5007,7 +4999,7 @@
       "Faculty": "KZn",
       "CourseTime": "07:00 PM - 10:10 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "2"
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "BUS511",
@@ -5071,7 +5063,7 @@
       "Faculty": "NMA",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "BUS518",
@@ -5087,7 +5079,7 @@
       "Faculty": "SAA4",
       "CourseTime": "03:00 PM - 06:30 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "5"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "BUS520",
@@ -5151,7 +5143,7 @@
       "Faculty": "Tmr",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "20"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "BUS525",
@@ -5215,7 +5207,7 @@
       "Faculty": "MAU3",
       "CourseTime": "07:00 PM - 10:10 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "BUS535",
@@ -5223,7 +5215,7 @@
       "Faculty": "DSr",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "7"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "BUS535",
@@ -5247,7 +5239,7 @@
       "Faculty": "MTDI",
       "CourseTime": "07:00 PM - 10:10 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "BUS535",
@@ -5271,7 +5263,7 @@
       "Faculty": "KsM",
       "CourseTime": "03:00 PM - 06:30 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "37"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "BUS601",
@@ -5327,7 +5319,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "7"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "BUS620",
@@ -5335,7 +5327,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "5"
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "BUS620",
@@ -5407,7 +5399,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "BUS650",
@@ -5423,7 +5415,7 @@
       "Faculty": "MeI",
       "CourseTime": "07:00 PM - 10:10 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "BUS685",
@@ -5431,7 +5423,7 @@
       "Faculty": "MeI",
       "CourseTime": "07:00 PM - 10:10 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "BUS685",
@@ -5439,7 +5431,7 @@
       "Faculty": "ZkJ",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "BUS685",
@@ -5447,7 +5439,7 @@
       "Faculty": "ZMU",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "BUS690",
@@ -5455,7 +5447,7 @@
       "Faculty": "MdS",
       "CourseTime": "07:00 PM - 10:10 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "BUS690",
@@ -5463,7 +5455,7 @@
       "Faculty": "MdS",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "BUS690",
@@ -5607,7 +5599,7 @@
       "Faculty": "HASW",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "6"
+      "TakenSeat": "7"
     },
     {
       "CourseCode": "CEE100",
@@ -5676,7 +5668,7 @@
     {
       "CourseCode": "CEE209",
       "Section": "2",
-      "Faculty": "TBA",
+      "Faculty": "NEM",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
       "TakenSeat": "40"
@@ -5807,7 +5799,7 @@
       "Faculty": "SLW",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "32"
     },
     {
       "CourseCode": "CEE213",
@@ -5839,7 +5831,7 @@
       "Faculty": "MLF",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "25",
-      "TakenSeat": "23"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "CEE213L",
@@ -5855,7 +5847,7 @@
       "Faculty": "MLF",
       "CourseTime": "02:40 PM - 05:50 PM M",
       "TotalSeat": "25",
-      "TakenSeat": "18"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "CEE213L",
@@ -5871,7 +5863,7 @@
       "Faculty": "MLF",
       "CourseTime": "02:40 PM - 05:50 PM R",
       "TotalSeat": "25",
-      "TakenSeat": "12"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "CEE214",
@@ -5887,7 +5879,7 @@
       "Faculty": "NMSN",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CEE214L",
@@ -5991,7 +5983,7 @@
       "Faculty": "Sji",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "CEE260",
@@ -5999,7 +5991,7 @@
       "Faculty": "Sji",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "CEE271L",
@@ -6007,7 +5999,7 @@
       "Faculty": "YKB",
       "CourseTime": "09:40 AM - 12:50 PM M",
       "TotalSeat": "25",
-      "TakenSeat": "21"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "CEE271L",
@@ -6143,7 +6135,7 @@
       "Faculty": "MMS4",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "19"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "CEE350",
@@ -6188,7 +6180,7 @@
     {
       "CourseCode": "CEE370",
       "Section": "2",
-      "Faculty": "TBA",
+      "Faculty": "NEM",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
       "TakenSeat": "10"
@@ -6239,7 +6231,7 @@
       "Faculty": "Nzu",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "CEE430",
@@ -6247,7 +6239,7 @@
       "Faculty": "TMY",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "CEE431",
@@ -6263,7 +6255,7 @@
       "Faculty": "NLM",
       "CourseTime": "08:00 AM - 11:10 AM R",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "CEE460",
@@ -6276,10 +6268,10 @@
     {
       "CourseCode": "CEE470",
       "Section": "1",
-      "Faculty": "TBA",
+      "Faculty": "NEM",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "CEE475",
@@ -6295,7 +6287,7 @@
       "Faculty": "Sji",
       "CourseTime": "TBA",
       "TotalSeat": "5",
-      "TakenSeat": "1"
+      "TakenSeat": "0"
     },
     {
       "CourseCode": "CEE492",
@@ -6743,7 +6735,7 @@
       "Faculty": "MMR3",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CHE101",
@@ -7375,7 +7367,7 @@
       "Faculty": "MIO",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "37"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "CHE202",
@@ -7407,7 +7399,7 @@
       "Faculty": "MIO",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "CHE202",
@@ -7535,7 +7527,7 @@
       "Faculty": "TSHQ",
       "CourseTime": "11:20 AM - 02:20 PM A",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "CHE202L",
@@ -7631,7 +7623,7 @@
       "Faculty": "Rbt",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CHN101",
@@ -7639,7 +7631,7 @@
       "Faculty": "Rbt",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CHN101",
@@ -7647,7 +7639,7 @@
       "Faculty": "TBA",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CHN101",
@@ -7679,7 +7671,7 @@
       "Faculty": "TBA",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "33"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "CHN201",
@@ -7687,7 +7679,7 @@
       "Faculty": "Rbt",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CHN201",
@@ -7959,7 +7951,7 @@
       "Faculty": "OISD",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "CSE115L",
@@ -7967,7 +7959,7 @@
       "Faculty": "AKR",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE115L",
@@ -8094,8 +8086,8 @@
       "Section": "12",
       "Faculty": "RIS",
       "CourseTime": "04:20 PM - 05:50 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "CSE215",
@@ -8207,7 +8199,7 @@
       "Faculty": "SfR1",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE215L",
@@ -8311,7 +8303,7 @@
       "Faculty": "HMI",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE225",
@@ -8375,7 +8367,7 @@
       "Faculty": "IQN",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE225L",
@@ -8399,7 +8391,7 @@
       "Faculty": "HMI",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE225L",
@@ -8463,7 +8455,7 @@
       "Faculty": "NJL",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "CSE231",
@@ -8543,7 +8535,7 @@
       "Faculty": "NJL",
       "CourseTime": "11:20 AM - 02:30 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "CSE231L",
@@ -8663,7 +8655,7 @@
       "Faculty": "MSRB",
       "CourseTime": "09:40 AM - 11:10 AM M",
       "TotalSeat": "21",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "CSE299",
@@ -8679,7 +8671,7 @@
       "Faculty": "MLE",
       "CourseTime": "01:00 PM - 02:30 PM S",
       "TotalSeat": "21",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "CSE299",
@@ -8695,7 +8687,7 @@
       "Faculty": "ITN",
       "CourseTime": "11:20 AM - 12:50 PM S",
       "TotalSeat": "21",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "CSE299",
@@ -8759,7 +8751,7 @@
       "Faculty": "AzK",
       "CourseTime": "11:20 AM - 12:50 PM A",
       "TotalSeat": "21",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "CSE299",
@@ -8775,7 +8767,7 @@
       "Faculty": "KMM",
       "CourseTime": "11:20 AM - 12:50 PM W",
       "TotalSeat": "21",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "CSE311",
@@ -8967,7 +8959,7 @@
       "Faculty": "NvA",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE323",
@@ -9223,7 +9215,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE331",
@@ -9327,7 +9319,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE331L",
@@ -9374,8 +9366,8 @@
       "Section": "3",
       "Faculty": "NJL",
       "CourseTime": "09:40 AM - 11:10 AM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "CSE332",
@@ -9383,7 +9375,7 @@
       "Faculty": "TnF",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "CSE332",
@@ -9391,7 +9383,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE332",
@@ -9455,15 +9447,15 @@
       "Faculty": "MAQm",
       "CourseTime": "02:40 PM - 05:50 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE332L",
       "Section": "3",
       "Faculty": "NJL",
       "CourseTime": "11:20 AM - 02:30 PM S",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "CSE332L",
@@ -9471,7 +9463,7 @@
       "Faculty": "TnF",
       "CourseTime": "08:00 AM - 11:10 AM M",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "CSE332L",
@@ -9479,7 +9471,7 @@
       "Faculty": "TnF",
       "CourseTime": "08:00 AM - 11:10 AM W",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE332L",
@@ -9535,7 +9527,7 @@
       "Faculty": "hzr",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE338",
@@ -9551,7 +9543,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "CSE338L",
@@ -9679,7 +9671,7 @@
       "Faculty": "IqR",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "CSE413",
@@ -9695,7 +9687,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "CSE413L",
@@ -9783,7 +9775,7 @@
       "Faculty": "IqR",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE435L",
@@ -9799,7 +9791,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE438",
@@ -9807,7 +9799,7 @@
       "Faculty": "hzr",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "CSE438",
@@ -9823,7 +9815,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "CSE438L",
@@ -9959,7 +9951,7 @@
       "Faculty": "SvA",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "CSE465",
@@ -9983,7 +9975,7 @@
       "Faculty": "MLE",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "CSE482",
@@ -9991,7 +9983,7 @@
       "Faculty": "NqH",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "CSE482L",
@@ -9999,7 +9991,7 @@
       "Faculty": "NqH",
       "CourseTime": "02:40 PM - 05:50 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "CSE491",
@@ -10119,7 +10111,7 @@
       "Faculty": "TBA",
       "CourseTime": "TBA",
       "TotalSeat": "21",
-      "TakenSeat": "6"
+      "TakenSeat": "7"
     },
     {
       "CourseCode": "CSE498R",
@@ -10391,7 +10383,7 @@
       "Faculty": "AJH",
       "CourseTime": "11:20 AM - 12:50 PM W",
       "TotalSeat": "21",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "CSE499B",
@@ -10527,7 +10519,7 @@
       "Faculty": "MIH",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "35",
-      "TakenSeat": "4"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "DEV504",
@@ -10903,7 +10895,7 @@
       "Faculty": "AAR",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ECO101",
@@ -10967,7 +10959,7 @@
       "Faculty": "SaKn",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ECO101",
@@ -11007,7 +10999,7 @@
       "Faculty": "RfAh",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "ECO101",
@@ -11127,7 +11119,7 @@
       "Faculty": "PSK",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ECO101",
@@ -11175,7 +11167,7 @@
       "Faculty": "ASRN",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "9"
+      "TakenSeat": "7"
     },
     {
       "CourseCode": "ECO101",
@@ -11223,7 +11215,7 @@
       "Faculty": "PSk",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "19"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "ECO101",
@@ -11239,7 +11231,7 @@
       "Faculty": "Nnm",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ECO101",
@@ -11247,7 +11239,7 @@
       "Faculty": "RfAh",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "ECO101",
@@ -11407,7 +11399,7 @@
       "Faculty": "TPA",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ECO104",
@@ -11423,7 +11415,7 @@
       "Faculty": "PSk",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ECO104",
@@ -11455,7 +11447,7 @@
       "Faculty": "TPA",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ECO104",
@@ -11495,7 +11487,7 @@
       "Faculty": "Ans",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ECO104",
@@ -11559,7 +11551,7 @@
       "Faculty": "Abt",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ECO135",
@@ -11575,7 +11567,7 @@
       "Faculty": "TPA",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "14"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ECO172",
@@ -11631,7 +11623,7 @@
       "Faculty": "AtR",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ECO204",
@@ -11695,7 +11687,7 @@
       "Faculty": "MIH",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ECO354",
@@ -11775,7 +11767,7 @@
       "Faculty": "JVHn",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "ECO504",
@@ -12271,7 +12263,7 @@
       "Faculty": "MOJ",
       "CourseTime": "02:40 PM - 05:50 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "34"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "EEE111L",
@@ -12495,7 +12487,7 @@
       "Faculty": "RqN",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE141",
@@ -12534,8 +12526,8 @@
       "Section": "23",
       "Faculty": "MJRd",
       "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "EEE141L",
@@ -12607,7 +12599,7 @@
       "Faculty": "NaNr",
       "CourseTime": "11:20 AM - 02:30 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "EEE141L",
@@ -12655,7 +12647,7 @@
       "Faculty": "RqN",
       "CourseTime": "08:00 AM - 11:10 AM W",
       "TotalSeat": "40",
-      "TakenSeat": "33"
+      "TakenSeat": "32"
     },
     {
       "CourseCode": "EEE141L",
@@ -12694,8 +12686,8 @@
       "Section": "23",
       "Faculty": "MJRd",
       "CourseTime": "08:00 AM - 11:10 AM R",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "EEE154",
@@ -12839,7 +12831,7 @@
       "Faculty": "TnF",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "EEE211",
@@ -12847,7 +12839,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "EEE211",
@@ -12871,7 +12863,7 @@
       "Faculty": "TnF",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "EEE211L",
@@ -12879,7 +12871,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 05:50 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "EEE211L",
@@ -13199,7 +13191,7 @@
       "Faculty": "hzr",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE331L",
@@ -13207,7 +13199,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "EEE332",
@@ -13271,7 +13263,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE332",
@@ -13375,7 +13367,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE332L",
@@ -13446,8 +13438,8 @@
       "Section": "3",
       "Faculty": "NJL",
       "CourseTime": "09:40 AM - 11:10 AM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "EEE336",
@@ -13455,7 +13447,7 @@
       "Faculty": "TnF",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "EEE336",
@@ -13463,7 +13455,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE336",
@@ -13527,15 +13519,15 @@
       "Faculty": "MAQm",
       "CourseTime": "02:40 PM - 05:50 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE336L",
       "Section": "3",
       "Faculty": "NJL",
       "CourseTime": "11:20 AM - 02:30 PM S",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "EEE336L",
@@ -13543,7 +13535,7 @@
       "Faculty": "TnF",
       "CourseTime": "08:00 AM - 11:10 AM M",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "EEE336L",
@@ -13551,7 +13543,7 @@
       "Faculty": "TnF",
       "CourseTime": "08:00 AM - 11:10 AM W",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE336L",
@@ -13655,7 +13647,7 @@
       "Faculty": "hzr",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE362",
@@ -13663,7 +13655,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "EEE362",
@@ -13679,7 +13671,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 02:30 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "EEE362L",
@@ -13687,7 +13679,7 @@
       "Faculty": "hzr",
       "CourseTime": "02:40 PM - 05:50 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "EEE362L",
@@ -13719,7 +13711,7 @@
       "Faculty": "RQN",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "30",
-      "TakenSeat": "17"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "EEE363",
@@ -13743,7 +13735,7 @@
       "Faculty": "Aqu",
       "CourseTime": "11:20 AM - 02:30 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "EEE363L",
@@ -13751,7 +13743,7 @@
       "Faculty": "RQN",
       "CourseTime": "02:40 PM - 05:50 PM A",
       "TotalSeat": "30",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "EEE363L",
@@ -13775,7 +13767,7 @@
       "Faculty": "IqR",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE411L",
@@ -13791,7 +13783,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE413",
@@ -13799,7 +13791,7 @@
       "Faculty": "IqR",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "EEE413",
@@ -13815,7 +13807,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "EEE413L",
@@ -13983,7 +13975,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE453",
@@ -14087,7 +14079,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "EEE453L",
@@ -14135,7 +14127,7 @@
       "Faculty": "MFY",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "EEE465",
@@ -14143,7 +14135,7 @@
       "Faculty": "MDRN",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "33"
+      "TakenSeat": "32"
     },
     {
       "CourseCode": "EEE494",
@@ -14151,7 +14143,7 @@
       "Faculty": "SnS1",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "EEE498R",
@@ -14311,7 +14303,7 @@
       "Faculty": "AJH",
       "CourseTime": "11:20 AM - 12:50 PM W",
       "TotalSeat": "21",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "EEE499B",
@@ -14455,7 +14447,7 @@
       "Faculty": "KJZ",
       "CourseTime": "07:00 PM - 10:10 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "EMB510",
@@ -14463,7 +14455,7 @@
       "Faculty": "MNL1",
       "CourseTime": "07:00 PM - 10:10 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "12"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "EMB520",
@@ -14503,7 +14495,7 @@
       "Faculty": "AdZ",
       "CourseTime": "07:00 PM - 10:10 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "EMB650",
@@ -14511,7 +14503,7 @@
       "Faculty": "Frs",
       "CourseTime": "07:00 PM - 10:10 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "5"
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "EMB660",
@@ -14519,7 +14511,7 @@
       "Faculty": "AWKM",
       "CourseTime": "07:00 PM - 10:10 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "EMB670",
@@ -14563,10 +14555,10 @@
     },
     {
       "CourseCode": "EMPG555",
-      "Section": "1",
+      "Section": "2",
       "Faculty": "MGH",
-      "CourseTime": "11:15 AM - 01:15 PM A",
-      "TotalSeat": "40",
+      "CourseTime": "11:15 AM - 01:15 PM F",
+      "TotalSeat": "30",
       "TakenSeat": "0"
     },
     {
@@ -14791,7 +14783,7 @@
       "Faculty": "SHq",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENG103",
@@ -14799,7 +14791,7 @@
       "Faculty": "NnR",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "28",
-      "TakenSeat": "28"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "ENG103",
@@ -14895,7 +14887,7 @@
       "Faculty": "NnR",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "25",
-      "TakenSeat": "24"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "ENG103",
@@ -14911,7 +14903,7 @@
       "Faculty": "SZn",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENG103",
@@ -14991,7 +14983,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENG103",
@@ -14999,7 +14991,7 @@
       "Faculty": "AIZ",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "36"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "ENG103",
@@ -15023,7 +15015,7 @@
       "Faculty": "RT1",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "ENG103",
@@ -15095,7 +15087,7 @@
       "Faculty": "ALR",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENG103",
@@ -15119,7 +15111,7 @@
       "Faculty": "NSL",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "ENG103",
@@ -15127,7 +15119,7 @@
       "Faculty": "DBs",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "10"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "ENG103",
@@ -15175,7 +15167,7 @@
       "Faculty": "TBA",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ENG103",
@@ -15207,7 +15199,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "7"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "ENG103",
@@ -15223,7 +15215,7 @@
       "Faculty": "TBA",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENG103",
@@ -15263,7 +15255,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "ENG105",
@@ -15439,7 +15431,7 @@
       "Faculty": "STSd",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "ENG105",
@@ -15447,7 +15439,7 @@
       "Faculty": "SHq",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENG105",
@@ -15455,7 +15447,7 @@
       "Faculty": "MZ",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ENG105",
@@ -15663,7 +15655,7 @@
       "Faculty": "HSh",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENG115",
@@ -15759,7 +15751,7 @@
       "Faculty": "SHq",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "ENG216",
@@ -15799,7 +15791,7 @@
       "Faculty": "HSh",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "29"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "ENG230",
@@ -15863,7 +15855,7 @@
       "Faculty": "SlQ",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENG346",
@@ -15871,7 +15863,7 @@
       "Faculty": "AQB",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "ENG371",
@@ -15887,7 +15879,7 @@
       "Faculty": "SNu",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "ENG401",
@@ -16055,7 +16047,7 @@
       "Faculty": "AQB",
       "CourseTime": "06:00 PM - 09:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "ENG604",
@@ -16087,7 +16079,7 @@
       "Faculty": "SLI",
       "CourseTime": "06:00 PM - 09:10 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "ENG618",
@@ -16159,7 +16151,7 @@
       "Faculty": "KNr",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ENV107",
@@ -16167,7 +16159,7 @@
       "Faculty": "NAKN",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "13"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "ENV107",
@@ -16295,7 +16287,7 @@
       "Faculty": "YKB",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENV107",
@@ -16351,7 +16343,7 @@
       "Faculty": "KYH",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "13"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "ENV107",
@@ -16374,32 +16366,32 @@
       "Section": "28",
       "Faculty": "ARK",
       "CourseTime": "09:40 AM - 11:10 AM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "ENV107",
       "Section": "29",
       "Faculty": "ARK",
       "CourseTime": "11:20 AM - 12:50 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "ENV107",
       "Section": "30",
       "Faculty": "ARK",
       "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ENV107",
       "Section": "31",
       "Faculty": "MpR",
       "CourseTime": "11:20 AM - 12:50 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "ENV107",
@@ -16414,8 +16406,8 @@
       "Section": "33",
       "Faculty": "SNQ",
       "CourseTime": "01:00 PM - 02:30 PM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ENV107",
@@ -16430,8 +16422,8 @@
       "Section": "35",
       "Faculty": "MdMR",
       "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ENV107",
@@ -16446,7 +16438,7 @@
       "Section": "37",
       "Faculty": "MRKn",
       "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "0",
+      "TotalSeat": "40",
       "TakenSeat": "0"
     },
     {
@@ -16463,7 +16455,7 @@
       "Faculty": "KAI",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ENV107",
@@ -16487,7 +16479,7 @@
       "Faculty": "SSm1",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENV107",
@@ -16496,6 +16488,22 @@
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "60",
       "TakenSeat": "28"
+    },
+    {
+      "CourseCode": "ENV107",
+      "Section": "44",
+      "Faculty": "SRT",
+      "CourseTime": "08:00 AM - 09:30 AM MW",
+      "TotalSeat": "40",
+      "TakenSeat": "0"
+    },
+    {
+      "CourseCode": "ENV107",
+      "Section": "45",
+      "Faculty": "SRT",
+      "CourseTime": "04:20 PM - 05:50 PM MW",
+      "TotalSeat": "40",
+      "TakenSeat": "0"
     },
     {
       "CourseCode": "ENV107L",
@@ -16518,15 +16526,15 @@
       "Section": "3",
       "Faculty": "YKB",
       "CourseTime": "04:20 PM - 05:50 PM ST",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "4",
       "Faculty": "AfI2",
       "CourseTime": "08:00 AM - 09:30 AM MW",
-      "TotalSeat": "0",
+      "TotalSeat": "20",
       "TakenSeat": "0"
     },
     {
@@ -16534,31 +16542,31 @@
       "Section": "5",
       "Faculty": "AfI2",
       "CourseTime": "09:40 AM - 11:10 AM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "6",
       "Faculty": "AfI2",
       "CourseTime": "11:20 AM - 12:50 PM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "7",
       "Faculty": "AfI2",
       "CourseTime": "08:00 AM - 09:30 AM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "8",
       "Faculty": "AfI2",
       "CourseTime": "09:40 AM - 11:10 AM MW",
-      "TotalSeat": "0",
+      "TotalSeat": "20",
       "TakenSeat": "0"
     },
     {
@@ -16566,23 +16574,23 @@
       "Section": "9",
       "Faculty": "AfI2",
       "CourseTime": "11:20 AM - 12:50 PM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "10",
       "Faculty": "YKB",
       "CourseTime": "01:00 PM - 02:30 PM ST",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "11",
       "Faculty": "YKB",
       "CourseTime": "02:40 PM - 04:10 PM ST",
-      "TotalSeat": "0",
+      "TotalSeat": "20",
       "TakenSeat": "0"
     },
     {
@@ -16590,7 +16598,7 @@
       "Section": "12",
       "Faculty": "YKB",
       "CourseTime": "04:20 PM - 05:50 PM ST",
-      "TotalSeat": "0",
+      "TotalSeat": "20",
       "TakenSeat": "0"
     },
     {
@@ -16598,16 +16606,16 @@
       "Section": "13",
       "Faculty": "ASA2",
       "CourseTime": "08:00 AM - 09:30 AM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "ENV107L",
       "Section": "14",
       "Faculty": "ASA2",
       "CourseTime": "09:40 AM - 11:10 AM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "20",
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "ENV107L",
@@ -16623,7 +16631,7 @@
       "Faculty": "ASA2",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "ENV107L",
@@ -16647,7 +16655,7 @@
       "Faculty": "ASA2",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "ENV107L",
@@ -16687,7 +16695,7 @@
       "Faculty": "KBs",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "17"
     },
     {
       "CourseCode": "ENV107L",
@@ -16695,7 +16703,7 @@
       "Faculty": "KBs",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENV107L",
@@ -16727,7 +16735,7 @@
       "Faculty": "KBs",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "ENV107L",
@@ -16743,7 +16751,7 @@
       "Faculty": "SSm1",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENV107L",
@@ -16775,7 +16783,7 @@
       "Faculty": "MNA3",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENV107L",
@@ -16783,7 +16791,7 @@
       "Faculty": "MNA3",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "17"
     },
     {
       "CourseCode": "ENV107L",
@@ -16791,7 +16799,7 @@
       "Faculty": "MNA3",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENV107L",
@@ -16807,7 +16815,7 @@
       "Faculty": "MNA3",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "ENV107L",
@@ -16839,7 +16847,7 @@
       "Faculty": "AHMn",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "20",
-      "TakenSeat": "20"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ENV107L",
@@ -16856,6 +16864,54 @@
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "20",
       "TakenSeat": "20"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "46",
+      "Faculty": "SRT",
+      "CourseTime": "01:00 PM - 02:30 PM ST",
+      "TotalSeat": "20",
+      "TakenSeat": "0"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "47",
+      "Faculty": "SRT",
+      "CourseTime": "02:40 PM - 04:10 PM ST",
+      "TotalSeat": "20",
+      "TakenSeat": "2"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "48",
+      "Faculty": "SRT",
+      "CourseTime": "04:20 PM - 05:50 PM ST",
+      "TotalSeat": "20",
+      "TakenSeat": "0"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "49",
+      "Faculty": "SRT",
+      "CourseTime": "01:00 PM - 02:30 PM RA",
+      "TotalSeat": "20",
+      "TakenSeat": "0"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "50",
+      "Faculty": "SRT",
+      "CourseTime": "02:40 PM - 04:10 PM RA",
+      "TotalSeat": "20",
+      "TakenSeat": "1"
+    },
+    {
+      "CourseCode": "ENV107L",
+      "Section": "51",
+      "Faculty": "SRT",
+      "CourseTime": "04:20 PM - 05:50 PM RA",
+      "TotalSeat": "20",
+      "TakenSeat": "0"
     },
     {
       "CourseCode": "ENV172",
@@ -16903,7 +16959,7 @@
       "Faculty": "RMr",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENV203",
@@ -16915,27 +16971,11 @@
     },
     {
       "CourseCode": "ENV203",
-      "Section": "6",
-      "Faculty": "NYA",
-      "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "40",
-      "TakenSeat": "11"
-    },
-    {
-      "CourseCode": "ENV203",
-      "Section": "7",
-      "Faculty": "NYA",
-      "CourseTime": "04:20 PM - 05:50 PM RA",
-      "TotalSeat": "40",
-      "TakenSeat": "10"
-    },
-    {
-      "CourseCode": "ENV203",
       "Section": "8",
       "Faculty": "Mzs",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "ENV203",
@@ -16943,7 +16983,7 @@
       "Faculty": "Mzs",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "ENV203",
@@ -16951,7 +16991,7 @@
       "Faculty": "Zru",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENV203",
@@ -16960,6 +17000,14 @@
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
       "TakenSeat": "40"
+    },
+    {
+      "CourseCode": "ENV203",
+      "Section": "12",
+      "Faculty": "NIK",
+      "CourseTime": "08:00 AM - 09:30 AM MW",
+      "TotalSeat": "40",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ENV204",
@@ -16983,7 +17031,7 @@
       "Faculty": "BKF",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "10"
+      "TakenSeat": "11"
     },
     {
       "CourseCode": "ENV207",
@@ -16991,7 +17039,7 @@
       "Faculty": "NAKN",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "ENV207",
@@ -16999,7 +17047,7 @@
       "Faculty": "NAKN",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ENV209",
@@ -17119,7 +17167,7 @@
       "Faculty": "SBn",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ENV436",
@@ -17136,6 +17184,14 @@
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
       "TakenSeat": "40"
+    },
+    {
+      "CourseCode": "ENV498",
+      "Section": "1",
+      "Faculty": "Jky",
+      "CourseTime": "TBA",
+      "TotalSeat": "1",
+      "TakenSeat": "0"
     },
     {
       "CourseCode": "ENV498",
@@ -17199,7 +17255,7 @@
       "Faculty": "RMKN",
       "CourseTime": "TBA",
       "TotalSeat": "3",
-      "TakenSeat": "3"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "ENV499",
@@ -17228,7 +17284,7 @@
     {
       "CourseCode": "ENV502",
       "Section": "1",
-      "Faculty": "ATMN",
+      "Faculty": "NRMN",
       "CourseTime": "09:00 AM - 12:00 PM F",
       "TotalSeat": "40",
       "TakenSeat": "6"
@@ -17236,7 +17292,7 @@
     {
       "CourseCode": "ENV602",
       "Section": "1",
-      "Faculty": "ATMN",
+      "Faculty": "NRMN",
       "CourseTime": "03:00 PM - 06:00 PM F",
       "TotalSeat": "40",
       "TakenSeat": "28"
@@ -17287,7 +17343,7 @@
       "Faculty": "BKF",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "ENV652",
@@ -17295,7 +17351,7 @@
       "Faculty": "Jky",
       "CourseTime": "07:00 PM - 10:10 PM T",
       "TotalSeat": "20",
-      "TakenSeat": "12"
+      "TakenSeat": "11"
     },
     {
       "CourseCode": "ENV685",
@@ -17455,7 +17511,7 @@
       "Faculty": "MOJ",
       "CourseTime": "02:40 PM - 05:50 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "34"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "ETE111L",
@@ -17679,7 +17735,7 @@
       "Faculty": "RqN",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ETE141",
@@ -17718,8 +17774,8 @@
       "Section": "23",
       "Faculty": "MJRd",
       "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "ETE141L",
@@ -17791,7 +17847,7 @@
       "Faculty": "NaNr",
       "CourseTime": "11:20 AM - 02:30 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "ETE141L",
@@ -17839,7 +17895,7 @@
       "Faculty": "RqN",
       "CourseTime": "08:00 AM - 11:10 AM W",
       "TotalSeat": "40",
-      "TakenSeat": "33"
+      "TakenSeat": "32"
     },
     {
       "CourseCode": "ETE141L",
@@ -17878,8 +17934,8 @@
       "Section": "23",
       "Faculty": "MJRd",
       "CourseTime": "08:00 AM - 11:10 AM R",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "30",
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "ETE211",
@@ -17887,7 +17943,7 @@
       "Faculty": "TnF",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "ETE211",
@@ -17895,7 +17951,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "ETE211",
@@ -17919,7 +17975,7 @@
       "Faculty": "TnF",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "ETE211L",
@@ -17927,7 +17983,7 @@
       "Faculty": "TnF",
       "CourseTime": "02:40 PM - 05:50 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "ETE211L",
@@ -18247,7 +18303,7 @@
       "Faculty": "hzr",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "ETE331L",
@@ -18255,7 +18311,7 @@
       "Faculty": "hzr",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "ETE332",
@@ -18319,7 +18375,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ETE332",
@@ -18423,7 +18479,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ETE332L",
@@ -18479,7 +18535,7 @@
       "Faculty": "NqH",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "ETE334L",
@@ -18487,7 +18543,7 @@
       "Faculty": "NqH",
       "CourseTime": "02:40 PM - 05:50 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "ETE335",
@@ -18703,7 +18759,7 @@
       "Faculty": "IqR",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ETE412L",
@@ -18719,7 +18775,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM A",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "ETE418",
@@ -18759,7 +18815,7 @@
       "Faculty": "IqR",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ETE419",
@@ -18775,7 +18831,7 @@
       "Faculty": "IqR",
       "CourseTime": "11:20 AM - 02:30 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "ETE419L",
@@ -18935,7 +18991,7 @@
       "Faculty": "AJH",
       "CourseTime": "11:20 AM - 12:50 PM W",
       "TotalSeat": "21",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "ETE499B",
@@ -19047,7 +19103,7 @@
       "Faculty": "Ezk",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "FIN254",
@@ -19055,7 +19111,7 @@
       "Faculty": "AhU",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "35",
-      "TakenSeat": "34"
+      "TakenSeat": "35"
     },
     {
       "CourseCode": "FIN254",
@@ -19199,7 +19255,7 @@
       "Faculty": "AAY",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "35",
-      "TakenSeat": "35"
+      "TakenSeat": "34"
     },
     {
       "CourseCode": "FIN254",
@@ -19207,7 +19263,7 @@
       "Faculty": "AAY",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "35",
-      "TakenSeat": "18"
+      "TakenSeat": "17"
     },
     {
       "CourseCode": "FIN254",
@@ -19263,7 +19319,7 @@
       "Faculty": "HAS",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "34"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "FIN410",
@@ -19327,7 +19383,7 @@
       "Faculty": "ARm",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "37",
-      "TakenSeat": "17"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "FIN433",
@@ -19399,7 +19455,7 @@
       "Faculty": "MAR3",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "FIN435",
@@ -19407,7 +19463,7 @@
       "Faculty": "MdM",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "FIN435",
@@ -19431,7 +19487,7 @@
       "Faculty": "HAS",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "37",
-      "TakenSeat": "30"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "FIN440",
@@ -19495,7 +19551,7 @@
       "Faculty": "MzF",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "FIN444",
@@ -19543,7 +19599,7 @@
       "Faculty": "HAS",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "8"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "FIN464",
@@ -19559,7 +19615,7 @@
       "Faculty": "MdM",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "FIN464",
@@ -19607,7 +19663,7 @@
       "Faculty": "MdR",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "FIN637",
@@ -19615,7 +19671,7 @@
       "Faculty": "MAR3",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "FIN639",
@@ -19631,7 +19687,7 @@
       "Faculty": "Rma",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "FIN642",
@@ -19639,7 +19695,7 @@
       "Faculty": "Rma",
       "CourseTime": "09:00 AM - 12:30 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "FIN642",
@@ -19663,7 +19719,7 @@
       "Faculty": "PKB",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "FIN645",
@@ -19719,7 +19775,7 @@
       "Faculty": "RMr",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "GEO205",
@@ -19731,27 +19787,11 @@
     },
     {
       "CourseCode": "GEO205",
-      "Section": "6",
-      "Faculty": "NYA",
-      "CourseTime": "02:40 PM - 04:10 PM RA",
-      "TotalSeat": "40",
-      "TakenSeat": "11"
-    },
-    {
-      "CourseCode": "GEO205",
-      "Section": "7",
-      "Faculty": "NYA",
-      "CourseTime": "04:20 PM - 05:50 PM RA",
-      "TotalSeat": "40",
-      "TakenSeat": "10"
-    },
-    {
-      "CourseCode": "GEO205",
       "Section": "8",
       "Faculty": "Mzs",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "GEO205",
@@ -19759,7 +19799,7 @@
       "Faculty": "Mzs",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "GEO205",
@@ -19767,7 +19807,7 @@
       "Faculty": "Zru",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "GEO205",
@@ -19776,6 +19816,14 @@
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
       "TakenSeat": "40"
+    },
+    {
+      "CourseCode": "GEO205",
+      "Section": "12",
+      "Faculty": "NIK",
+      "CourseTime": "08:00 AM - 09:30 AM MW",
+      "TotalSeat": "40",
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "HAS501",
@@ -19855,7 +19903,7 @@
       "Faculty": "SLn",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "HIS101",
@@ -19871,7 +19919,7 @@
       "Faculty": "SLn",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "HIS101",
@@ -19943,7 +19991,7 @@
       "Faculty": "Mzd",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "37"
     },
     {
       "CourseCode": "HIS101",
@@ -19983,7 +20031,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "HIS102",
@@ -20055,7 +20103,7 @@
       "Faculty": "TBA",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "HIS103",
@@ -20127,7 +20175,7 @@
       "Faculty": "TBA",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "HIS103",
@@ -20167,7 +20215,7 @@
       "Faculty": "TRh",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "35"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "HIS103",
@@ -20199,7 +20247,7 @@
       "Faculty": "MSIa",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "HIS103",
@@ -20215,7 +20263,7 @@
       "Faculty": "SWH1",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "12"
+      "TakenSeat": "11"
     },
     {
       "CourseCode": "HIS103",
@@ -20252,10 +20300,10 @@
     {
       "CourseCode": "HIS103",
       "Section": "25",
-      "Faculty": "SdHI",
+      "Faculty": "SdH1",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "33"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "HIS203",
@@ -20335,7 +20383,7 @@
       "Faculty": "ALm",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "35",
-      "TakenSeat": "12"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "HRM370",
@@ -20383,7 +20431,7 @@
       "Faculty": "TuA",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "35",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "HRM450",
@@ -20391,7 +20439,7 @@
       "Faculty": "MLi",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "35",
-      "TakenSeat": "35"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "HRM450",
@@ -20399,7 +20447,7 @@
       "Faculty": "MFC",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "35",
-      "TakenSeat": "27"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "HRM470",
@@ -20519,7 +20567,7 @@
       "Faculty": "SAW",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "INB372",
@@ -20527,7 +20575,7 @@
       "Faculty": "Fzy",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "INB372",
@@ -20551,7 +20599,7 @@
       "Faculty": "SAW",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "INB372",
@@ -20567,7 +20615,7 @@
       "Faculty": "MeSK",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "INB372",
@@ -20591,7 +20639,7 @@
       "Faculty": "Fzy",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "INB372",
@@ -20639,7 +20687,7 @@
       "Faculty": "SAW",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "INB400",
@@ -20647,7 +20695,7 @@
       "Faculty": "MeI",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "INB410",
@@ -20687,7 +20735,7 @@
       "Faculty": "KTRS",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "LAW101",
@@ -20847,7 +20895,7 @@
       "Faculty": "MNK",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "MAT116",
@@ -20967,7 +21015,7 @@
       "Faculty": "THr",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "MAT116",
@@ -21671,7 +21719,7 @@
       "Faculty": "HAr",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MAT350",
@@ -21799,7 +21847,7 @@
       "Faculty": "MdRK",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MAT361",
@@ -21975,7 +22023,7 @@
       "Faculty": "JnA",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "MGT212",
@@ -21983,7 +22031,7 @@
       "Faculty": "JnA",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "MGT212",
@@ -22015,7 +22063,7 @@
       "Faculty": "JnA",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "MGT212",
@@ -22036,10 +22084,10 @@
     {
       "CourseCode": "MGT212",
       "Section": "11",
-      "Faculty": "SYI",
+      "Faculty": "UTH",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "MGT212",
@@ -22071,7 +22119,7 @@
       "Faculty": "RSj",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "6"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "MGT212",
@@ -22111,7 +22159,7 @@
       "Faculty": "SSH2",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "MGT212",
@@ -22127,7 +22175,7 @@
       "Faculty": "TBA",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "10"
+      "TakenSeat": "8"
     },
     {
       "CourseCode": "MGT212",
@@ -22135,7 +22183,7 @@
       "Faculty": "ShL",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "MGT212",
@@ -22167,7 +22215,7 @@
       "Faculty": "AMTR",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "6"
+      "TakenSeat": "8"
     },
     {
       "CourseCode": "MGT314",
@@ -22175,7 +22223,7 @@
       "Faculty": "JAH",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "29"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "MGT314",
@@ -22199,7 +22247,7 @@
       "Faculty": "TBA",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "MGT314",
@@ -22375,7 +22423,7 @@
       "Faculty": "TuA",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "MGT360",
@@ -22383,7 +22431,7 @@
       "Faculty": "MHCw",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "80",
-      "TakenSeat": "57"
+      "TakenSeat": "58"
     },
     {
       "CourseCode": "MGT368",
@@ -22415,7 +22463,7 @@
       "Faculty": "AMTr",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MGT368",
@@ -22431,7 +22479,7 @@
       "Faculty": "ShL",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "36"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "MGT368",
@@ -22519,7 +22567,7 @@
       "Faculty": "SMm4",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MGT489",
@@ -22543,7 +22591,7 @@
       "Faculty": "ZMU",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MGT489",
@@ -22631,7 +22679,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "MIC201",
@@ -22735,7 +22783,7 @@
       "Faculty": "FSS1",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "MIC207",
@@ -22839,7 +22887,7 @@
       "Faculty": "SRS1",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "MIC314",
@@ -22919,7 +22967,7 @@
       "Faculty": "NBB",
       "CourseTime": "02:40 PM - 05:40 PM T",
       "TotalSeat": "20",
-      "TakenSeat": "15"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "MIC315L",
@@ -23095,7 +23143,7 @@
       "Faculty": "FSS1",
       "CourseTime": "01:00 PM - 02:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "31"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "MIC413",
@@ -23127,7 +23175,7 @@
       "Faculty": "MTO",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "MIC414L",
@@ -23215,7 +23263,7 @@
       "Faculty": "TBA",
       "CourseTime": "TBA",
       "TotalSeat": "15",
-      "TakenSeat": "8"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "MIC498",
@@ -23263,7 +23311,7 @@
       "Faculty": "NwA",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MIS107",
@@ -23311,7 +23359,7 @@
       "Faculty": "NwA",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "44",
-      "TakenSeat": "5"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "MIS107",
@@ -23367,7 +23415,7 @@
       "Faculty": "RSH3",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "44",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "MIS107",
@@ -23383,7 +23431,7 @@
       "Faculty": "MMS3",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "44",
-      "TakenSeat": "12"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "MIS107",
@@ -23399,7 +23447,7 @@
       "Faculty": "RSh3",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "MIS107",
@@ -23407,7 +23455,7 @@
       "Faculty": "MMS3",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "44",
-      "TakenSeat": "10"
+      "TakenSeat": "11"
     },
     {
       "CourseCode": "MIS107",
@@ -23431,7 +23479,7 @@
       "Faculty": "STrn",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "MIS107",
@@ -23535,7 +23583,7 @@
       "Faculty": "YAR",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "44",
-      "TakenSeat": "31"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "MIS207",
@@ -23559,7 +23607,7 @@
       "Faculty": "AIK",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "44",
-      "TakenSeat": "44"
+      "TakenSeat": "43"
     },
     {
       "CourseCode": "MIS207",
@@ -23599,7 +23647,7 @@
       "Faculty": "YAR",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "44",
-      "TakenSeat": "38"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "MIS207",
@@ -23615,7 +23663,7 @@
       "Faculty": "TBA",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "14"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "MIS207",
@@ -23623,7 +23671,7 @@
       "Faculty": "ANU",
       "CourseTime": "06:00 PM - 07:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "MIS210",
@@ -23639,7 +23687,7 @@
       "Faculty": "KMS2",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "44",
-      "TakenSeat": "17"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "MIS320",
@@ -23647,7 +23695,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "MIS410",
@@ -23687,7 +23735,7 @@
       "Faculty": "MARn",
       "CourseTime": "07:00 PM - 10:10 PM T",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "MIS652",
@@ -23695,7 +23743,7 @@
       "Faculty": "MRq",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "MIS654",
@@ -23727,7 +23775,7 @@
       "Faculty": "FCH",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "MKT202",
@@ -23751,7 +23799,7 @@
       "Faculty": "FCH",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "0"
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "MKT202",
@@ -23767,7 +23815,7 @@
       "Faculty": "IJS",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "MKT202",
@@ -23775,7 +23823,7 @@
       "Faculty": "Sne",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "MKT202",
@@ -23807,7 +23855,7 @@
       "Faculty": "Mbt",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "MKT202",
@@ -23823,7 +23871,7 @@
       "Faculty": "AFMO",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "MKT202",
@@ -23847,7 +23895,7 @@
       "Faculty": "AFMO",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "MKT202",
@@ -23871,7 +23919,7 @@
       "Faculty": "MeSK",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "12"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "MKT202",
@@ -23887,7 +23935,7 @@
       "Faculty": "EhN",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "MKT330",
@@ -23927,7 +23975,7 @@
       "Faculty": "NYM",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "MKT330",
@@ -23967,7 +24015,7 @@
       "Faculty": "Sne",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "MKT337",
@@ -23999,7 +24047,7 @@
       "Faculty": "FNa1",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "MKT337",
@@ -24007,7 +24055,7 @@
       "Faculty": "Sne",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "MKT337",
@@ -24015,7 +24063,7 @@
       "Faculty": "FNA1",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "30",
-      "TakenSeat": "3"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "MKT344",
@@ -24055,7 +24103,7 @@
       "Faculty": "Onf",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "MKT344",
@@ -24119,7 +24167,7 @@
       "Faculty": "FdF",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "8"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "MKT382",
@@ -24127,7 +24175,7 @@
       "Faculty": "MeI",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "21"
     },
     {
       "CourseCode": "MKT382",
@@ -24167,7 +24215,7 @@
       "Faculty": "FdF",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "32"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "MKT460",
@@ -24207,7 +24255,7 @@
       "Faculty": "Mbt",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "2"
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "MKT460",
@@ -24247,7 +24295,7 @@
       "Faculty": "ZTK",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "MKT465",
@@ -24255,7 +24303,7 @@
       "Faculty": "TBA",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "12"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "MKT465",
@@ -24319,7 +24367,7 @@
       "Faculty": "SMKN",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "10"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "MKT470",
@@ -24327,7 +24375,7 @@
       "Faculty": "MNE",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "MKT470",
@@ -24359,7 +24407,7 @@
       "Faculty": "MNE",
       "CourseTime": "07:00 PM - 10:10 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "MKT623",
@@ -24367,7 +24415,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM M",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "22"
     },
     {
       "CourseCode": "MKT624",
@@ -24375,7 +24423,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "24"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "MKT624",
@@ -24391,7 +24439,7 @@
       "Faculty": "DSr",
       "CourseTime": "07:00 PM - 10:10 PM W",
       "TotalSeat": "40",
-      "TakenSeat": "22"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "MKT628",
@@ -24399,7 +24447,7 @@
       "Faculty": "KNM1",
       "CourseTime": "07:00 PM - 10:10 PM S",
       "TotalSeat": "40",
-      "TakenSeat": "29"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "MKT629",
@@ -24543,7 +24591,7 @@
       "Faculty": "SYK",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "PBH101",
@@ -24556,10 +24604,10 @@
     {
       "CourseCode": "PBH101",
       "Section": "12",
-      "Faculty": "BCh",
+      "Faculty": "TBA",
       "CourseTime": "11:20 AM - 12:50 PM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "PBH101",
@@ -24574,8 +24622,8 @@
       "Section": "14",
       "Faculty": "BCh",
       "CourseTime": "02:40 PM - 04:10 PM MW",
-      "TotalSeat": "0",
-      "TakenSeat": "0"
+      "TotalSeat": "40",
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "PBH101",
@@ -24583,7 +24631,7 @@
       "Faculty": "MZIm",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "PBH101",
@@ -24591,7 +24639,7 @@
       "Faculty": "MZIM",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "38"
     },
     {
       "CourseCode": "PBH101",
@@ -24710,15 +24758,15 @@
       "Section": "1",
       "Faculty": "SoM",
       "CourseTime": "09:40 AM - 11:10 AM S",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "2",
       "Faculty": "SYK",
       "CourseTime": "11:20 AM - 12:50 PM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24726,15 +24774,15 @@
       "Section": "3",
       "Faculty": "NUM",
       "CourseTime": "01:00 PM - 02:30 PM S",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "4",
       "Faculty": "SYK",
       "CourseTime": "02:40 PM - 04:10 PM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24742,7 +24790,7 @@
       "Section": "5",
       "Faculty": "SoM",
       "CourseTime": "04:20 PM - 05:50 PM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24750,24 +24798,24 @@
       "Section": "6",
       "Faculty": "NUM",
       "CourseTime": "09:40 AM - 11:10 AM M",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "7",
       "Faculty": "MIMD",
       "CourseTime": "11:20 AM - 12:50 PM M",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "8",
       "Faculty": "MIMD",
       "CourseTime": "01:00 PM - 02:30 PM M",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
@@ -24782,23 +24830,23 @@
       "Section": "10",
       "Faculty": "SNL",
       "CourseTime": "04:20 PM - 05:50 PM M",
-      "TotalSeat": "19",
-      "TakenSeat": "18"
+      "TotalSeat": "20",
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "11",
       "Faculty": "SoM",
       "CourseTime": "09:40 AM - 11:10 AM T",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "12",
       "Faculty": "SYK",
       "CourseTime": "11:20 AM - 12:50 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24806,7 +24854,7 @@
       "Section": "13",
       "Faculty": "NUM",
       "CourseTime": "01:00 PM - 02:30 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24814,7 +24862,7 @@
       "Section": "14",
       "Faculty": "SYK",
       "CourseTime": "02:40 PM - 04:10 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24822,7 +24870,7 @@
       "Section": "15",
       "Faculty": "SNL",
       "CourseTime": "04:20 PM - 05:50 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24830,15 +24878,15 @@
       "Section": "16",
       "Faculty": "ZZS",
       "CourseTime": "09:40 AM - 11:10 AM W",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "17",
       "Faculty": "MIMD",
       "CourseTime": "11:20 AM - 12:50 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24846,7 +24894,7 @@
       "Section": "18",
       "Faculty": "MIMD",
       "CourseTime": "01:00 PM - 02:30 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24854,7 +24902,7 @@
       "Section": "19",
       "Faculty": "ZZS",
       "CourseTime": "02:40 PM - 04:10 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24862,7 +24910,7 @@
       "Section": "20",
       "Faculty": "ZZS",
       "CourseTime": "04:20 PM - 05:50 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24870,7 +24918,7 @@
       "Section": "21",
       "Faculty": "SoM",
       "CourseTime": "09:40 AM - 11:10 AM R",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24878,31 +24926,31 @@
       "Section": "22",
       "Faculty": "ZZS",
       "CourseTime": "01:00 PM - 02:30 PM R",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "23",
       "Faculty": "NUM",
       "CourseTime": "02:40 PM - 04:10 PM R",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "24",
       "Faculty": "SYK",
       "CourseTime": "04:20 PM - 05:50 PM R",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "27",
       "Faculty": "SoM",
       "CourseTime": "09:40 AM - 11:10 AM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24910,15 +24958,15 @@
       "Section": "28",
       "Faculty": "SYK",
       "CourseTime": "11:20 AM - 12:50 PM S",
-      "TotalSeat": "19",
-      "TakenSeat": "18"
+      "TotalSeat": "20",
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "29",
       "Faculty": "NUM",
       "CourseTime": "01:00 PM - 02:30 PM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24926,15 +24974,15 @@
       "Section": "30",
       "Faculty": "SYK",
       "CourseTime": "02:40 PM - 04:10 PM S",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "31",
       "Faculty": "SoM",
       "CourseTime": "04:20 PM - 05:50 PM S",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24950,7 +24998,7 @@
       "Section": "33",
       "Faculty": "NUM",
       "CourseTime": "09:40 AM - 11:10 AM M",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24958,15 +25006,15 @@
       "Section": "34",
       "Faculty": "MIMD",
       "CourseTime": "11:20 AM - 12:50 PM M",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "35",
       "Faculty": "MIMD",
       "CourseTime": "01:00 PM - 02:30 PM M",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24974,7 +25022,7 @@
       "Section": "36",
       "Faculty": "SNL",
       "CourseTime": "02:40 PM - 04:10 PM M",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24982,15 +25030,15 @@
       "Section": "37",
       "Faculty": "SNL",
       "CourseTime": "04:20 PM - 05:50 PM M",
-      "TotalSeat": "19",
-      "TakenSeat": "2"
+      "TotalSeat": "20",
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "38",
       "Faculty": "SoM",
       "CourseTime": "09:40 AM - 11:10 AM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -24998,7 +25046,7 @@
       "Section": "39",
       "Faculty": "SYK",
       "CourseTime": "11:20 AM - 12:50 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -25006,15 +25054,15 @@
       "Section": "40",
       "Faculty": "NUM",
       "CourseTime": "01:00 PM - 02:30 PM T",
-      "TotalSeat": "19",
-      "TakenSeat": "12"
+      "TotalSeat": "20",
+      "TakenSeat": "11"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "41",
       "Faculty": "SYK",
       "CourseTime": "02:40 PM - 04:10 PM T",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "7"
     },
     {
@@ -25022,23 +25070,23 @@
       "Section": "42",
       "Faculty": "SNL",
       "CourseTime": "04:20 PM - 05:50 PM T",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "43",
       "Faculty": "ZZS",
       "CourseTime": "09:40 AM - 11:10 AM W",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "44",
       "Faculty": "MIMD",
       "CourseTime": "11:20 AM - 12:50 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "19"
     },
     {
@@ -25046,23 +25094,23 @@
       "Section": "45",
       "Faculty": "MIMD",
       "CourseTime": "01:00 PM - 02:30 PM W",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "18"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "46",
       "Faculty": "SoM",
       "CourseTime": "02:40 PM - 04:10 PM W",
-      "TotalSeat": "19",
-      "TakenSeat": "19"
+      "TotalSeat": "20",
+      "TakenSeat": "20"
     },
     {
       "CourseCode": "PBH101L",
       "Section": "47",
       "Faculty": "SNL",
       "CourseTime": "04:20 PM - 05:50 PM W",
-      "TotalSeat": "19",
+      "TotalSeat": "20",
       "TakenSeat": "1"
     },
     {
@@ -25167,7 +25215,7 @@
       "Faculty": "HtN",
       "CourseTime": "TBA",
       "TotalSeat": "25",
-      "TakenSeat": "14"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "PBH605",
@@ -25183,7 +25231,7 @@
       "Faculty": "SBAH",
       "CourseTime": "TBA",
       "TotalSeat": "25",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "PBH609",
@@ -25295,7 +25343,7 @@
       "Faculty": "SBAH",
       "CourseTime": "10:35 AM - 01:20 PM F",
       "TotalSeat": "30",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "PBH653",
@@ -25319,7 +25367,7 @@
       "Faculty": "SBAH",
       "CourseTime": "03:00 PM - 06:00 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "17"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "PBH663",
@@ -25327,7 +25375,7 @@
       "Faculty": "SBAH",
       "CourseTime": "06:10 PM - 09:00 PM F",
       "TotalSeat": "30",
-      "TakenSeat": "12"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "PBH663",
@@ -25383,7 +25431,7 @@
       "Faculty": "HtN",
       "CourseTime": "10:35 AM - 01:20 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "PBH701",
@@ -25391,7 +25439,7 @@
       "Faculty": "MZIm",
       "CourseTime": "03:00 PM - 06:00 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "PBH704",
@@ -25399,7 +25447,7 @@
       "Faculty": "ZqAA",
       "CourseTime": "07:30 AM - 10:30 AM F",
       "TotalSeat": "35",
-      "TakenSeat": "24"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "PBH706",
@@ -25455,7 +25503,7 @@
       "Faculty": "AzB",
       "CourseTime": "07:30 AM - 10:30 AM F",
       "TotalSeat": "39",
-      "TakenSeat": "38"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "PBH712",
@@ -25463,7 +25511,7 @@
       "Faculty": "SMSR",
       "CourseTime": "10:35 AM - 01:20 PM F",
       "TotalSeat": "40",
-      "TakenSeat": "29"
+      "TakenSeat": "30"
     },
     {
       "CourseCode": "PBH713",
@@ -25479,7 +25527,7 @@
       "Faculty": "MIMd",
       "CourseTime": "03:00 PM - 06:00 PM F",
       "TotalSeat": "25",
-      "TakenSeat": "3"
+      "TakenSeat": "5"
     },
     {
       "CourseCode": "PBH714",
@@ -25519,7 +25567,7 @@
       "Faculty": "SMSR",
       "CourseTime": "06:10 PM - 09:00 PM F",
       "TotalSeat": "35",
-      "TakenSeat": "27"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "PBH761",
@@ -25527,7 +25575,7 @@
       "Faculty": "SMSR",
       "CourseTime": "07:30 AM - 10:30 AM F",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "24"
     },
     {
       "CourseCode": "PBH771",
@@ -25575,7 +25623,7 @@
       "Faculty": "DKM",
       "CourseTime": "TBA",
       "TotalSeat": "20",
-      "TakenSeat": "8"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "PBH805",
@@ -25583,7 +25631,7 @@
       "Faculty": "AzB",
       "CourseTime": "TBA",
       "TotalSeat": "20",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "PBH805",
@@ -25631,7 +25679,7 @@
       "Faculty": "AzB",
       "CourseTime": "TBA",
       "TotalSeat": "30",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "PBH806",
@@ -25863,7 +25911,7 @@
       "Faculty": "BHj",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "PHI401",
@@ -25903,7 +25951,7 @@
       "Faculty": "AJA",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "23"
+      "TakenSeat": "25"
     },
     {
       "CourseCode": "PHI401",
@@ -26079,7 +26127,7 @@
       "Faculty": "GMBn",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "PHY107L",
@@ -26103,7 +26151,7 @@
       "Faculty": "SLU",
       "CourseTime": "02:40 PM - 05:50 PM M",
       "TotalSeat": "28",
-      "TakenSeat": "28"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "PHY107L",
@@ -26119,7 +26167,7 @@
       "Faculty": "ZBM",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "28",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "PHY107L",
@@ -26167,7 +26215,7 @@
       "Faculty": "GMBn",
       "CourseTime": "02:40 PM - 05:50 PM R",
       "TotalSeat": "28",
-      "TakenSeat": "6"
+      "TakenSeat": "7"
     },
     {
       "CourseCode": "PHY107L",
@@ -26183,7 +26231,7 @@
       "Faculty": "GMBn",
       "CourseTime": "11:20 AM - 02:30 PM A",
       "TotalSeat": "28",
-      "TakenSeat": "28"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "PHY107L",
@@ -26367,7 +26415,7 @@
       "Faculty": "AuZ",
       "CourseTime": "11:20 AM - 02:30 PM S",
       "TotalSeat": "28",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "PHY108L",
@@ -26375,7 +26423,7 @@
       "Faculty": "AuZ",
       "CourseTime": "11:20 AM - 02:30 PM M",
       "TotalSeat": "28",
-      "TakenSeat": "28"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "PHY108L",
@@ -26383,7 +26431,7 @@
       "Faculty": "AuZ",
       "CourseTime": "11:20 AM - 02:30 PM T",
       "TotalSeat": "28",
-      "TakenSeat": "24"
+      "TakenSeat": "26"
     },
     {
       "CourseCode": "PHY108L",
@@ -26431,7 +26479,7 @@
       "Faculty": "SCG",
       "CourseTime": "08:00 AM - 11:10 AM M",
       "TotalSeat": "28",
-      "TakenSeat": "17"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "POL101",
@@ -26535,7 +26583,7 @@
       "Faculty": "RSU",
       "CourseTime": "09:40 AM - 11:10 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "POL101",
@@ -26551,7 +26599,7 @@
       "Faculty": "RSU",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "POL101",
@@ -26559,7 +26607,7 @@
       "Faculty": "RSU",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "4"
+      "TakenSeat": "3"
     },
     {
       "CourseCode": "POL101",
@@ -26575,7 +26623,7 @@
       "Faculty": "MJUn",
       "CourseTime": "06:00 PM - 07:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "28"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "POL101",
@@ -26607,7 +26655,7 @@
       "Faculty": "NOS",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "POL101",
@@ -26703,7 +26751,7 @@
       "Faculty": "TmN",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "11"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "POL101",
@@ -26711,7 +26759,7 @@
       "Faculty": "TmN",
       "CourseTime": "08:00 AM - 09:30 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "5"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "POL101",
@@ -26719,7 +26767,7 @@
       "Faculty": "TmN",
       "CourseTime": "09:40 AM - 11:10 AM MW",
       "TotalSeat": "40",
-      "TakenSeat": "27"
+      "TakenSeat": "28"
     },
     {
       "CourseCode": "POL101",
@@ -26727,7 +26775,7 @@
       "Faculty": "SPL",
       "CourseTime": "09:40 AM - 11:10 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     },
     {
       "CourseCode": "POL101",
@@ -26775,7 +26823,7 @@
       "Faculty": "SuA2",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "POL101",
@@ -26783,7 +26831,7 @@
       "Faculty": "SHr1",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "POL101",
@@ -26791,7 +26839,7 @@
       "Faculty": "SHr1",
       "CourseTime": "06:00 PM - 07:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "5"
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "POL101",
@@ -26799,7 +26847,7 @@
       "Faculty": "MZJ ",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "6"
+      "TakenSeat": "4"
     },
     {
       "CourseCode": "POL101",
@@ -26823,7 +26871,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "1"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "POL101",
@@ -26855,7 +26903,7 @@
       "Faculty": "SkT",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "16"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "POL104",
@@ -26863,7 +26911,7 @@
       "Faculty": "SLK",
       "CourseTime": "11:20 AM - 12:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "21"
     },
     {
       "CourseCode": "POL202",
@@ -26871,7 +26919,15 @@
       "Faculty": "MNzz",
       "CourseTime": "11:20 AM - 12:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "29"
+      "TakenSeat": "30"
+    },
+    {
+      "CourseCode": "PPG500",
+      "Section": "1",
+      "Faculty": "TBA",
+      "CourseTime": "09:00 AM - 11:00 AM F",
+      "TotalSeat": "20",
+      "TakenSeat": "0"
     },
     {
       "CourseCode": "PPG510",
@@ -27079,7 +27135,7 @@
       "Faculty": "TBA",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "36"
     },
     {
       "CourseCode": "PSY101L",
@@ -27247,7 +27303,7 @@
       "Faculty": "NAK1",
       "CourseTime": "04:20 PM - 05:50 PM S",
       "TotalSeat": "15",
-      "TakenSeat": "12"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "PSY101L",
@@ -27351,7 +27407,7 @@
       "Faculty": "HSR",
       "CourseTime": "04:20 PM - 05:50 PM A",
       "TotalSeat": "15",
-      "TakenSeat": "15"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "PSY101L",
@@ -27391,7 +27447,7 @@
       "Faculty": "ARK3",
       "CourseTime": "09:40 AM - 11:10 AM R",
       "TotalSeat": "15",
-      "TakenSeat": "15"
+      "TakenSeat": "14"
     },
     {
       "CourseCode": "PSY101L",
@@ -27407,7 +27463,7 @@
       "Faculty": "ARK3",
       "CourseTime": "09:40 AM - 11:10 AM A",
       "TotalSeat": "15",
-      "TakenSeat": "5"
+      "TakenSeat": "6"
     },
     {
       "CourseCode": "PSY101L",
@@ -27503,7 +27559,7 @@
       "Faculty": "TBA",
       "CourseTime": "07:00 PM - 10:10 PM R",
       "TotalSeat": "40",
-      "TakenSeat": "30"
+      "TakenSeat": "29"
     },
     {
       "CourseCode": "SCM603",
@@ -27559,7 +27615,7 @@
       "Faculty": "IZS",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "13"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "SOC101",
@@ -27639,7 +27695,7 @@
       "Faculty": "MJUn",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "60",
-      "TakenSeat": "59"
+      "TakenSeat": "58"
     },
     {
       "CourseCode": "SOC101",
@@ -27655,7 +27711,7 @@
       "Faculty": "SRFz",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "60",
-      "TakenSeat": "59"
+      "TakenSeat": "60"
     },
     {
       "CourseCode": "SOC101",
@@ -27727,7 +27783,7 @@
       "Faculty": "MTE",
       "CourseTime": "01:00 PM - 02:30 PM ST",
       "TotalSeat": "60",
-      "TakenSeat": "59"
+      "TakenSeat": "60"
     },
     {
       "CourseCode": "SOC101",
@@ -27735,7 +27791,7 @@
       "Faculty": "MTE",
       "CourseTime": "02:40 PM - 04:10 PM ST",
       "TotalSeat": "60",
-      "TakenSeat": "32"
+      "TakenSeat": "33"
     },
     {
       "CourseCode": "SOC101",
@@ -27783,7 +27839,7 @@
       "Faculty": "Dr.Shafiqu",
       "CourseTime": "04:20 PM - 05:50 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "15"
+      "TakenSeat": "16"
     },
     {
       "CourseCode": "SOC101",
@@ -27791,7 +27847,7 @@
       "Faculty": "Dr.Shafiqu",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "7"
+      "TakenSeat": "9"
     },
     {
       "CourseCode": "SOC101",
@@ -27831,7 +27887,7 @@
       "Faculty": "TBA",
       "CourseTime": "06:00 PM - 07:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "3"
+      "TakenSeat": "2"
     },
     {
       "CourseCode": "SOC101",
@@ -27927,7 +27983,7 @@
       "Faculty": "RSP",
       "CourseTime": "06:00 PM - 07:30 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "26"
+      "TakenSeat": "31"
     },
     {
       "CourseCode": "SOC201",
@@ -27943,7 +27999,7 @@
       "Faculty": "MHR3",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "25"
+      "TakenSeat": "27"
     },
     {
       "CourseCode": "TNM201",
@@ -27951,7 +28007,7 @@
       "Faculty": "MHR3",
       "CourseTime": "02:40 PM - 04:10 PM MW",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "TNM201",
@@ -27959,7 +28015,7 @@
       "Faculty": "HFI",
       "CourseTime": "08:00 AM - 09:30 AM ST",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "19"
     },
     {
       "CourseCode": "TNM201",
@@ -27975,7 +28031,7 @@
       "Faculty": "HFI",
       "CourseTime": "01:00 PM - 02:30 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "40"
+      "TakenSeat": "39"
     },
     {
       "CourseCode": "TNM201",
@@ -27983,7 +28039,7 @@
       "Faculty": "HFI",
       "CourseTime": "02:40 PM - 04:10 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "21"
+      "TakenSeat": "23"
     },
     {
       "CourseCode": "TNM201",
@@ -27999,7 +28055,7 @@
       "Faculty": "ZTZ",
       "CourseTime": "04:20 PM - 05:50 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "11"
+      "TakenSeat": "12"
     },
     {
       "CourseCode": "TNM201",
@@ -28015,7 +28071,7 @@
       "Faculty": "NNI",
       "CourseTime": "04:20 PM - 05:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "11"
+      "TakenSeat": "13"
     },
     {
       "CourseCode": "TNM201",
@@ -28031,7 +28087,7 @@
       "Faculty": "MKAR",
       "CourseTime": "11:20 AM - 12:50 PM RA",
       "TotalSeat": "40",
-      "TakenSeat": "9"
+      "TakenSeat": "10"
     },
     {
       "CourseCode": "TNM201",
@@ -28047,7 +28103,7 @@
       "Faculty": "KFM",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "18"
+      "TakenSeat": "15"
     },
     {
       "CourseCode": "TNM201",
@@ -28079,7 +28135,7 @@
       "Faculty": "TBA",
       "CourseTime": "06:00 PM - 07:30 PM ST",
       "TotalSeat": "40",
-      "TakenSeat": "2"
+      "TakenSeat": "1"
     },
     {
       "CourseCode": "WMS201",
@@ -28095,7 +28151,7 @@
       "Faculty": "KTa",
       "CourseTime": "08:00 AM - 09:30 AM RA",
       "TotalSeat": "40",
-      "TakenSeat": "39"
+      "TakenSeat": "40"
     }
   ]
 }
