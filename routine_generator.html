@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Routine Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .course-list {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .course-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .course-item:hover {
+            background-color: #f9f9f9;
+        }
+        .star-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ccc;
+        }
+        .starred {
+            color: gold;
+        }
+        .routine-container {
+            overflow-x: auto;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 1000px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
+        }
+        .day-cell {
+            font-weight: bold;
+            background-color: #f2f2f2;
+            width: 100px;
+        }
+        .course-cell {
+            background-color: #e6f7ff;
+            cursor: pointer;
+        }
+        .generate-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .generate-btn:hover {
+            background-color: #45a049;
+        }
+        .filter-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .search-input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Class Routine Generator</h1>
+    
+    <div class="container">
+        <div>
+            <h2>Available Courses</h2>
+            <div class="filter-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search by course code, faculty, time...">
+            </div>
+            <div class="course-list" id="courseList">
+                <!-- Courses will be loaded here -->
+            </div>
+            <button class="generate-btn" id="generateBtn">Generate Routine</button>
+        </div>
+        
+        <div>
+            <h2>Your Class Routine</h2>
+            <div class="routine-container">
+                <table id="routineTable">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>08:00 AM - 09:30 AM</th>
+                            <th>09:40 AM - 11:10 AM</th>
+                            <th>11:20 AM - 12:50 PM</th>
+                            <th>01:00 PM - 02:30 PM</th>
+                            <th>02:40 PM - 04:10 PM</th>
+                            <th>04:20 PM - 05:50 PM</th>
+                            <th>06:00 PM - 07:30 PM</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day-cell">Sunday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Monday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Tuesday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Wednesday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Thursday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Friday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="day-cell">Saturday</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load course data from CSV
+            fetch('course_data.csv')
+                .then(response => response.text())
+                .then(data => {
+                    const courses = parseCSV(data);
+                    displayCourses(courses);
+                    
+                    // Set up event listeners
+                    document.getElementById('searchInput').addEventListener('input', function() {
+                        filterCourses(courses, this.value);
+                    });
+                    
+                    document.getElementById('generateBtn').addEventListener('click', function() {
+                        generateRoutine(courses);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading course data:', error);
+                    document.getElementById('courseList').innerHTML = 
+                        '<p>Error loading course data. Please check the console for details.</p>';
+                });
+        });
+        
+        // Parse CSV data
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[1].split(',');
+            
+            const courses = [];
+            for (let i = 2; i < lines.length; i++) {
+                if (lines[i].trim() === '') continue;
+                
+                const values = lines[i].split(',');
+                const course = {
+                    courseCode: values[0],
+                    section: values[1],
+                    faculty: values[2],
+                    courseTime: values[3],
+                    totalSeat: values[4],
+                    takenSeat: values[5],
+                    room: values[6],
+                    starred: false
+                };
+                courses.push(course);
+            }
+            return courses;
+        }
+        
+        // Display courses in the list
+        function displayCourses(courses) {
+            const courseListElement = document.getElementById('courseList');
+            courseListElement.innerHTML = '';
+            
+            courses.forEach((course, index) => {
+                if (course.courseTime && course.courseTime !== 'TBA') {
+                    const courseItem = document.createElement('div');
+                    courseItem.className = 'course-item';
+                    courseItem.innerHTML = `
+                        <div>
+                            <strong>${course.courseCode}</strong> (Section ${course.section}) - 
+                            ${course.faculty} | ${course.courseTime} | Room: ${course.room}
+                        </div>
+                        <button class="star-btn" data-index="${index}">★</button>
+                    `;
+                    courseListElement.appendChild(courseItem);
+                    
+                    // Add star functionality
+                    const starBtn = courseItem.querySelector('.star-btn');
+                    starBtn.addEventListener('click', function() {
+                        const courseIndex = parseInt(this.getAttribute('data-index'));
+                        courses[courseIndex].starred = !courses[courseIndex].starred;
+                        this.classList.toggle('starred');
+                    });
+                }
+            });
+        }
+        
+        // Filter courses based on search input
+        function filterCourses(courses, searchTerm) {
+            const courseListElement = document.getElementById('courseList');
+            courseListElement.innerHTML = '';
+            
+            const filteredCourses = courses.filter(course => {
+                if (!course.courseTime || course.courseTime === 'TBA') return false;
+                
+                const searchString = (
+                    course.courseCode + ' ' + 
+                    course.section + ' ' + 
+                    course.faculty + ' ' + 
+                    course.courseTime + ' ' + 
+                    course.room
+                ).toLowerCase();
+                
+                return searchString.includes(searchTerm.toLowerCase());
+            });
+            
+            filteredCourses.forEach((course, index) => {
+                const courseItem = document.createElement('div');
+                courseItem.className = 'course-item';
+                courseItem.innerHTML = `
+                    <div>
+                        <strong>${course.courseCode}</strong> (Section ${course.section}) - 
+                        ${course.faculty} | ${course.courseTime} | Room: ${course.room}
+                    </div>
+                    <button class="star-btn ${course.starred ? 'starred' : ''}" data-index="${courses.indexOf(course)}">★</button>
+                `;
+                courseListElement.appendChild(courseItem);
+                
+                // Add star functionality
+                const starBtn = courseItem.querySelector('.star-btn');
+                starBtn.addEventListener('click', function() {
+                    const courseIndex = parseInt(this.getAttribute('data-index'));
+                    courses[courseIndex].starred = !courses[courseIndex].starred;
+                    this.classList.toggle('starred');
+                });
+            });
+        }
+        
+        // Generate routine based on starred courses
+        function generateRoutine(courses) {
+            // Clear the routine table first
+            const routineTable = document.getElementById('routineTable');
+            const rows = routineTable.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td:not(.day-cell)');
+                cells.forEach(cell => {
+                    cell.innerHTML = '';
+                    cell.colSpan = 1;
+                    cell.className = '';
+                });
+            });
+            
+            // Get starred courses
+            const starredCourses = courses.filter(course => course.starred);
+            
+            // Map day codes to row indices
+            const dayMap = {
+                'S': 0, // Sunday
+                'M': 1, // Monday
+                'T': 2, // Tuesday
+                'W': 3, // Wednesday
+                'R': 4, // Thursday
+                'F': 5, // Friday
+                'A': 6  // Saturday
+            };
+            
+            // Map time slots to column indices
+            const timeSlots = [
+                '08:00 AM - 09:30 AM',
+                '09:40 AM - 11:10 AM',
+                '11:20 AM - 12:50 PM',
+                '01:00 PM - 02:30 PM',
+                '02:40 PM - 04:10 PM',
+                '04:20 PM - 05:50 PM',
+                '06:00 PM - 07:30 PM'
+            ];
+            
+            // Process each starred course
+            starredCourses.forEach(course => {
+                // Extract days and time from courseTime
+                const timePattern = /(\d+:\d+ [AP]M) - (\d+:\d+ [AP]M) ([A-Z]+)/;
+                const match = course.courseTime.match(timePattern);
+                
+                if (match) {
+                    const startTime = match[1];
+                    const endTime = match[2];
+                    const days = match[3];
+                    
+                    // Find the column index for the time slot
+                    let startCol = -1;
+                    let endCol = -1;
+                    let colspan = 1;
+                    
+                    for (let i = 0; i < timeSlots.length; i++) {
+                        if (timeSlots[i].includes(startTime)) {
+                            startCol = i;
+                        }
+                        if (timeSlots[i].includes(endTime)) {
+                            endCol = i;
+                        }
+                    }
+                    
+                    // Calculate colspan if needed
+                    if (startCol !== -1 && endCol !== -1 && startCol !== endCol) {
+                        colspan = endCol - startCol + 1;
+                    }
+                    
+                    // Add the course to each day's schedule
+                    for (let i = 0; i < days.length; i++) {
+                        const day = days[i];
+                        const rowIndex = dayMap[day];
+                        
+                        if (rowIndex !== undefined && startCol !== -1) {
+                            const row = rows[rowIndex];
+                            const cells = row.querySelectorAll('td:not(.day-cell)');
+                            
+                            // Check if the cell is already occupied
+                            let cellOccupied = false;
+                            for (let j = startCol; j < startCol + colspan; j++) {
+                                if (cells[j] && cells[j].innerHTML !== '') {
+                                    cellOccupied = true;
+                                    break;
+                                }
+                            }
+                            
+                            if (!cellOccupied) {
+                                // Clear any cells that will be spanned
+                                for (let j = startCol + 1; j < startCol + colspan; j++) {
+                                    if (cells[j]) {
+                                        cells[j].innerHTML = '';
+                                        cells[j].style.display = 'none';
+                                    }
+                                }
+                                
+                                // Set the course in the cell
+                                if (cells[startCol]) {
+                                    cells[startCol].innerHTML = `
+                                        <div class="course-cell">
+                                            <strong>${course.courseCode}</strong><br>
+                                            Section ${course.section}<br>
+                                            ${course.faculty}<br>
+                                            Room: ${course.room}
+                                        </div>
+                                    `;
+                                    cells[startCol].colSpan = colspan;
+                                    cells[startCol].className = 'course-cell';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

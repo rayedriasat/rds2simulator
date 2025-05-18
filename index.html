@@ -17,6 +17,9 @@
     </script>
     <!-- End Google Analytics -->
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Information</title>
@@ -276,6 +279,37 @@
             font-size: 0.8em;
         }
 
+        /* Routine Generator Styles */
+        .day-cell {
+            font-weight: bold;
+            background-color: #0a2351;
+            width: 100px;
+        }
+
+        .course-cell {
+            background-color: #0a1a30;
+            border: 1px solid #0f2547;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .routine-container {
+            overflow-x: auto;
+        }
+
+        #routineTable th {
+            background-color: #0a2351;
+            color: white;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        #routineTable td {
+            height: 80px;
+            vertical-align: middle;
+            text-align: center;
+        }
+
         /* Performance optimizations */
         .table-responsive {
             will-change: transform;
@@ -485,6 +519,10 @@
             <button id="viewStarredBtn" class="btn btn-outline-warning">
                 <i class="bi bi-star-fill me-1"></i> View Starred Courses
             </button>
+            <!-- Add Generate Routine Button -->
+            <button id="generateRoutineBtn" class="btn btn-outline-primary ms-2">
+                <i class="bi bi-calendar-week me-1"></i> Generate Routine
+            </button>
         </div>
 
         <div class="search-container">
@@ -523,6 +561,112 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <!-- Routine Generator Modal -->
+    <div class="modal fade" id="routineModal" tabindex="-1" aria-labelledby="routineModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="routineModalLabel">Your Class Routine</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="routine-container">
+                        <table id="routineTable" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Day</th>
+                                    <th>08:00 AM - 09:30 AM</th>
+                                    <th>09:40 AM - 11:10 AM</th>
+                                    <th>11:20 AM - 12:50 PM</th>
+                                    <th>01:00 PM - 02:30 PM</th>
+                                    <th>02:40 PM - 04:10 PM</th>
+                                    <th>04:20 PM - 05:50 PM</th>
+                                    <th>06:00 PM - 07:30 PM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="day-cell">Sunday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Monday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Tuesday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Wednesday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Thursday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Friday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td class="day-cell">Saturday</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1206,6 +1350,9 @@
 
                 filterTable();
             });
+
+            // Add event listener for generate routine button
+            document.getElementById('generateRoutineBtn').addEventListener('click', generateRoutine);
         }
 
         // Update comparison stats
@@ -1214,6 +1361,137 @@
                 courseData = compareCoursesData(courseData, oldCourseData);
                 filterTable();
             }
+        }
+
+        // Generate routine based on starred courses
+        function generateRoutine() {
+            // Clear the routine table first
+            const routineTable = document.getElementById('routineTable');
+            const rows = routineTable.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td:not(.day-cell)');
+                cells.forEach(cell => {
+                    cell.innerHTML = '';
+                    cell.colSpan = 1;
+                    cell.className = '';
+                    cell.style.display = '';
+                });
+            });
+
+            // Get starred courses from the current course data
+            const starredCourseIds = [...starredCourses];
+            const starredCourseObjects = courseData.filter(course =>
+                starredCourseIds.includes(`${course.CourseCode}-${course.Section}-${course.CourseTime}`)
+            );
+
+            // If no starred courses, show message
+            if (starredCourseObjects.length === 0) {
+                const modalBody = document.querySelector('#routineModal .modal-body');
+                modalBody.innerHTML = '<div class="alert alert-warning">No starred courses found. Please star some courses first.</div>';
+                return;
+            }
+
+            // Map day codes to row indices
+            const dayMap = {
+                'S': 0, // Sunday
+                'M': 1, // Monday
+                'T': 2, // Tuesday
+                'W': 3, // Wednesday
+                'R': 4, // Thursday
+                'F': 5, // Friday
+                'A': 6  // Saturday
+            };
+
+            // Map time slots to column indices
+            const timeSlots = [
+                '08:00 AM - 09:30 AM',
+                '09:40 AM - 11:10 AM',
+                '11:20 AM - 12:50 PM',
+                '01:00 PM - 02:30 PM',
+                '02:40 PM - 04:10 PM',
+                '04:20 PM - 05:50 PM',
+                '06:00 PM - 07:30 PM'
+            ];
+
+            // Process each starred course
+            starredCourseObjects.forEach(course => {
+                // Extract days and time from CourseTime
+                const timePattern = /(\d+:\d+ [AP]M) - (\d+:\d+ [AP]M) ([A-Z]+)/;
+                const match = course.CourseTime.match(timePattern);
+
+                if (match) {
+                    const startTime = match[1];
+                    const endTime = match[2];
+                    const days = match[3];
+
+                    // Find the column index for the time slot
+                    let startCol = -1;
+                    let endCol = -1;
+                    let colspan = 1;
+
+                    for (let i = 0; i < timeSlots.length; i++) {
+                        if (timeSlots[i].includes(startTime)) {
+                            startCol = i;
+                        }
+                        if (timeSlots[i].includes(endTime)) {
+                            endCol = i;
+                        }
+                    }
+
+                    // Calculate colspan if needed
+                    if (startCol !== -1 && endCol !== -1 && startCol !== endCol) {
+                        colspan = endCol - startCol + 1;
+                    }
+
+                    // Add the course to each day's schedule
+                    for (let i = 0; i < days.length; i++) {
+                        const day = days[i];
+                        const rowIndex = dayMap[day];
+
+                        if (rowIndex !== undefined && startCol !== -1) {
+                            const row = rows[rowIndex];
+                            const cells = row.querySelectorAll('td:not(.day-cell)');
+
+                            // Check if the cell is already occupied
+                            let cellOccupied = false;
+                            for (let j = startCol; j < startCol + colspan; j++) {
+                                if (cells[j] && cells[j].innerHTML !== '') {
+                                    cellOccupied = true;
+                                    break;
+                                }
+                            }
+
+                            if (!cellOccupied) {
+                                // Clear any cells that will be spanned
+                                for (let j = startCol + 1; j < startCol + colspan; j++) {
+                                    if (cells[j]) {
+                                        cells[j].innerHTML = '';
+                                        cells[j].style.display = 'none';
+                                    }
+                                }
+
+                                // Set the course in the cell
+                                if (cells[startCol]) {
+                                    cells[startCol].innerHTML = `
+                                        <div class="course-cell">
+                                            <strong>${course.CourseCode}</strong><br>
+                                            Section ${course.Section}<br>
+                                            ${course.Faculty}<br>
+                                            Room: ${course.Room || "TBA"}
+                                        </div>
+                                    `;
+                                    cells[startCol].colSpan = colspan;
+                                    cells[startCol].className = 'course-cell';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Show the modal with the routine
+            const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
+            routineModal.show();
         }
 
         // Initialize the page when the DOM is loaded
