@@ -461,30 +461,45 @@
         let filteredData = [];
         let isViewingChanges = false;
 
-        // Function to fetch course data from JSON file
+        // Function to fetch course data from CSV file
         async function fetchCourseData() {
             try {
-                const response = await fetch('course_data.json');
+                const response = await fetch('course_data.csv');
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
-                const data = await response.json();
+                const csvText = await response.text();
+                const lines = csvText.split('\n');
+                let lastUpdated = "Unknown date";
 
-                // Update last updated time
-                if (data.lastUpdated) {
-                    document.getElementById('lastUpdated').textContent = `Last updated: ${new Date(data.lastUpdated).toLocaleString()}`;
+                // Check if first line contains metadata (starts with #)
+                if (lines[0].trim().startsWith('#')) {
+                    // Extract lastUpdated timestamp from the comment
+                    const metadataLine = lines[0].trim();
+                    const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
+                    if (lastUpdatedMatch && lastUpdatedMatch[1]) {
+                        lastUpdated = new Date(lastUpdatedMatch[1]).toLocaleString();
+                    }
+                    // Remove metadata line before parsing
+                    lines.shift();
                 }
 
-                return data.courses || [];
+                // Parse the remaining CSV data
+                const courses = parseCSV(lines.join('\n'));
+
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+
+                return courses;
             } catch (error) {
                 console.error('Error fetching course data:', error);
                 document.getElementById('courseTableBody').innerHTML = `
                     <tr>
                         <td colspan="7" class="text-danger text-center p-4">
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                            Error loading course data. Please check if course_data.json exists in the same directory.
+                            Error loading course data. Please check if course_data.csv exists in the same directory.
                         </td>
                     </tr>
                 `;
@@ -495,27 +510,102 @@
         // Function to fetch old course data
         async function fetchOldCourseData() {
             try {
-                const response = await fetch('OLDcourse_data.json');
+                const response = await fetch('OLDcourse_data.csv');
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
 
-                const data = await response.json();
+                const csvText = await response.text();
+                const lines = csvText.split('\n');
+                let previousDataTime = "Unknown date";
 
-                // Update previous data timestamp if available
-                if (data.lastUpdated) {
-                    document.getElementById('previousDataTime').textContent = new Date(data.lastUpdated).toLocaleString();
-                } else {
-                    document.getElementById('previousDataTime').textContent = "Unknown date";
+                // Check if first line contains metadata (starts with #)
+                if (lines[0].trim().startsWith('#')) {
+                    // Extract lastUpdated timestamp from the comment
+                    const metadataLine = lines[0].trim();
+                    const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
+                    if (lastUpdatedMatch && lastUpdatedMatch[1]) {
+                        previousDataTime = new Date(lastUpdatedMatch[1]).toLocaleString();
+                    }
+                    // Remove metadata line before parsing
+                    lines.shift();
                 }
 
-                return data.courses || [];
+                // Parse the remaining CSV data
+                const courses = parseCSV(lines.join('\n'));
+
+                // Update previous data timestamp
+                document.getElementById('previousDataTime').textContent = previousDataTime;
+
+                return courses;
             } catch (error) {
                 console.error('Error fetching old course data:', error);
                 document.getElementById('previousDataTime').textContent = "Error loading previous data";
                 return [];
             }
+        }
+
+        // Function to parse CSV data
+        function parseCSV(csvText) {
+            // Split by lines
+            const lines = csvText.split('\n');
+            if (lines.length < 2) return [];
+
+            // Get header row and parse headers
+            const headers = lines[0].split(',').map(header => header.trim());
+            const courses = [];
+
+            // Process each data row
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue; // Skip empty lines
+
+                // Handle quoted values properly
+                const values = parseCSVLine(lines[i]);
+                if (values.length !== headers.length) continue; // Skip malformed lines
+
+                const course = {};
+
+                // Map each value to its corresponding header
+                headers.forEach((header, index) => {
+                    course[header] = values[index] || '';
+                });
+
+                courses.push(course);
+            }
+
+            return courses;
+        }
+
+        // Helper function to parse CSV line with quoted values
+        function parseCSVLine(line) {
+            const values = [];
+            let inQuotes = false;
+            let currentValue = '';
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"' && (i === 0 || line[i - 1] !== '\\')) {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(currentValue.trim());
+                    currentValue = '';
+                } else {
+                    currentValue += char;
+                }
+            }
+
+            // Add the last value
+            values.push(currentValue.trim());
+
+            // Clean up quotes from values
+            return values.map(value => {
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    return value.substring(1, value.length - 1);
+                }
+                return value;
+            });
         }
 
         // Function to populate the table with course data
