@@ -1392,12 +1392,12 @@
         }
 
         // Generate routine based on starred courses
-function generateRoutine() {
-    // Check if there are any starred courses
-    if (starredCourses.size === 0) {
-        // Show a modal with a message to star courses first
-        const modalBody = document.querySelector('#routineModal .modal-body');
-        modalBody.innerHTML = `
+        function generateRoutine() {
+            // Check if there are any starred courses
+            if (starredCourses.size === 0) {
+                // Show a modal with a message to star courses first
+                const modalBody = document.querySelector('#routineModal .modal-body');
+                modalBody.innerHTML = `
             <div class="alert alert-warning text-center p-4">
                 <i class="bi bi-exclamation-triangle-fill fs-1 mb-3 d-block"></i>
                 <h5>No Starred Courses Found</h5>
@@ -1408,24 +1408,24 @@ function generateRoutine() {
             </div>
         `;
 
-        // Show the modal
-        const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
-        routineModal.show();
-        
-        // Add event listener to the "Go Back and Star Courses" button
-        document.getElementById('goBackAndStarBtn').addEventListener('click', function() {
-            // If currently viewing starred courses, switch to all courses
-            if (isViewingStarred) {
-                isViewingStarred = false;
-                const starredBtn = document.getElementById('viewStarredBtn');
-                starredBtn.classList.remove('active');
-                starredBtn.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
-                filterTable(); // Refresh the table to show all courses
+                // Show the modal
+                const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
+                routineModal.show();
+
+                // Add event listener to the "Go Back and Star Courses" button
+                document.getElementById('goBackAndStarBtn').addEventListener('click', function () {
+                    // If currently viewing starred courses, switch to all courses
+                    if (isViewingStarred) {
+                        isViewingStarred = false;
+                        const starredBtn = document.getElementById('viewStarredBtn');
+                        starredBtn.classList.remove('active');
+                        starredBtn.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
+                        filterTable(); // Refresh the table to show all courses
+                    }
+                });
+
+                return;
             }
-        });
-        
-        return;
-    }
 
             // Clear the routine table first
             const routineTable = document.getElementById('routineTable');
