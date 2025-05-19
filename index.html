@@ -20,6 +20,10 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Add jsPDF library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Information</title>
@@ -283,14 +287,18 @@
         .day-cell {
             font-weight: bold;
             background-color: #0a2351;
-            width: 100px;
+            width: 80px;
+            /* Reduced width */
         }
 
         .course-cell {
             background-color: #0a1a30;
             border: 1px solid #0f2547;
-            padding: 8px;
+            padding: 4px;
+            /* Reduced padding */
             border-radius: 4px;
+            font-size: 11px;
+            /* Smaller font size */
         }
 
         .routine-container {
@@ -302,12 +310,26 @@
             color: white;
             text-align: center;
             white-space: nowrap;
+            padding: 4px;
+            /* Reduced padding */
+            font-size: 11px;
+            /* Smaller font size */
         }
 
         #routineTable td {
-            height: 80px;
+            height: 60px;
+            /* Reduced height */
             vertical-align: middle;
             text-align: center;
+            padding: 2px;
+            /* Minimal padding */
+        }
+
+        /* Abbreviate time slots in the header for more compact display */
+        .time-abbr {
+            display: block;
+            font-size: 10px;
+            line-height: 1.2;
         }
 
         /* Performance optimizations */
@@ -579,13 +601,13 @@
                             <thead>
                                 <tr>
                                     <th>Day</th>
-                                    <th>08:00 AM - 09:30 AM</th>
-                                    <th>09:40 AM - 11:10 AM</th>
-                                    <th>11:20 AM - 12:50 PM</th>
-                                    <th>01:00 PM - 02:30 PM</th>
-                                    <th>02:40 PM - 04:10 PM</th>
-                                    <th>04:20 PM - 05:50 PM</th>
-                                    <th>06:00 PM - 07:30 PM</th>
+                                    <th><span class="time-abbr">08:00-09:30</span></th>
+                                    <th><span class="time-abbr">09:40-11:10</span></th>
+                                    <th><span class="time-abbr">11:20-12:50</span></th>
+                                    <th><span class="time-abbr">01:00-02:30</span></th>
+                                    <th><span class="time-abbr">02:40-04:10</span></th>
+                                    <th><span class="time-abbr">04:20-05:50</span></th>
+                                    <th><span class="time-abbr">06:00-07:30</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -664,6 +686,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="savePdfBtn">
+                        <i class="bi bi-file-earmark-pdf me-1"></i> Save as PDF
+                    </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -1353,6 +1378,9 @@
 
             // Add event listener for generate routine button
             document.getElementById('generateRoutineBtn').addEventListener('click', generateRoutine);
+
+            // Add event listener for PDF export
+            document.getElementById('savePdfBtn').addEventListener('click', exportRoutineToPDF);
         }
 
         // Update comparison stats
@@ -1474,8 +1502,7 @@
                                 if (cells[startCol]) {
                                     cells[startCol].innerHTML = `
                                         <div class="course-cell">
-                                            <strong>${course.CourseCode}</strong><br>
-                                            Section ${course.Section}<br>
+                                            <strong>${course.CourseCode}</strong>.${course.Section}<br>
                                             ${course.Faculty}<br>
                                             Room: ${course.Room || "TBA"}
                                         </div>
@@ -1492,6 +1519,70 @@
             // Show the modal with the routine
             const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
             routineModal.show();
+        }
+
+        // Function to export routine as PDF
+        function exportRoutineToPDF() {
+            // Show loading indicator
+            const modalBody = document.querySelector('#routineModal .modal-body');
+            const originalContent = modalBody.innerHTML;
+            modalBody.innerHTML = `
+                <div class="text-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Generating PDF...</span>
+                    </div>
+                    <p class="mt-2">Generating PDF, please wait...</p>
+                </div>
+            `;
+
+            // Short delay to allow the loading indicator to render
+            setTimeout(() => {
+                // Restore original content
+                modalBody.innerHTML = originalContent;
+
+                const routineTable = document.getElementById('routineTable');
+                const routineTitle = "Class Routine";
+
+                // Use html2canvas to capture the table as an image
+                html2canvas(routineTable, {
+                    scale: 2, // Higher scale for better quality
+                    backgroundColor: '#091428',
+                    logging: false
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+
+                    // Initialize jsPDF
+                    const { jsPDF } = window.jspdf;
+
+                    // Create PDF in landscape orientation
+                    const pdf = new jsPDF({
+                        orientation: 'landscape',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+
+                    // Calculate dimensions to fit the image properly
+                    const imgProps = pdf.getImageProperties(imgData);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                    // Add title
+                    pdf.setFontSize(16);
+                    pdf.setTextColor(0, 0, 0);
+                    pdf.text(routineTitle, pdf.internal.pageSize.getWidth() / 2, 15, { align: 'center' });
+
+                    // Add image of the table
+                    pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth - 20, pdfHeight - 10);
+
+                    // Add footer with date
+                    const date = new Date().toLocaleDateString();
+                    pdf.setFontSize(10);
+                    pdf.text(`Generated on: ${date}`, pdf.internal.pageSize.getWidth() - 15, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+
+                    // Save the PDF
+                    pdf.save('class_routine.pdf');
+                });
+            }, 100);
         }
 
         // Initialize the page when the DOM is loaded
