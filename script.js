@@ -1,0 +1,919 @@
+
+// Store the course data
+let courseData = [];
+let oldCourseData = [];
+let filteredData = [];
+let isViewingChanges = false;
+let isViewingStarred = false;
+let starredCourses = new Set();
+
+// Load starred courses from localStorage
+function loadStarredCourses() {
+    const saved = localStorage.getItem('starredCourses');
+    if (saved) {
+        try {
+            const parsed = JSON.parse(saved);
+            starredCourses = new Set(parsed);
+        } catch (e) {
+            console.error('Error loading starred courses:', e);
+            starredCourses = new Set();
+        }
+    }
+}
+
+// Save starred courses to localStorage
+function saveStarredCourses() {
+    localStorage.setItem('starredCourses', JSON.stringify([...starredCourses]));
+}
+
+// Toggle star status for a course
+function toggleStar(courseIdentifier) {
+    // Get the star button element
+    const starBtn = document.querySelector(`.star-btn[data-id="${courseIdentifier}"]`);
+
+    if (starredCourses.has(courseIdentifier)) {
+        starredCourses.delete(courseIdentifier);
+        if (starBtn) {
+            starBtn.innerHTML = '<i class="bi bi-star"></i>';
+            starBtn.classList.remove('starred');
+        }
+    } else {
+        starredCourses.add(courseIdentifier);
+        if (starBtn) {
+            starBtn.innerHTML = '<i class="bi bi-star-fill"></i>';
+            starBtn.classList.add('starred');
+        }
+    }
+
+    // Only re-filter if we're viewing starred courses
+    if (isViewingStarred) {
+        filterTable();
+    } else {
+        // Just save without re-rendering the entire table
+        saveStarredCourses();
+    }
+}
+
+// Function to fetch course data from CSV file
+async function fetchCourseData() {
+    try {
+        const response = await fetch('course_data.csv');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const csvText = await response.text();
+        const lines = csvText.split('\n');
+        let lastUpdated = "Unknown date";
+
+        // Check if first line contains metadata (starts with #)
+        if (lines[0].trim().startsWith('#')) {
+            // Extract lastUpdated timestamp from the comment
+            const metadataLine = lines[0].trim();
+            const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
+            if (lastUpdatedMatch && lastUpdatedMatch[1]) {
+                lastUpdated = new Date(lastUpdatedMatch[1]).toLocaleString();
+            }
+            // Remove metadata line before parsing
+            lines.shift();
+        }
+
+        // Parse the remaining CSV data
+        const courses = parseCSV(lines.join('\n'));
+
+        // Update last updated time
+        document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+
+        return courses;
+    } catch (error) {
+        console.error('Error fetching course data:', error);
+        document.getElementById('courseTableBody').innerHTML = `
+                    <!-- In the loading spinner row -->
+                    <tr>
+                        <td colspan="9">
+                            <div class="loading-spinner">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </td>
+                        </tr>
+                    
+                    <!-- In the error message for course data -->
+                    <tr>
+                        <td colspan="9" class="text-danger text-center p-4">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Error loading course data. Please check if course_data.csv exists in the same directory.
+                        </td>
+                    </tr>
+                
+                    <!-- In the no results message -->
+                    <tr>
+                        <td colspan="9" class="no-results">
+                            <i class="bi bi-search me-2"></i>
+                            No courses found matching your criteria.
+                        </td>
+                    </tr>
+                `;
+        return [];
+    }
+}
+
+// Function to fetch old course data
+async function fetchOldCourseData() {
+    try {
+        const response = await fetch('OLDcourse_data.csv');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const csvText = await response.text();
+        const lines = csvText.split('\n');
+        let previousDataTime = "Unknown date";
+
+        // Check if first line contains metadata (starts with #)
+        if (lines[0].trim().startsWith('#')) {
+            // Extract lastUpdated timestamp from the comment
+            const metadataLine = lines[0].trim();
+            const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
+            if (lastUpdatedMatch && lastUpdatedMatch[1]) {
+                previousDataTime = new Date(lastUpdatedMatch[1]).toLocaleString();
+            }
+            // Remove metadata line before parsing
+            lines.shift();
+        }
+
+        // Parse the remaining CSV data
+        const courses = parseCSV(lines.join('\n'));
+
+        // Update previous data timestamp
+        document.getElementById('previousDataTime').textContent = previousDataTime;
+
+        return courses;
+    } catch (error) {
+        console.error('Error fetching old course data:', error);
+        document.getElementById('previousDataTime').textContent = "Error loading previous data";
+        return [];
+    }
+}
+
+// Function to parse CSV data more efficiently
+function parseCSV(csvText) {
+    // Split by lines
+    const lines = csvText.split('\n');
+    if (lines.length < 2) return [];
+
+    // Get header row and parse headers
+    const headers = lines[0].split(',').map(header => header.trim());
+    const headerCount = headers.length;
+    const courses = [];
+
+    // Pre-allocate array for better performance
+    courses.length = lines.length - 1;
+
+    // Process each data row
+    let validCourseCount = 0;
+    for (let i = 1; i < lines.length; i++) {
+        if (!lines[i].trim()) continue; // Skip empty lines
+
+        // Handle quoted values properly
+        const values = parseCSVLine(lines[i]);
+        if (values.length !== headerCount) continue; // Skip malformed lines
+
+        const course = {};
+
+        // Map each value to its corresponding header
+        for (let j = 0; j < headerCount; j++) {
+            course[headers[j]] = values[j] || '';
+        }
+
+        courses[validCourseCount++] = course;
+    }
+
+    // Trim array to actual size
+    courses.length = validCourseCount;
+
+    return courses;
+}
+
+// Helper function to parse CSV line with quoted values
+function parseCSVLine(line) {
+    const values = [];
+    let inQuotes = false;
+    let currentValue = '';
+
+    for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"' && (i === 0 || line[i - 1] !== '\\')) {
+            inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+            values.push(currentValue.trim());
+            currentValue = '';
+        } else {
+            currentValue += char;
+        }
+    }
+
+    // Add the last value
+    values.push(currentValue.trim());
+
+    // Clean up quotes from values
+    return values.map(value => {
+        if (value.startsWith('"') && value.endsWith('"')) {
+            return value.substring(1, value.length - 1);
+        }
+        return value;
+    });
+}
+
+// Function to populate the table with course data
+function populateTable(courses) {
+    const tableBody = document.getElementById('courseTableBody');
+
+    // Clear the table body
+    while (tableBody.firstChild) {
+        tableBody.removeChild(tableBody.firstChild);
+    }
+
+    if (courses.length === 0) {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+                    <td colspan="9" class="no-results">
+                        <i class="bi bi-search me-2"></i>
+                        No courses found matching your criteria.
+                    </td>
+                `;
+        tableBody.appendChild(row);
+        return;
+    }
+
+    // Create a document fragment to batch DOM operations
+    const fragment = document.createDocumentFragment();
+
+    // Create a Set to track unique course identifiers to prevent duplicates
+    const processedCourses = new Set();
+
+    // Pre-calculate the columns we need based on view mode
+    const hasChangeColumn = isViewingChanges;
+
+    courses.forEach(course => {
+        // Create a unique identifier for each course (combination of code, section, and time)
+        const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+
+        // Skip if we've already processed this course
+        if (processedCourses.has(courseIdentifier)) {
+            return;
+        }
+
+        // Add to processed set
+        processedCourses.add(courseIdentifier);
+
+        const row = document.createElement('tr');
+
+        // Calculate available seats
+        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+        const status = availableSeats > 0 ? "Available" : "Full";
+
+        // Build row HTML - more efficient than creating each cell separately
+        let rowHTML = '';
+
+        // Add change indicator cell if viewing changes
+        if (hasChangeColumn && course.change) {
+            if (course.change !== 'none') {
+                let changeText = '';
+                if (course.change === 'increased') {
+                    changeText = `+${course.changeDiff} seats taken`;
+                } else if (course.change === 'decreased') {
+                    changeText = `-${Math.abs(course.changeDiff)} seats taken`;
+                } else if (course.change === 'filledUp') {
+                    changeText = 'Filled up';
+                } else if (course.change === 'openedUp') {
+                    changeText = 'Opened up';
+                }
+
+                rowHTML += `<td><span class="change-indicator change-${course.change}"></span>${changeText}</td>`;
+                row.classList.add('change-row');
+            } else {
+                rowHTML += '<td>No change</td>';
+            }
+        }
+
+        // Add star cell
+        const isStarred = starredCourses.has(courseIdentifier);
+        rowHTML += `<td class="star-column">
+                    <button class="star-btn ${isStarred ? 'starred' : ''}" data-id="${courseIdentifier}">
+                        <i class="bi bi-star${isStarred ? '-fill' : ''}"></i>
+                    </button>
+                </td>`;
+
+        // Add other cells
+        rowHTML += `
+                    <td>${course.CourseCode}</td>
+                    <td>${course.Section}</td>
+                    <td>${course.Faculty}</td>
+                    <td>${course.CourseTime}</td>
+                    <td>${course.Room || "TBA"}</td>
+                    <td>${availableSeats}/${course.TotalSeat}</td>
+                    <td><span class="badge ${status === 'Available' ? 'badge-available' : 'badge-full'}">${status}</span></td>
+                `;
+
+        row.innerHTML = rowHTML;
+
+        // Add event listener to the star button
+        const starBtn = row.querySelector('.star-btn');
+        if (starBtn) {
+            starBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleStar(courseIdentifier);
+            });
+        }
+
+        fragment.appendChild(row);
+    });
+
+    // Append all rows at once
+    tableBody.appendChild(fragment);
+}
+
+// Function to populate filter dropdowns
+function populateFilters(courses) {
+    const courseFilter = document.getElementById('courseFilter');
+    const facultyFilter = document.getElementById('facultyFilter');
+    const roomFilter = document.getElementById('roomFilter');
+
+    // Clear existing options except the first one
+    while (courseFilter.options.length > 1) {
+        courseFilter.remove(1);
+    }
+
+    while (facultyFilter.options.length > 1) {
+        facultyFilter.remove(1);
+    }
+
+    while (roomFilter.options.length > 1) {
+        roomFilter.remove(1);
+    }
+
+    // Get unique course codes
+    const uniqueCourses = [...new Set(courses.map(course => course.CourseCode))];
+    uniqueCourses.sort();
+
+    // Get unique faculty names
+    const uniqueFaculty = [...new Set(courses.map(course => course.Faculty))];
+    uniqueFaculty.sort();
+
+    // Get unique room names
+    const uniqueRooms = [...new Set(courses.map(course => course.Room).filter(room => room))];
+    uniqueRooms.sort();
+
+    // Add course options
+    uniqueCourses.forEach(code => {
+        const option = document.createElement('option');
+        option.value = code;
+        option.textContent = code;
+        courseFilter.appendChild(option);
+    });
+
+    // Add faculty options
+    uniqueFaculty.forEach(faculty => {
+        const option = document.createElement('option');
+        option.value = faculty;
+        option.textContent = faculty;
+        facultyFilter.appendChild(option);
+    });
+
+    // Add room options
+    uniqueRooms.forEach(room => {
+        const option = document.createElement('option');
+        option.value = room;
+        option.textContent = room;
+        roomFilter.appendChild(option);
+    });
+}
+
+// Function to update statistics
+function updateStats(courses) {
+    const statsContainer = document.getElementById('statsContainer');
+
+    // Calculate statistics
+    const totalCourses = courses.length;
+
+    // Count available courses
+    const availableCourses = courses.filter(course => {
+        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+        return availableSeats > 0;
+    }).length;
+
+    // Count full courses
+    const fullCourses = totalCourses - availableCourses;
+
+    // Count unique course codes
+    const uniqueCourses = new Set(courses.map(course => course.CourseCode)).size;
+
+    // Create stats HTML
+    statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalCourses}</div>
+                    <div class="stat-label">Total Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${uniqueCourses}</div>
+                    <div class="stat-label">Unique Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${availableCourses}</div>
+                    <div class="stat-label">Available Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${fullCourses}</div>
+                    <div class="stat-label">Full Sections</div>
+                </div>
+            `;
+
+    // If viewing changes, add change statistics
+    if (isViewingChanges) {
+        const changedCourses = courses.filter(course => course.change && course.change !== 'none');
+
+        const increasedCourses = courses.filter(course => course.change === 'increased').length;
+        const decreasedCourses = courses.filter(course => course.change === 'decreased').length;
+        const filledUpCourses = courses.filter(course => course.change === 'filledUp').length;
+        const openedUpCourses = courses.filter(course => course.change === 'openedUp').length;
+
+        statsContainer.innerHTML += `
+                    <div class="stat-card">
+                        <div class="stat-value">${changedCourses.length}</div>
+                        <div class="stat-label">Changed Sections</div>
+                    </div>
+                `;
+
+        // Update changes summary
+        document.getElementById('filledUpCount').textContent = filledUpCourses;
+        document.getElementById('openedUpCount').textContent = openedUpCourses;
+        document.getElementById('increasedCount').textContent = increasedCourses;
+        document.getElementById('decreasedCount').textContent = decreasedCourses;
+        document.getElementById('totalChangesCount').textContent = changedCourses.length;
+    }
+}
+
+// Function to compare old and new course data
+function compareCoursesData(newCourses, oldCourses) {
+    // Create maps for faster lookup
+    const oldCoursesMap = new Map();
+
+    oldCourses.forEach(course => {
+        const key = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+        oldCoursesMap.set(key, course);
+    });
+
+    // Process each new course to detect changes
+    return newCourses.map(newCourse => {
+        const key = `${newCourse.CourseCode}-${newCourse.Section}-${newCourse.CourseTime}`;
+        const oldCourse = oldCoursesMap.get(key);
+
+        // If no old course data, mark as new (though this is unlikely in this context)
+        if (!oldCourse) {
+            return { ...newCourse, change: 'new', changeDiff: parseInt(newCourse.TakenSeat) };
+        }
+
+        const oldTakenSeats = parseInt(oldCourse.TakenSeat);
+        const newTakenSeats = parseInt(newCourse.TakenSeat);
+        const oldAvailableSeats = parseInt(oldCourse.TotalSeat) - oldTakenSeats;
+        const newAvailableSeats = parseInt(newCourse.TotalSeat) - newTakenSeats;
+
+        let change = 'none';
+        const changeDiff = newTakenSeats - oldTakenSeats;
+
+        // Determine change type
+        if (oldAvailableSeats > 0 && newAvailableSeats === 0) {
+            change = 'filledUp';
+        } else if (oldAvailableSeats === 0 && newAvailableSeats > 0) {
+            change = 'openedUp';
+        } else if (changeDiff > 0) {
+            change = 'increased';
+        } else if (changeDiff < 0) {
+            change = 'decreased';
+        }
+
+        return { ...newCourse, change, changeDiff };
+    });
+}
+
+// Debounce function to limit how often a function can be called
+function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+}
+
+// Function to filter the table based on selected filters and search term
+function filterTable() {
+    const courseValue = document.getElementById('courseFilter').value;
+    const facultyValue = document.getElementById('facultyFilter').value;
+    const roomValue = document.getElementById('roomFilter').value;
+    const statusValue = document.getElementById('statusFilter').value;
+    const searchValue = document.getElementById('searchInput').value.toLowerCase();
+    const changeValue = isViewingChanges ? document.getElementById('changeFilter').value : '';
+
+    // Start with all data
+    let dataToFilter = courseData;
+
+    // Create a single filter function that combines all conditions
+    // This is more efficient than chaining multiple .filter() calls
+    filteredData = dataToFilter.filter(course => {
+        // Star filter - do this first as it's likely to exclude the most items
+        if (isViewingStarred) {
+            const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+            if (!starredCourses.has(courseIdentifier)) {
+                return false;
+            }
+        }
+
+        // Calculate available seats for status filtering
+        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+        const status = availableSeats > 0 ? "Available" : "Full";
+
+        // Course code filter
+        if (courseValue && course.CourseCode !== courseValue) {
+            return false;
+        }
+
+        // Faculty filter
+        if (facultyValue && course.Faculty !== facultyValue) {
+            return false;
+        }
+
+        // Room filter
+        if (roomValue && course.Room !== roomValue) {
+            return false;
+        }
+
+        // Status filter
+        if (statusValue && status !== statusValue) {
+            return false;
+        }
+
+        // Apply change filter when viewing changes
+        if (isViewingChanges && changeValue && course.change !== changeValue) {
+            return false;
+        }
+
+        // Search filter - do this last as it's the most expensive operation
+        if (searchValue) {
+            const searchableText = `${course.CourseCode} ${course.Section} ${course.Faculty} ${course.CourseTime} ${course.Room || ""}`.toLowerCase();
+            if (!searchableText.includes(searchValue)) {
+                return false;
+            }
+        }
+
+        return true;
+    });
+
+    populateTable(filteredData);
+    updateStats(filteredData);
+}
+
+// Create debounced version for search input
+const debouncedFilterTable = debounce(filterTable, 300);
+
+// Function to toggle between current view and changes view
+function toggleView(viewChanges) {
+    isViewingChanges = viewChanges;
+
+    // Toggle active class on buttons
+    document.getElementById('viewCurrentBtn').classList.toggle('active', !viewChanges);
+    document.getElementById('viewChangesBtn').classList.toggle('active', viewChanges);
+
+    // Toggle visibility of change-related elements
+    document.getElementById('changeHeader').style.display = viewChanges ? 'table-cell' : 'none';
+    document.getElementById('changeFilterContainer').style.display = viewChanges ? 'block' : 'none';
+    document.getElementById('changesSummary').style.display = viewChanges ? 'block' : 'none';
+
+    // Update the data and filters
+    if (viewChanges) {
+        // If we haven't compared the data yet, do it now
+        if (!courseData[0].hasOwnProperty('change')) {
+            courseData = compareCoursesData(courseData, oldCourseData);
+        }
+    }
+
+    // Update stats and table
+    updateStats(courseData);
+    filterTable();
+}
+
+// Show loading indicator
+function showLoading() {
+    document.getElementById('courseTableBody').innerHTML = `
+                <tr>
+                    <td colspan="9">
+                        <div class="loading-spinner">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            `;
+}
+
+// Initialize the application with loading indicators
+async function initialize() {
+    // Load starred courses from localStorage
+    loadStarredCourses();
+
+    // Show loading indicator
+    showLoading();
+
+    // Fetch course data
+    courseData = await fetchCourseData();
+
+    // Set filtered data initially to all data
+    filteredData = [...courseData];
+
+    // Populate filters and table
+    populateFilters(courseData);
+    populateTable(filteredData);
+    updateStats(filteredData);
+
+    // Setup event listeners
+    setupEventListeners();
+
+    // Fetch old course data in the background
+    oldCourseData = await fetchOldCourseData();
+
+    // Update comparison stats if needed
+    if (isViewingChanges) {
+        updateComparisonStats();
+    }
+}
+
+// Setup all event listeners
+function setupEventListeners() {
+    // Add event listeners for filters and search
+    document.getElementById('courseFilter').addEventListener('change', filterTable);
+    document.getElementById('facultyFilter').addEventListener('change', filterTable);
+    document.getElementById('roomFilter').addEventListener('change', filterTable);
+    document.getElementById('statusFilter').addEventListener('change', filterTable);
+    document.getElementById('searchInput').addEventListener('input', debouncedFilterTable);
+    document.getElementById('changeFilter').addEventListener('change', filterTable);
+
+    // Add event listeners for view toggle buttons
+    document.getElementById('viewCurrentBtn').addEventListener('click', () => toggleView(false));
+    document.getElementById('viewChangesBtn').addEventListener('click', () => toggleView(true));
+
+    // Add event listener for starred courses button
+    document.getElementById('viewStarredBtn').addEventListener('click', function () {
+        isViewingStarred = !isViewingStarred;
+        this.classList.toggle('active');
+
+        if (isViewingStarred) {
+            this.innerHTML = '<i class="bi bi-star-fill me-1"></i> Show All Courses';
+        } else {
+            this.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
+        }
+
+        filterTable();
+    });
+
+    // Add event listener for generate routine button
+    document.getElementById('generateRoutineBtn').addEventListener('click', generateRoutine);
+
+    // Add event listener for PDF export
+    document.getElementById('savePdfBtn').addEventListener('click', exportRoutineToPDF);
+}
+
+// Update comparison stats
+function updateComparisonStats() {
+    if (courseData.length > 0 && oldCourseData.length > 0) {
+        courseData = compareCoursesData(courseData, oldCourseData);
+        filterTable();
+    }
+}
+
+// Generate routine based on starred courses
+function generateRoutine() {
+    // Check if there are any starred courses
+    if (starredCourses.size === 0) {
+        // Show a modal with a message to star courses first
+        const modalBody = document.querySelector('#routineModal .modal-body');
+        modalBody.innerHTML = `
+            <div class="alert alert-warning text-center p-4">
+                <i class="bi bi-exclamation-triangle-fill fs-1 mb-3 d-block"></i>
+                <h5>No Starred Courses Found</h5>
+                <p>Please star some courses first to generate your routine.</p>
+                <button type="button" class="btn btn-primary mt-3" id="goBackAndStarBtn" data-bs-dismiss="modal">
+                    <i class="bi bi-star me-1"></i> Go Back and Star Courses
+                </button>
+            </div>
+        `;
+
+        // Show the modal
+        const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
+        routineModal.show();
+
+        // Add event listener to the "Go Back and Star Courses" button
+        document.getElementById('goBackAndStarBtn').addEventListener('click', function () {
+            // If currently viewing starred courses, switch to all courses
+            if (isViewingStarred) {
+                isViewingStarred = false;
+                const starredBtn = document.getElementById('viewStarredBtn');
+                starredBtn.classList.remove('active');
+                starredBtn.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
+                filterTable(); // Refresh the table to show all courses
+            }
+        });
+
+        return;
+    }
+
+    // Clear the routine table first
+    const routineTable = document.getElementById('routineTable');
+    const rows = routineTable.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td:not(.day-cell)');
+        cells.forEach(cell => {
+            cell.innerHTML = '';
+            cell.colSpan = 1;
+            cell.className = '';
+            cell.style.display = '';
+        });
+    });
+
+    // Get starred courses from the current course data
+    const starredCourseIds = [...starredCourses];
+    const starredCourseObjects = courseData.filter(course =>
+        starredCourseIds.includes(`${course.CourseCode}-${course.Section}-${course.CourseTime}`)
+    );
+
+    // Map day codes to row indices
+    const dayMap = {
+        'S': 0, // Sunday
+        'M': 1, // Monday
+        'T': 2, // Tuesday
+        'W': 3, // Wednesday
+        'R': 4, // Thursday
+        'F': 5, // Friday
+        'A': 6  // Saturday
+    };
+
+    // Map time slots to column indices
+    const timeSlots = [
+        '08:00 AM - 09:30 AM',
+        '09:40 AM - 11:10 AM',
+        '11:20 AM - 12:50 PM',
+        '01:00 PM - 02:30 PM',
+        '02:40 PM - 04:10 PM',
+        '04:20 PM - 05:50 PM',
+        '06:00 PM - 07:30 PM'
+    ];
+
+    // Process each starred course
+    starredCourseObjects.forEach(course => {
+        // Extract days and time from CourseTime
+        const timePattern = /(\d+:\d+ [AP]M) - (\d+:\d+ [AP]M) ([A-Z]+)/;
+        const match = course.CourseTime.match(timePattern);
+
+        if (match) {
+            const startTime = match[1];
+            const endTime = match[2];
+            const days = match[3];
+
+            // Find the column index for the time slot
+            let startCol = -1;
+            let endCol = -1;
+            let colspan = 1;
+
+            for (let i = 0; i < timeSlots.length; i++) {
+                if (timeSlots[i].includes(startTime)) {
+                    startCol = i;
+                }
+                if (timeSlots[i].includes(endTime)) {
+                    endCol = i;
+                }
+            }
+
+            // Calculate colspan if needed
+            if (startCol !== -1 && endCol !== -1 && startCol !== endCol) {
+                colspan = endCol - startCol + 1;
+            }
+
+            // Add the course to each day's schedule
+            for (let i = 0; i < days.length; i++) {
+                const day = days[i];
+                const rowIndex = dayMap[day];
+
+                if (rowIndex !== undefined && startCol !== -1) {
+                    const row = rows[rowIndex];
+                    const cells = row.querySelectorAll('td:not(.day-cell)');
+
+                    // Check if the cell is already occupied
+                    let cellOccupied = false;
+                    for (let j = startCol; j < startCol + colspan; j++) {
+                        if (cells[j] && cells[j].innerHTML !== '') {
+                            cellOccupied = true;
+                            break;
+                        }
+                    }
+
+                    if (!cellOccupied) {
+                        // Clear any cells that will be spanned
+                        for (let j = startCol + 1; j < startCol + colspan; j++) {
+                            if (cells[j]) {
+                                cells[j].innerHTML = '';
+                                cells[j].style.display = 'none';
+                            }
+                        }
+
+                        // Set the course in the cell with more vibrant formatting
+                        if (cells[startCol]) {
+                            cells[startCol].innerHTML = `
+                                        <div class="course-cell">
+                                            <div class="course-code">${course.CourseCode}</div>
+                                            <div class="course-section">Section ${course.Section}</div>
+                                            <div class="course-room">${course.Room || "TBA"}</div>
+                                        </div>
+                                    `;
+                            cells[startCol].colSpan = colspan;
+                            cells[startCol].className = '';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    // Show the modal with the routine
+    const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
+    routineModal.show();
+}
+
+// Function to export routine as PDF
+function exportRoutineToPDF() {
+    // Show loading indicator
+    const modalBody = document.querySelector('#routineModal .modal-body');
+    const originalContent = modalBody.innerHTML;
+    modalBody.innerHTML = `
+                <div class="text-center p-5">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Generating PDF...</span>
+                    </div>
+                    <p class="mt-2">Generating PDF, please wait...</p>
+                </div>
+            `;
+
+    // Short delay to allow the loading indicator to render
+    setTimeout(() => {
+        // Restore original content
+        modalBody.innerHTML = originalContent;
+
+        const routineTable = document.getElementById('routineTable');
+        const routineTitle = "Class Routine";
+
+        // Use html2canvas to capture the table as an image
+        html2canvas(routineTable, {
+            scale: 2, // Higher scale for better quality
+            backgroundColor: '#091428',
+            logging: false
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/png');
+
+            // Initialize jsPDF
+            const { jsPDF } = window.jspdf;
+
+            // Create PDF in landscape orientation
+            const pdf = new jsPDF({
+                orientation: 'landscape',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            // Calculate dimensions to fit the image properly
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+            // Add title
+            pdf.setFontSize(16);
+            pdf.setTextColor(0, 0, 0);
+            pdf.text(routineTitle, pdf.internal.pageSize.getWidth() / 2, 15, { align: 'center' });
+
+            // Add image of the table
+            pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth - 20, pdfHeight - 10);
+
+            // Add footer with date
+            const date = new Date().toLocaleDateString();
+            pdf.setFontSize(10);
+            pdf.text(`Generated on: ${date}`, pdf.internal.pageSize.getWidth() - 15, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+
+            // Save the PDF
+            pdf.save('class_routine.pdf');
+        });
+    }, 100);
+}
+
+// Initialize the page when the DOM is loaded
+document.addEventListener('DOMContentLoaded', initialize);
