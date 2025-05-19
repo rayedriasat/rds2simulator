@@ -1392,7 +1392,41 @@
         }
 
         // Generate routine based on starred courses
-        function generateRoutine() {
+function generateRoutine() {
+    // Check if there are any starred courses
+    if (starredCourses.size === 0) {
+        // Show a modal with a message to star courses first
+        const modalBody = document.querySelector('#routineModal .modal-body');
+        modalBody.innerHTML = `
+            <div class="alert alert-warning text-center p-4">
+                <i class="bi bi-exclamation-triangle-fill fs-1 mb-3 d-block"></i>
+                <h5>No Starred Courses Found</h5>
+                <p>Please star some courses first to generate your routine.</p>
+                <button type="button" class="btn btn-primary mt-3" id="goBackAndStarBtn" data-bs-dismiss="modal">
+                    <i class="bi bi-star me-1"></i> Go Back and Star Courses
+                </button>
+            </div>
+        `;
+
+        // Show the modal
+        const routineModal = new bootstrap.Modal(document.getElementById('routineModal'));
+        routineModal.show();
+        
+        // Add event listener to the "Go Back and Star Courses" button
+        document.getElementById('goBackAndStarBtn').addEventListener('click', function() {
+            // If currently viewing starred courses, switch to all courses
+            if (isViewingStarred) {
+                isViewingStarred = false;
+                const starredBtn = document.getElementById('viewStarredBtn');
+                starredBtn.classList.remove('active');
+                starredBtn.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
+                filterTable(); // Refresh the table to show all courses
+            }
+        });
+        
+        return;
+    }
+
             // Clear the routine table first
             const routineTable = document.getElementById('routineTable');
             const rows = routineTable.querySelectorAll('tbody tr');
@@ -1411,13 +1445,6 @@
             const starredCourseObjects = courseData.filter(course =>
                 starredCourseIds.includes(`${course.CourseCode}-${course.Section}-${course.CourseTime}`)
             );
-
-            // If no starred courses, show message
-            if (starredCourseObjects.length === 0) {
-                const modalBody = document.querySelector('#routineModal .modal-body');
-                modalBody.innerHTML = '<div class="alert alert-warning">No starred courses found. Please star some courses first.</div>';
-                return;
-            }
 
             // Map day codes to row indices
             const dayMap = {
