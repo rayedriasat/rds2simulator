@@ -251,6 +251,11 @@ function populateTable(courses) {
 
     // Create a document fragment to batch DOM operations
     const fragment = document.createDocumentFragment();
+    
+    // Limit initial render to improve performance
+    const initialRenderLimit = 50;
+    const remainingCourses = courses.length > initialRenderLimit ? courses.slice(initialRenderLimit) : [];
+    const initialCourses = courses.length > initialRenderLimit ? courses.slice(0, initialRenderLimit) : courses;
 
     // Create a Set to track unique course identifiers to prevent duplicates
     const processedCourses = new Set();
@@ -258,83 +263,96 @@ function populateTable(courses) {
     // Pre-calculate the columns we need based on view mode
     const hasChangeColumn = isViewingChanges;
 
-    courses.forEach(course => {
-        // Create a unique identifier for each course (combination of code, section, and time)
-        const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
-
-        // Skip if we've already processed this course
-        if (processedCourses.has(courseIdentifier)) {
-            return;
-        }
-
-        // Add to processed set
-        processedCourses.add(courseIdentifier);
-
-        const row = document.createElement('tr');
-
-        // Calculate available seats
-        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
-        const status = availableSeats > 0 ? "Available" : "Full";
-
-        // Build row HTML - more efficient than creating each cell separately
-        let rowHTML = '';
-
-        // Add change indicator cell if viewing changes
-        if (hasChangeColumn && course.change) {
-            if (course.change !== 'none') {
-                let changeText = '';
-                if (course.change === 'increased') {
-                    changeText = `+${course.changeDiff} seats taken`;
-                } else if (course.change === 'decreased') {
-                    changeText = `-${Math.abs(course.changeDiff)} seats taken`;
-                } else if (course.change === 'filledUp') {
-                    changeText = 'Filled up';
-                } else if (course.change === 'openedUp') {
-                    changeText = 'Opened up';
-                }
-
-                rowHTML += `<td><span class="change-indicator change-${course.change}"></span>${changeText}</td>`;
-                row.classList.add('change-row');
-            } else {
-                rowHTML += '<td>No change</td>';
-            }
-        }
-
-        // Add star cell
-        const isStarred = starredCourses.has(courseIdentifier);
-        rowHTML += `<td class="star-column">
-                    <button class="star-btn ${isStarred ? 'starred' : ''}" data-id="${courseIdentifier}">
-                        <i class="bi bi-star${isStarred ? '-fill' : ''}"></i>
-                    </button>
-                </td>`;
-
-        // Add other cells
-        rowHTML += `
-                    <td>${course.CourseCode}</td>
-                    <td>${course.Section}</td>
-                    <td>${course.Faculty}</td>
-                    <td>${course.CourseTime}</td>
-                    <td>${course.Room || "TBA"}</td>
-                    <td>${availableSeats}/${course.TotalSeat}</td>
-                    <td><span class="badge ${status === 'Available' ? 'badge-available' : 'badge-full'}">${status}</span></td>
-                `;
-
-        row.innerHTML = rowHTML;
-
-        // Add event listener to the star button
-        const starBtn = row.querySelector('.star-btn');
-        if (starBtn) {
-            starBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                toggleStar(courseIdentifier);
-            });
-        }
-
-        fragment.appendChild(row);
-    });
-
-    // Append all rows at once
+    // Render initial batch of courses
+    initialCourses.forEach(course => renderCourseRow(course, fragment, processedCourses, hasChangeColumn));
+    
+    // Append initial batch
     tableBody.appendChild(fragment);
+    
+    // If we have more courses, render them in the next animation frame
+    if (remainingCourses.length > 0) {
+        window.requestAnimationFrame(() => {
+            const remainingFragment = document.createDocumentFragment();
+            remainingCourses.forEach(course => renderCourseRow(course, remainingFragment, processedCourses, hasChangeColumn));
+            tableBody.appendChild(remainingFragment);
+        });
+    }
+}
+
+// Helper function to render a single course row
+function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
+    // Create a unique identifier for each course (combination of code, section, and time)
+    const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+
+    // Skip if we've already processed this course
+    if (processedCourses.has(courseIdentifier)) {
+        return;
+    }
+
+    // Add to processed set
+    processedCourses.add(courseIdentifier);
+
+    const row = document.createElement('tr');
+
+    // Calculate available seats
+    const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+    const status = availableSeats > 0 ? "Available" : "Full";
+
+    // Build row HTML - more efficient than creating each cell separately
+    let rowHTML = '';
+
+    // Add change indicator cell if viewing changes
+    if (hasChangeColumn && course.change) {
+        if (course.change !== 'none') {
+            let changeText = '';
+            if (course.change === 'increased') {
+                changeText = `+${course.changeDiff} seats taken`;
+            } else if (course.change === 'decreased') {
+                changeText = `-${Math.abs(course.changeDiff)} seats taken`;
+            } else if (course.change === 'filledUp') {
+                changeText = 'Filled up';
+            } else if (course.change === 'openedUp') {
+                changeText = 'Opened up';
+            }
+
+            rowHTML += `<td><span class="change-indicator change-${course.change}"></span>${changeText}</td>`;
+            row.classList.add('change-row');
+        } else {
+            rowHTML += '<td>No change</td>';
+        }
+    }
+
+    // Add star cell
+    const isStarred = starredCourses.has(courseIdentifier);
+    rowHTML += `<td class="star-column">
+                <button class="star-btn ${isStarred ? 'starred' : ''}" data-id="${courseIdentifier}">
+                    <i class="bi bi-star${isStarred ? '-fill' : ''}"></i>
+                </button>
+            </td>`;
+
+    // Add other cells
+    rowHTML += `
+                <td>${course.CourseCode}</td>
+                <td>${course.Section}</td>
+                <td>${course.Faculty}</td>
+                <td>${course.CourseTime}</td>
+                <td>${course.Room || "TBA"}</td>
+                <td>${availableSeats}/${course.TotalSeat}</td>
+                <td><span class="badge ${status === 'Available' ? 'badge-available' : 'badge-full'}">${status}</span></td>
+            `;
+
+    row.innerHTML = rowHTML;
+
+    // Add event listener to the star button
+    const starBtn = row.querySelector('.star-btn');
+    if (starBtn) {
+        starBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleStar(courseIdentifier);
+        });
+    }
+
+    fragment.appendChild(row);
 }
 
 // Function to populate filter dropdowns
@@ -870,47 +888,76 @@ function exportRoutineToPDF() {
         // Restore original content
         modalBody.innerHTML = originalContent;
 
-        const routineTable = document.getElementById('routineTable');
+        const routineElement = document.querySelector('.routine-container');
         const routineTitle = "Class Routine";
 
-        // Use html2canvas to capture the table as an image
-        html2canvas(routineTable, {
+        // Use html2canvas with improved settings for mobile
+        html2canvas(routineElement, {
             scale: 2, // Higher scale for better quality
             backgroundColor: '#091428',
-            logging: false
+            logging: false,
+            useCORS: true,
+            allowTaint: true,
+            letterRendering: true,
+            removeContainer: true
         }).then(canvas => {
             const imgData = canvas.toDataURL('image/png');
 
-            // Initialize jsPDF
-            const { jsPDF } = window.jspdf;
+            try {
+                // Initialize jsPDF
+                const { jsPDF } = window.jspdf;
 
-            // Create PDF in landscape orientation
-            const pdf = new jsPDF({
-                orientation: 'landscape',
-                unit: 'mm',
-                format: 'a4'
-            });
+                // Create PDF in landscape orientation
+                const pdf = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
 
-            // Calculate dimensions to fit the image properly
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                // Calculate dimensions to fit the image properly
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-            // Add title
-            pdf.setFontSize(16);
-            pdf.setTextColor(0, 0, 0);
-            pdf.text(routineTitle, pdf.internal.pageSize.getWidth() / 2, 15, { align: 'center' });
+                // Add title
+                pdf.setFontSize(16);
+                pdf.setTextColor(0, 0, 0);
+                pdf.text(routineTitle, pdf.internal.pageSize.getWidth() / 2, 15, { align: 'center' });
 
-            // Add image of the table
-            pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth - 20, pdfHeight - 10);
+                // Add image of the table
+                pdf.addImage(imgData, 'PNG', 10, 20, pdfWidth - 20, pdfHeight - 10);
 
-            // Add footer with date
-            const date = new Date().toLocaleDateString();
-            pdf.setFontSize(10);
-            pdf.text(`Generated on: ${date}`, pdf.internal.pageSize.getWidth() - 15, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
+                // Add footer with date
+                const date = new Date().toLocaleDateString();
+                pdf.setFontSize(10);
+                pdf.text(`Generated on: ${date}`, pdf.internal.pageSize.getWidth() - 15, pdf.internal.pageSize.getHeight() - 10, { align: 'right' });
 
-            // Save the PDF
-            pdf.save('class_routine.pdf');
+                // Save the PDF with a more compatible method for mobile
+                if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                    // For mobile devices, open PDF in a new tab
+                    const blob = pdf.output('blob');
+                    const blobURL = URL.createObjectURL(blob);
+                    window.open(blobURL, '_blank');
+                } else {
+                    // For desktop, use normal download
+                    pdf.save('class_routine.pdf');
+                }
+            } catch (error) {
+                console.error('PDF generation error:', error);
+                alert('There was an error generating the PDF. Please try again.');
+                
+                // Fallback for Android - just open the image
+                if (/Android/i.test(navigator.userAgent)) {
+                    const newTab = window.open();
+                    newTab.document.body.innerHTML = `
+                        <style>body{margin:0;background:#091428;display:flex;justify-content:center;align-items:center;}</style>
+                        <img src="${imgData}" style="max-width:100%;">
+                    `;
+                }
+            }
+        }).catch(err => {
+            console.error('Canvas error:', err);
+            alert('Could not generate image of your routine. Please try again.');
         });
     }, 100);
 }

@@ -373,18 +373,20 @@ h1 {
     color: #90caf9;
 }
 
-/* Performance optimizations */
-.table-responsive {
+/* Add these performance optimizations at the top of your CSS file */
+* {
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Reduce paint operations */
+.table-responsive, .star-btn, .table tbody tr, .course-cell {
     will-change: transform;
     transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
-.star-btn {
-    will-change: color;
-    transform: translateZ(0);
-}
-
-/* Reduce repaints */
+/* Rest of your existing CSS */
 .table tbody tr {
     transform: translateZ(0);
 }
