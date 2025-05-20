@@ -922,6 +922,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Update the table
             filterTable();
+            // Update stats
+            updateStats(courseData);
         }
     });
 
