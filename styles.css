@@ -380,7 +380,10 @@ h1 {
 }
 
 /* Reduce paint operations */
-.table-responsive, .star-btn, .table tbody tr, .course-cell {
+.table-responsive,
+.star-btn,
+.table tbody tr,
+.course-cell {
     will-change: transform;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -470,6 +473,62 @@ h1 {
     display: flex;
     justify-content: space-between;
     margin-bottom: 8px;
+}
+
+/* Pagination Styles */
+.pagination-container {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pagination-info {
+    color: #90caf9;
+    font-size: 0.9em;
+}
+
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pagination-controls .form-select {
+    width: auto;
+    min-width: 120px;
+}
+
+.pagination-pages {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.page-button {
+    min-width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a1a30;
+    border: 1px solid #0f2547;
+    color: #e9ecef;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.page-button:hover {
+    background-color: #0f2547;
+}
+
+.page-button.active {
+    background-color: #1976d2;
+    border-color: #1976d2;
+    color: white;
 }
 
 @media (max-width: 768px) {

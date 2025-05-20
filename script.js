@@ -7,6 +7,17 @@ let isViewingChanges = false;
 let isViewingStarred = false;
 let starredCourses = new Set();
 
+// Pagination variables
+let currentPage = 1;
+let pageSize = 25;
+let totalPages = 1;
+
+// Indexes for faster filtering
+let courseCodeIndex = {};
+let facultyIndex = {};
+let roomIndex = {};
+let statusIndex = {};
+
 // Load starred courses from localStorage
 function loadStarredCourses() {
     const saved = localStorage.getItem('starredCourses');
@@ -45,12 +56,12 @@ function toggleStar(courseIdentifier) {
         }
     }
 
+    // Always save the starred courses immediately
+    saveStarredCourses();
+
     // Only re-filter if we're viewing starred courses
     if (isViewingStarred) {
         filterTable();
-    } else {
-        // Just save without re-rendering the entire table
-        saveStarredCourses();
     }
 }
 
@@ -228,34 +239,91 @@ function parseCSVLine(line) {
     });
 }
 
+// Function to build indexes from course data for faster filtering
+function buildIndexes(courses) {
+    // Reset indexes
+    courseCodeIndex = {};
+    facultyIndex = {};
+    roomIndex = {};
+    statusIndex = {};
+
+    // Build indexes
+    courses.forEach(course => {
+        // Course code index
+        if (!courseCodeIndex[course.CourseCode]) {
+            courseCodeIndex[course.CourseCode] = [];
+        }
+        courseCodeIndex[course.CourseCode].push(course);
+
+        // Faculty index
+        if (!facultyIndex[course.Faculty]) {
+            facultyIndex[course.Faculty] = [];
+        }
+        facultyIndex[course.Faculty].push(course);
+
+        // Room index
+        const room = course.Room || "TBA";
+        if (!roomIndex[room]) {
+            roomIndex[room] = [];
+        }
+        roomIndex[room].push(course);
+
+        // Status index
+        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+        const status = availableSeats > 0 ? "Available" : "Full";
+        if (!statusIndex[status]) {
+            statusIndex[status] = [];
+        }
+        statusIndex[status].push(course);
+    });
+}
+
 // Function to populate the table with course data
 function populateTable(courses) {
-    const tableBody = document.getElementById('courseTableBody');
+    // Store filtered courses for pagination
+    filteredData = courses;
 
-    // Clear the table body
-    while (tableBody.firstChild) {
-        tableBody.removeChild(tableBody.firstChild);
+    // Calculate pagination
+    totalPages = Math.ceil(filteredData.length / pageSize);
+    if (currentPage > totalPages && totalPages > 0) {
+        currentPage = totalPages;
     }
 
-    if (courses.length === 0) {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-                    <td colspan="9" class="no-results">
-                        <i class="bi bi-search me-2"></i>
-                        No courses found matching your criteria.
-                    </td>
-                `;
-        tableBody.appendChild(row);
+    // Render the current page
+    renderCurrentPage();
+
+    // Render pagination controls
+    renderPagination();
+}
+
+// Function to render the current page of courses
+function renderCurrentPage() {
+    const tableBody = document.getElementById('courseTableBody');
+
+    // Clear the table body - use faster innerHTML method for bulk removal
+    tableBody.innerHTML = '';
+
+    if (filteredData.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="9" class="no-results">
+                    <i class="bi bi-search me-2"></i>
+                    No courses found matching your criteria.
+                </td>
+            </tr>
+        `;
         return;
     }
 
-    // Create a document fragment to batch DOM operations
+    // Calculate slice indices for current page
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, filteredData.length);
+
+    // Only render courses for current page
+    const coursesToRender = filteredData.slice(startIndex, endIndex);
+
+    // Use DocumentFragment for better performance
     const fragment = document.createDocumentFragment();
-    
-    // Limit initial render to improve performance
-    const initialRenderLimit = 50;
-    const remainingCourses = courses.length > initialRenderLimit ? courses.slice(initialRenderLimit) : [];
-    const initialCourses = courses.length > initialRenderLimit ? courses.slice(0, initialRenderLimit) : courses;
 
     // Create a Set to track unique course identifiers to prevent duplicates
     const processedCourses = new Set();
@@ -263,23 +331,16 @@ function populateTable(courses) {
     // Pre-calculate the columns we need based on view mode
     const hasChangeColumn = isViewingChanges;
 
-    // Render initial batch of courses
-    initialCourses.forEach(course => renderCourseRow(course, fragment, processedCourses, hasChangeColumn));
-    
-    // Append initial batch
+    // Render each course row for the current page
+    coursesToRender.forEach(course => {
+        renderCourseRow(course, fragment, processedCourses, hasChangeColumn);
+    });
+
+    // Append all rows to the table body
     tableBody.appendChild(fragment);
-    
-    // If we have more courses, render them in the next animation frame
-    if (remainingCourses.length > 0) {
-        window.requestAnimationFrame(() => {
-            const remainingFragment = document.createDocumentFragment();
-            remainingCourses.forEach(course => renderCourseRow(course, remainingFragment, processedCourses, hasChangeColumn));
-            tableBody.appendChild(remainingFragment);
-        });
-    }
 }
 
-// Helper function to render a single course row
+// Helper function to render a single course row - optimized version
 function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
     // Create a unique identifier for each course (combination of code, section, and time)
     const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
@@ -292,17 +353,17 @@ function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
     // Add to processed set
     processedCourses.add(courseIdentifier);
 
+    // Use createElement instead of innerHTML for better performance
     const row = document.createElement('tr');
 
     // Calculate available seats
     const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
     const status = availableSeats > 0 ? "Available" : "Full";
 
-    // Build row HTML - more efficient than creating each cell separately
-    let rowHTML = '';
-
     // Add change indicator cell if viewing changes
     if (hasChangeColumn && course.change) {
+        const changeCell = document.createElement('td');
+
         if (course.change !== 'none') {
             let changeText = '';
             if (course.change === 'increased') {
@@ -315,36 +376,50 @@ function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
                 changeText = 'Opened up';
             }
 
-            rowHTML += `<td><span class="change-indicator change-${course.change}"></span>${changeText}</td>`;
+            const indicator = document.createElement('span');
+            indicator.className = `change-indicator change-${course.change}`;
+            changeCell.appendChild(indicator);
+            changeCell.appendChild(document.createTextNode(changeText));
             row.classList.add('change-row');
         } else {
-            rowHTML += '<td>No change</td>';
+            changeCell.textContent = 'No change';
         }
+
+        row.appendChild(changeCell);
     }
 
-    // Add star cell
-    const isStarred = starredCourses.has(courseIdentifier);
-    rowHTML += `<td class="star-column">
-                <button class="star-btn ${isStarred ? 'starred' : ''}" data-id="${courseIdentifier}">
-                    <i class="bi bi-star${isStarred ? '-fill' : ''}"></i>
-                </button>
-            </td>`;
+    // Add star cell - create elements instead of using innerHTML
+    const starCell = document.createElement('td');
+    starCell.className = 'star-column';
 
-    // Add other cells
-    rowHTML += `
-                <td>${course.CourseCode}</td>
-                <td>${course.Section}</td>
-                <td>${course.Faculty}</td>
-                <td>${course.CourseTime}</td>
-                <td>${course.Room || "TBA"}</td>
-                <td>${availableSeats}/${course.TotalSeat}</td>
-                <td><span class="badge ${status === 'Available' ? 'badge-available' : 'badge-full'}">${status}</span></td>
-            `;
+    const starBtn = document.createElement('button');
+    starBtn.className = `star-btn ${starredCourses.has(courseIdentifier) ? 'starred' : ''}`;
+    starBtn.dataset.id = courseIdentifier;
 
-    row.innerHTML = rowHTML;
+    const starIcon = document.createElement('i');
+    starIcon.className = `bi bi-star${starredCourses.has(courseIdentifier) ? '-fill' : ''}`;
+
+    starBtn.appendChild(starIcon);
+    starCell.appendChild(starBtn);
+    row.appendChild(starCell);
+
+    // Add other cells efficiently
+    appendTextCell(row, course.CourseCode);
+    appendTextCell(row, course.Section);
+    appendTextCell(row, course.Faculty);
+    appendTextCell(row, course.CourseTime);
+    appendTextCell(row, course.Room || "TBA");
+    appendTextCell(row, `${availableSeats}/${course.TotalSeat}`);
+
+    // Add status cell with badge
+    const statusCell = document.createElement('td');
+    const statusBadge = document.createElement('span');
+    statusBadge.className = `badge ${status === 'Available' ? 'badge-available' : 'badge-full'}`;
+    statusBadge.textContent = status;
+    statusCell.appendChild(statusBadge);
+    row.appendChild(statusCell);
 
     // Add event listener to the star button
-    const starBtn = row.querySelector('.star-btn');
     if (starBtn) {
         starBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -353,6 +428,13 @@ function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
     }
 
     fragment.appendChild(row);
+}
+
+// Helper function to append a text cell
+function appendTextCell(row, text) {
+    const cell = document.createElement('td');
+    cell.textContent = text;
+    row.appendChild(cell);
 }
 
 // Function to populate filter dropdowns
@@ -518,17 +600,24 @@ function compareCoursesData(newCourses, oldCourses) {
     });
 }
 
-// Debounce function to limit how often a function can be called
-function debounce(func, wait) {
+// Improved debounce function with immediate option
+function debounce(func, wait, immediate = false) {
     let timeout;
     return function (...args) {
+        const context = this;
+        const later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        };
+        const callNow = immediate && !timeout;
         clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
+        timeout = setTimeout(later, wait);
+        if (callNow) func.apply(context, args);
     };
 }
 
-// Function to filter the table based on selected filters and search term
-function filterTable() {
+// Function to filter the table based on selected filters and search term - optimized with indexes
+const filterTable = debounce(function () {
     const courseValue = document.getElementById('courseFilter').value;
     const facultyValue = document.getElementById('facultyFilter').value;
     const roomValue = document.getElementById('roomFilter').value;
@@ -536,66 +625,110 @@ function filterTable() {
     const searchValue = document.getElementById('searchInput').value.toLowerCase();
     const changeValue = isViewingChanges ? document.getElementById('changeFilter').value : '';
 
-    // Start with all data
-    let dataToFilter = courseData;
+    // Show loading indicator for better UX during filtering
+    if (courseData.length > 500) {
+        showLoading();
+    }
 
-    // Create a single filter function that combines all conditions
-    // This is more efficient than chaining multiple .filter() calls
-    filteredData = dataToFilter.filter(course => {
-        // Star filter - do this first as it's likely to exclude the most items
-        if (isViewingStarred) {
-            const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
-            if (!starredCourses.has(courseIdentifier)) {
-                return false;
+    // Use requestAnimationFrame to prevent UI blocking
+    window.requestAnimationFrame(() => {
+        // Start with candidate courses based on indexed filters
+        let candidateCourses = null;
+
+        // Apply indexed filters first for better performance
+        if (courseValue) {
+            candidateCourses = courseCodeIndex[courseValue] || [];
+        }
+
+        if (facultyValue) {
+            const facultyCourses = facultyIndex[facultyValue] || [];
+            if (candidateCourses === null) {
+                candidateCourses = facultyCourses;
+            } else {
+                // Intersection of both filters
+                candidateCourses = candidateCourses.filter(course =>
+                    facultyCourses.some(fc =>
+                        fc.CourseCode === course.CourseCode &&
+                        fc.Section === course.Section &&
+                        fc.CourseTime === course.CourseTime
+                    )
+                );
             }
         }
 
-        // Calculate available seats for status filtering
-        const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
-        const status = availableSeats > 0 ? "Available" : "Full";
-
-        // Course code filter
-        if (courseValue && course.CourseCode !== courseValue) {
-            return false;
-        }
-
-        // Faculty filter
-        if (facultyValue && course.Faculty !== facultyValue) {
-            return false;
-        }
-
-        // Room filter
-        if (roomValue && course.Room !== roomValue) {
-            return false;
-        }
-
-        // Status filter
-        if (statusValue && status !== statusValue) {
-            return false;
-        }
-
-        // Apply change filter when viewing changes
-        if (isViewingChanges && changeValue && course.change !== changeValue) {
-            return false;
-        }
-
-        // Search filter - do this last as it's the most expensive operation
-        if (searchValue) {
-            const searchableText = `${course.CourseCode} ${course.Section} ${course.Faculty} ${course.CourseTime} ${course.Room || ""}`.toLowerCase();
-            if (!searchableText.includes(searchValue)) {
-                return false;
+        if (roomValue) {
+            const roomCourses = roomIndex[roomValue] || [];
+            if (candidateCourses === null) {
+                candidateCourses = roomCourses;
+            } else {
+                // Intersection of filters
+                candidateCourses = candidateCourses.filter(course =>
+                    roomCourses.some(rc =>
+                        rc.CourseCode === course.CourseCode &&
+                        rc.Section === course.Section &&
+                        rc.CourseTime === course.CourseTime
+                    )
+                );
             }
         }
 
-        return true;
+        if (statusValue) {
+            const statusCourses = statusIndex[statusValue] || [];
+            if (candidateCourses === null) {
+                candidateCourses = statusCourses;
+            } else {
+                // Intersection of filters
+                candidateCourses = candidateCourses.filter(course =>
+                    statusCourses.some(sc =>
+                        sc.CourseCode === course.CourseCode &&
+                        sc.Section === course.Section &&
+                        sc.CourseTime === course.CourseTime
+                    )
+                );
+            }
+        }
+
+        // If no indexed filters were applied, use all courses
+        if (candidateCourses === null) {
+            candidateCourses = courseData;
+        }
+
+        // Apply remaining non-indexed filters
+        filteredData = candidateCourses.filter(course => {
+            // Star filter - do this first as it's likely to exclude the most items
+            if (isViewingStarred) {
+                const courseIdentifier = `${course.CourseCode}-${course.Section}-${course.CourseTime}`;
+                if (!starredCourses.has(courseIdentifier)) {
+                    return false;
+                }
+            }
+
+            // Change filter (only when viewing changes)
+            if (isViewingChanges && changeValue) {
+                if (changeValue === 'noChange' && course.change !== 'none') {
+                    return false;
+                } else if (changeValue !== 'noChange' && course.change !== changeValue) {
+                    return false;
+                }
+            }
+
+            // Search filter - most expensive operation, do it last
+            if (searchValue) {
+                // Combine all searchable fields into a single string for faster searching
+                const searchableText = `${course.CourseCode} ${course.Section} ${course.Faculty} ${course.CourseTime} ${course.Room}`.toLowerCase();
+                return searchableText.includes(searchValue);
+            }
+
+            return true;
+        });
+
+        // Reset to first page when filters change
+        currentPage = 1;
+
+        // Update the table with the filtered data
+        populateTable(filteredData);
     });
-
-    populateTable(filteredData);
-    updateStats(filteredData);
-}
-
-// Create debounced version for search input
-const debouncedFilterTable = debounce(filterTable, 300);
+}, 300); // 300ms debounce delay for better performance
 
 // Function to toggle between current view and changes view
 function toggleView(viewChanges) {
@@ -638,79 +771,226 @@ function showLoading() {
             `;
 }
 
-// Initialize the application with loading indicators
-async function initialize() {
-    // Load starred courses from localStorage
+// Function to render pagination controls
+function renderPagination() {
+    const totalItems = filteredData.length;
+    totalPages = Math.ceil(totalItems / pageSize);
+
+    // Update pagination info
+    document.getElementById('paginationTotal').textContent = totalItems;
+    const start = totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+    const end = Math.min(currentPage * pageSize, totalItems);
+    document.getElementById('paginationStart').textContent = start;
+    document.getElementById('paginationEnd').textContent = end;
+
+    // Update pagination buttons
+    document.getElementById('paginationPrev').disabled = currentPage <= 1;
+    document.getElementById('paginationNext').disabled = currentPage >= totalPages;
+
+    // Generate page buttons
+    const pagesContainer = document.getElementById('paginationPages');
+    pagesContainer.innerHTML = '';
+
+    // Determine which page buttons to show
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, startPage + 4);
+
+    // Adjust if we're near the end
+    if (endPage - startPage < 4 && startPage > 1) {
+        startPage = Math.max(1, endPage - 4);
+    }
+
+    // First page button
+    if (startPage > 1) {
+        const firstBtn = document.createElement('button');
+        firstBtn.className = 'page-button';
+        firstBtn.textContent = '1';
+        firstBtn.addEventListener('click', () => goToPage(1));
+        pagesContainer.appendChild(firstBtn);
+
+        if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'page-ellipsis';
+            ellipsis.textContent = '...';
+            pagesContainer.appendChild(ellipsis);
+        }
+    }
+
+    // Page buttons
+    for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = 'page-button' + (i === currentPage ? ' active' : '');
+        pageBtn.textContent = i;
+        pageBtn.addEventListener('click', () => goToPage(i));
+        pagesContainer.appendChild(pageBtn);
+    }
+
+    // Last page button
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'page-ellipsis';
+            ellipsis.textContent = '...';
+            pagesContainer.appendChild(ellipsis);
+        }
+
+        const lastBtn = document.createElement('button');
+        lastBtn.className = 'page-button';
+        lastBtn.textContent = totalPages;
+        lastBtn.addEventListener('click', () => goToPage(totalPages));
+        pagesContainer.appendChild(lastBtn);
+    }
+}
+
+// Function to navigate to a specific page
+function goToPage(page) {
+    currentPage = page;
+    renderCurrentPage();
+    renderPagination();
+    // Scroll to top of table
+    document.querySelector('.table-responsive').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function () {
+    // Load starred courses first before anything else
     loadStarredCourses();
 
     // Show loading indicator
     showLoading();
 
     // Fetch course data
-    courseData = await fetchCourseData();
+    fetchCourseData().then(courses => {
+        courseData = courses;
+        filteredData = courses;
 
-    // Set filtered data initially to all data
-    filteredData = [...courseData];
+        // Build indexes for faster filtering
+        buildIndexes(courses);
 
-    // Populate filters and table
-    populateFilters(courseData);
-    populateTable(filteredData);
-    updateStats(filteredData);
+        // Populate filters
+        populateFilters(courses);
 
-    // Setup event listeners
-    setupEventListeners();
+        // Populate the table
+        populateTable(courses);
 
-    // Fetch old course data in the background
-    oldCourseData = await fetchOldCourseData();
+        // Update statistics
+        updateStats(courses);
 
-    // Update comparison stats if needed
-    if (isViewingChanges) {
-        updateComparisonStats();
-    }
-}
+        // Fetch old course data for comparison
+        fetchOldCourseData().then(oldCourses => {
+            oldCourseData = oldCourses;
+        }).catch(error => {
+            console.error('Error fetching old course data:', error);
+        });
+    });
 
-// Setup all event listeners
-function setupEventListeners() {
-    // Add event listeners for filters and search
+    // Add event listeners for filters
     document.getElementById('courseFilter').addEventListener('change', filterTable);
     document.getElementById('facultyFilter').addEventListener('change', filterTable);
     document.getElementById('roomFilter').addEventListener('change', filterTable);
     document.getElementById('statusFilter').addEventListener('change', filterTable);
-    document.getElementById('searchInput').addEventListener('input', debouncedFilterTable);
-    document.getElementById('changeFilter').addEventListener('change', filterTable);
 
-    // Add event listeners for view toggle buttons
-    document.getElementById('viewCurrentBtn').addEventListener('click', () => toggleView(false));
-    document.getElementById('viewChangesBtn').addEventListener('click', () => toggleView(true));
+    // Add event listener for search input with input event for better responsiveness
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', filterTable);
 
-    // Add event listener for starred courses button
+    // Add focus and blur events to improve mobile experience
+    searchInput.addEventListener('focus', function () {
+        this.setAttribute('autocomplete', 'off');
+        this.setAttribute('autocorrect', 'off');
+        this.setAttribute('spellcheck', 'false');
+    });
+
+    // Add event listener for view changes button
+    document.getElementById('viewChangesBtn').addEventListener('click', function () {
+        if (!isViewingChanges) {
+            isViewingChanges = true;
+            document.getElementById('viewCurrentBtn').classList.remove('active');
+            this.classList.add('active');
+            document.getElementById('changeHeader').style.display = '';
+            document.getElementById('changeFilterContainer').style.display = '';
+            document.getElementById('changesSummary').style.display = 'block';
+            document.getElementById('courseTable').classList.add('with-change-column');
+
+            // Add event listener for change filter
+            document.getElementById('changeFilter').addEventListener('change', filterTable);
+
+            // Compare course data
+            const comparedData = compareCoursesData(courseData, oldCourseData);
+            courseData = comparedData;
+            filteredData = comparedData;
+
+            // Update the table
+            filterTable();
+        }
+    });
+
+    // Add event listener for view current button
+    document.getElementById('viewCurrentBtn').addEventListener('click', function () {
+        if (isViewingChanges) {
+            isViewingChanges = false;
+            document.getElementById('viewChangesBtn').classList.remove('active');
+            this.classList.add('active');
+            document.getElementById('changeHeader').style.display = 'none';
+            document.getElementById('changeFilterContainer').style.display = 'none';
+            document.getElementById('changesSummary').style.display = 'none';
+            document.getElementById('courseTable').classList.remove('with-change-column');
+
+            // Fetch fresh course data
+            fetchCourseData().then(courses => {
+                courseData = courses;
+                filteredData = courses;
+
+                // Update the table
+                filterTable();
+            });
+        }
+    });
+
+    // Add event listener for view starred button
     document.getElementById('viewStarredBtn').addEventListener('click', function () {
         isViewingStarred = !isViewingStarred;
-        this.classList.toggle('active');
-
         if (isViewingStarred) {
-            this.innerHTML = '<i class="bi bi-star-fill me-1"></i> Show All Courses';
+            this.classList.add('active');
+            this.innerHTML = '<i class="bi bi-star me-1"></i> Show All Courses';
         } else {
+            this.classList.remove('active');
             this.innerHTML = '<i class="bi bi-star-fill me-1"></i> View Starred Courses';
         }
-
         filterTable();
     });
+
+    // Add pagination event listeners
+    document.getElementById('paginationPrev').addEventListener('click', () => {
+        if (currentPage > 1) {
+            goToPage(currentPage - 1);
+        }
+    });
+
+    document.getElementById('paginationNext').addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            goToPage(currentPage + 1);
+        }
+    });
+
+    document.getElementById('pageSizeSelect').addEventListener('change', (e) => {
+        pageSize = parseInt(e.target.value);
+        currentPage = 1; // Reset to first page
+        renderCurrentPage();
+        renderPagination();
+    });
+
+    // Initialize with default page size
+    if (document.getElementById('pageSizeSelect')) {
+        pageSize = parseInt(document.getElementById('pageSizeSelect').value);
+    }
 
     // Add event listener for generate routine button
     document.getElementById('generateRoutineBtn').addEventListener('click', generateRoutine);
 
-    // Add event listener for PDF export
+    // Add event listener for save PDF button
     document.getElementById('savePdfBtn').addEventListener('click', exportRoutineToPDF);
-}
-
-// Update comparison stats
-function updateComparisonStats() {
-    if (courseData.length > 0 && oldCourseData.length > 0) {
-        courseData = compareCoursesData(courseData, oldCourseData);
-        filterTable();
-    }
-}
+});
 
 // Generate routine based on starred courses
 function generateRoutine() {
@@ -945,7 +1225,7 @@ function exportRoutineToPDF() {
             } catch (error) {
                 console.error('PDF generation error:', error);
                 alert('There was an error generating the PDF. Please try again.');
-                
+
                 // Fallback for Android - just open the image
                 if (/Android/i.test(navigator.userAgent)) {
                     const newTab = window.open();
