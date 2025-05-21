@@ -374,6 +374,8 @@ function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
                 changeText = 'Filled up';
             } else if (course.change === 'openedUp') {
                 changeText = 'Opened up';
+            } else if (course.change === 'facultyChanged') {
+                changeText = 'Faculty changed';
             }
 
             const indicator = document.createElement('span');
@@ -406,7 +408,16 @@ function renderCourseRow(course, fragment, processedCourses, hasChangeColumn) {
     // Add other cells efficiently
     appendTextCell(row, course.CourseCode);
     appendTextCell(row, course.Section);
-    appendTextCell(row, course.Faculty);
+
+    // Add faculty cell with previous faculty info if changed
+    if (course.facultyChanged && isViewingChanges) {
+        const facultyCell = document.createElement('td');
+        facultyCell.innerHTML = `${course.Faculty} <span class="faculty-changed">(was: ${course.oldFaculty})</span>`;
+        row.appendChild(facultyCell);
+    } else {
+        appendTextCell(row, course.Faculty);
+    }
+
     appendTextCell(row, course.CourseTime);
     appendTextCell(row, course.Room || "TBA");
     appendTextCell(row, `${availableSeats}/${course.TotalSeat}`);
@@ -540,6 +551,7 @@ function updateStats(courses) {
         const decreasedCourses = courses.filter(course => course.change === 'decreased').length;
         const filledUpCourses = courses.filter(course => course.change === 'filledUp').length;
         const openedUpCourses = courses.filter(course => course.change === 'openedUp').length;
+        const facultyChangedCourses = courses.filter(course => course.change === 'facultyChanged').length;
 
         statsContainer.innerHTML += `
                     <div class="stat-card">
@@ -553,6 +565,7 @@ function updateStats(courses) {
         document.getElementById('openedUpCount').textContent = openedUpCourses;
         document.getElementById('increasedCount').textContent = increasedCourses;
         document.getElementById('decreasedCount').textContent = decreasedCourses;
+        document.getElementById('facultyChangedCount').textContent = facultyChangedCourses;
         document.getElementById('totalChangesCount').textContent = changedCourses.length;
     }
 }
@@ -585,6 +598,10 @@ function compareCoursesData(newCourses, oldCourses) {
         let change = 'none';
         const changeDiff = newTakenSeats - oldTakenSeats;
 
+        // Check for faculty change
+        const facultyChanged = oldCourse.Faculty !== newCourse.Faculty;
+        const oldFaculty = facultyChanged ? oldCourse.Faculty : null;
+
         // Determine change type
         if (oldAvailableSeats > 0 && newAvailableSeats === 0) {
             change = 'filledUp';
@@ -594,9 +611,11 @@ function compareCoursesData(newCourses, oldCourses) {
             change = 'increased';
         } else if (changeDiff < 0) {
             change = 'decreased';
+        } else if (facultyChanged) {
+            change = 'facultyChanged';
         }
 
-        return { ...newCourse, change, changeDiff };
+        return { ...newCourse, change, changeDiff, facultyChanged, oldFaculty };
     });
 }
 

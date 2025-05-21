@@ -568,3 +568,13 @@ h1 {
         width: 60px;
     }
 }
+.change-facultyChanged {
+    background-color: #9c27b0; /* Purple color for faculty changes */
+}
+
+.faculty-changed {
+    font-size: 0.85em;
+    color: #ff9800;
+    font-style: italic;
+    display: block;
+}
