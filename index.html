@@ -1,324 +1,428 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
-
-<head>
+  <head>
     <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CKT27BFGXB"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-CKT27BFGXB"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-        gtag('config', 'G-CKT27BFGXB');
+      gtag("config", "G-CKT27BFGXB");
     </script>
     <!-- End Google Analytics -->
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="theme-color" content="#091428">
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#091428" />
+    <!-- HTML Meta Tags -->
     <title>Course Information</title>
+    <meta name="description" content="Easily Search/Filter RDS2 Data" />
+
+    <!-- Facebook Meta Tags -->
+    <meta
+      property="og:url"
+      content="https://rayedriasat.github.io/rds2simulator/"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Course Information" />
+    <meta property="og:description" content="Easily Search/Filter RDS2 Data" />
+    <meta
+      property="og:image"
+      content="https://opengraph.b-cdn.net/production/images/cdc77c51-8a8b-476e-bad7-4cad9eeb585a.png?token=FkZQUk5NtN05UdvTE7LDmhCJkLIrNHKT_wwAcIgoktQ&height=543&width=1024&expires=33288741669"
+    />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="rayedriasat.github.io" />
+    <meta
+      property="twitter:url"
+      content="https://rayedriasat.github.io/rds2simulator/"
+    />
+    <meta name="twitter:title" content="Course Information" />
+    <meta name="twitter:description" content="Easily Search/Filter RDS2 Data" />
+    <meta
+      name="twitter:image"
+      content="https://opengraph.b-cdn.net/production/images/cdc77c51-8a8b-476e-bad7-4cad9eeb585a.png?token=FkZQUk5NtN05UdvTE7LDmhCJkLIrNHKT_wwAcIgoktQ&height=543&width=1024&expires=33288741669"
+    />
+
+    <!-- Meta Tags Generated via https://www.opengraph.xyz -->
 
     <!-- Preload critical resources -->
-    <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-        as="style">
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" as="style">
+    <link rel="preload" href="styles.css" as="style" />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      as="style"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+      as="style"
+    />
 
     <!-- Defer non-critical JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+      defer
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+      defer
+    ></script>
 
     <!-- CSS files -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="credits-header">
-            <span>Made with ❤️ by Rayed Riasat | </span>
-            <a href="https://www.facebook.com/rayed.riasat.5" target="_blank"><i class="bi bi-facebook"></i>Facebook</a>
-            <a href="https://www.linkedin.com/in/rayed-riasat-rabbi/" target="_blank"><i
-                    class="bi bi-linkedin"></i>LinkedIn</a>
-        </div>
+      <div class="credits-header">
+        <span>Made with ❤️ by Rayed Riasat | </span>
+        <a href="https://www.facebook.com/rayed.riasat.5" target="_blank"
+          ><i class="bi bi-facebook"></i>Facebook</a
+        >
+        <a
+          href="https://www.linkedin.com/in/rayed-riasat-rabbi/"
+          target="_blank"
+          ><i class="bi bi-linkedin"></i>LinkedIn</a
+        >
+      </div>
 
-        <h1>Course Information</h1>
-        <div class="last-updated" id="lastUpdated"></div>
+      <h1>Course Information</h1>
+      <div class="last-updated" id="lastUpdated"></div>
 
-        <!-- Comparison toggle buttons -->
-        <div class="comparison-toggle">
-            <button id="viewCurrentBtn" class="btn-toggle active">View Current Data</button>
-            <button id="viewChangesBtn" class="btn-toggle">View Changes</button>
-        </div>
+      <!-- Comparison toggle buttons -->
+      <div class="comparison-toggle">
+        <button id="viewCurrentBtn" class="btn-toggle active">
+          View Current Data
+        </button>
+        <button id="viewChangesBtn" class="btn-toggle">View Changes</button>
+      </div>
 
-        <!-- Changes summary section -->
-        <div class="changes-summary" id="changesSummary">
-            <h5><i class="bi bi-arrow-repeat me-2"></i>Changes Summary</h5>
-            <div class="change-stat" id="previousDataTimeContainer">
-                <span>Comparing with data from:</span>
-                <span id="previousDataTime">Loading...</span>
-            </div>
-            <div class="change-stat">
-                <span>Courses that filled up:</span>
-                <span id="filledUpCount">0</span>
-            </div>
-            <div class="change-stat">
-                <span>Courses that opened up:</span>
-                <span id="openedUpCount">0</span>
-            </div>
-            <div class="change-stat">
-                <span>Courses with increased enrollment:</span>
-                <span id="increasedCount">0</span>
-            </div>
-            <div class="change-stat">
-                <span>Courses with decreased enrollment:</span>
-                <span id="decreasedCount">0</span>
-            </div>
-            <div class="change-stat">
-                <span>Courses with faculty changes:</span>
-                <span id="facultyChangedCount">0</span>
-            </div>
-            <div class="change-stat">
-                <span>Total changes:</span>
-                <span id="totalChangesCount">0</span>
-            </div>
+      <!-- Changes summary section -->
+      <div class="changes-summary" id="changesSummary">
+        <h5><i class="bi bi-arrow-repeat me-2"></i>Changes Summary</h5>
+        <div class="change-stat" id="previousDataTimeContainer">
+          <span>Comparing with data from:</span>
+          <span id="previousDataTime">Loading...</span>
         </div>
+        <div class="change-stat">
+          <span>Courses that filled up:</span>
+          <span id="filledUpCount">0</span>
+        </div>
+        <div class="change-stat">
+          <span>Courses that opened up:</span>
+          <span id="openedUpCount">0</span>
+        </div>
+        <div class="change-stat">
+          <span>Courses with increased enrollment:</span>
+          <span id="increasedCount">0</span>
+        </div>
+        <div class="change-stat">
+          <span>Courses with decreased enrollment:</span>
+          <span id="decreasedCount">0</span>
+        </div>
+        <div class="change-stat">
+          <span>Courses with faculty changes:</span>
+          <span id="facultyChangedCount">0</span>
+        </div>
+        <div class="change-stat">
+          <span>Total changes:</span>
+          <span id="totalChangesCount">0</span>
+        </div>
+      </div>
 
-        <div class="stats" id="statsContainer">
-            <!-- Stats will be populated by JavaScript -->
-        </div>
+      <div class="stats" id="statsContainer">
+        <!-- Stats will be populated by JavaScript -->
+      </div>
 
-        <div class="filters">
-            <div class="filter-item">
-                <select id="courseFilter" class="form-select">
-                    <option value="">All Courses</option>
-                </select>
-            </div>
-            <div class="filter-item">
-                <select id="facultyFilter" class="form-select">
-                    <option value="">All Faculty</option>
-                </select>
-            </div>
-            <div class="filter-item">
-                <select id="roomFilter" class="form-select">
-                    <option value="">All Rooms</option>
-                </select>
-            </div>
-            <div class="filter-item">
-                <select id="statusFilter" class="form-select">
-                    <option value="">All Status</option>
-                    <option value="Available">Available</option>
-                    <option value="Full">Full</option>
-                </select>
-            </div>
-            <div class="filter-item" id="changeFilterContainer" style="display: none;">
-                <select id="changeFilter" class="form-select">
-                    <option value="">All Changes</option>
-                    <option value="increased">Increased Enrollment</option>
-                    <option value="decreased">Decreased Enrollment</option>
-                    <option value="filledUp">Filled Up</option>
-                    <option value="openedUp">Opened Up</option>
-                    <option value="facultyChanged">Faculty Changed</option>
-                    <option value="noChange">No Change</option>
-                </select>
-            </div>
+      <div class="filters">
+        <div class="filter-item">
+          <select id="courseFilter" class="form-select">
+            <option value="">All Courses</option>
+          </select>
         </div>
+        <div class="filter-item">
+          <select id="facultyFilter" class="form-select">
+            <option value="">All Faculty</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <select id="roomFilter" class="form-select">
+            <option value="">All Rooms</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <select id="statusFilter" class="form-select">
+            <option value="">All Status</option>
+            <option value="Available">Available</option>
+            <option value="Full">Full</option>
+          </select>
+        </div>
+        <div
+          class="filter-item"
+          id="changeFilterContainer"
+          style="display: none"
+        >
+          <select id="changeFilter" class="form-select">
+            <option value="">All Changes</option>
+            <option value="increased">Increased Enrollment</option>
+            <option value="decreased">Decreased Enrollment</option>
+            <option value="filledUp">Filled Up</option>
+            <option value="openedUp">Opened Up</option>
+            <option value="facultyChanged">Faculty Changed</option>
+            <option value="noChange">No Change</option>
+          </select>
+        </div>
+      </div>
 
-        <!-- Add Star Filter Toggle Button -->
-        <div class="star-filter-toggle mb-3">
-            <button id="viewStarredBtn" class="btn btn-outline-warning">
-                <i class="bi bi-star-fill me-1"></i> View Starred Courses
-            </button>
-            <!-- Add Generate Routine Button -->
-            <button id="generateRoutineBtn" class="btn btn-outline-primary ms-2">
-                <i class="bi bi-calendar-week me-1"></i> Generate Routine
-            </button>
-        </div>
+      <!-- Add Star Filter Toggle Button -->
+      <div class="star-filter-toggle mb-3">
+        <button id="viewStarredBtn" class="btn btn-outline-warning">
+          <i class="bi bi-star-fill me-1"></i> View Starred Courses
+        </button>
+        <!-- Add Generate Routine Button -->
+        <button id="generateRoutineBtn" class="btn btn-outline-primary ms-2">
+          <i class="bi bi-calendar-week me-1"></i> Generate Routine
+        </button>
+      </div>
 
-        <div class="search-container">
-            <i class="bi bi-search search-icon"></i>
-            <input type="text" id="searchInput" class="form-control" placeholder="Search for anything...">
-        </div>
+      <div class="search-container">
+        <i class="bi bi-search search-icon"></i>
+        <input
+          type="text"
+          id="searchInput"
+          class="form-control"
+          placeholder="Search for anything..."
+        />
+      </div>
 
-        <div class="scroll-indicator">
-            <i class="bi bi-arrow-left-right"></i> Swipe horizontally to view all columns
-        </div>
+      <div class="scroll-indicator">
+        <i class="bi bi-arrow-left-right"></i> Swipe horizontally to view all
+        columns
+      </div>
 
-        <div class="table-responsive">
-            <table class="table table-hover" id="courseTable">
-                <thead>
-                    <tr>
-                        <th id="changeHeader" style="display: none;">Change</th>
-                        <th style="text-align: center;">Star</th>
-                        <th>Course Code</th>
-                        <th>Section</th>
-                        <th>Faculty</th>
-                        <th>Course Time</th>
-                        <th>Room</th>
-                        <th>Available Seats</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="courseTableBody">
-                    <tr>
-                        <td colspan="9">
-                            <div class="loading-spinner">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+      <div class="table-responsive">
+        <table class="table table-hover" id="courseTable">
+          <thead>
+            <tr>
+              <th id="changeHeader" style="display: none">Change</th>
+              <th style="text-align: center">Star</th>
+              <th>Course Code</th>
+              <th>Section</th>
+              <th>Faculty</th>
+              <th>Course Time</th>
+              <th>Room</th>
+              <th>Available Seats</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="courseTableBody">
+            <tr>
+              <td colspan="9">
+                <div class="loading-spinner">
+                  <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <!-- Pagination controls -->
-        <div class="pagination-container">
-            <div class="pagination-info">
-                Showing <span id="paginationStart">0</span>-<span id="paginationEnd">0</span> of <span
-                    id="paginationTotal">0</span> courses
-            </div>
-            <div class="pagination-controls">
-                <button id="paginationPrev" class="btn btn-sm btn-outline-primary" disabled>
-                    <i class="bi bi-chevron-left"></i> Previous
-                </button>
-                <select id="pageSizeSelect" class="form-select form-select-sm">
-                    <option value="25" selected>25 per page</option>
-                    <option value="50">50 per page</option>
-                    <option value="100">100 per page</option>
-                    <option value="200">200 per page</option>
-                </select>
-                <div id="paginationPages" class="pagination-pages"></div>
-                <button id="paginationNext" class="btn btn-sm btn-outline-primary" disabled>
-                    Next <i class="bi bi-chevron-right"></i>
-                </button>
-            </div>
+      <!-- Pagination controls -->
+      <div class="pagination-container">
+        <div class="pagination-info">
+          Showing <span id="paginationStart">0</span>-<span id="paginationEnd"
+            >0</span
+          >
+          of <span id="paginationTotal">0</span> courses
         </div>
+        <div class="pagination-controls">
+          <button
+            id="paginationPrev"
+            class="btn btn-sm btn-outline-primary"
+            disabled
+          >
+            <i class="bi bi-chevron-left"></i> Previous
+          </button>
+          <select id="pageSizeSelect" class="form-select form-select-sm">
+            <option value="25" selected>25 per page</option>
+            <option value="50">50 per page</option>
+            <option value="100">100 per page</option>
+            <option value="200">200 per page</option>
+          </select>
+          <div id="paginationPages" class="pagination-pages"></div>
+          <button
+            id="paginationNext"
+            class="btn btn-sm btn-outline-primary"
+            disabled
+          >
+            Next <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Routine Generator Modal -->
-    <div class="modal fade" id="routineModal" tabindex="-1" aria-labelledby="routineModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content bg-dark">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="routineModalLabel">Your Class Routine</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="routine-header mb-3">
-                        <div class="routine-title">Your Weekly Schedule</div>
-                        <div class="routine-subtitle">Based on your starred courses</div>
-                    </div>
-                    <div class="routine-container">
-                        <table id="routineTable" class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Day</th>
-                                    <th><span class="time-abbr">08:00-09:30</span></th>
-                                    <th><span class="time-abbr">09:40-11:10</span></th>
-                                    <th><span class="time-abbr">11:20-12:50</span></th>
-                                    <th><span class="time-abbr">01:00-02:30</span></th>
-                                    <th><span class="time-abbr">02:40-04:10</span></th>
-                                    <th><span class="time-abbr">04:20-05:50</span></th>
-                                    <th><span class="time-abbr">06:00-07:30</span></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="day-cell">Sunday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Monday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Tuesday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Wednesday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Thursday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Friday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td class="day-cell">Saturday</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" id="savePdfBtn">
-                        <i class="bi bi-file-earmark-pdf me-1"></i> Save as PDF
-                    </button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+    <div
+      class="modal fade"
+      id="routineModal"
+      tabindex="-1"
+      aria-labelledby="routineModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content bg-dark">
+          <div class="modal-header">
+            <h5 class="modal-title" id="routineModalLabel">
+              Your Class Routine
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="routine-header mb-3">
+              <div class="routine-title">Your Weekly Schedule</div>
+              <div class="routine-subtitle">Based on your starred courses</div>
             </div>
+            <div class="routine-container">
+              <table id="routineTable" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Day</th>
+                    <th><span class="time-abbr">08:00-09:30</span></th>
+                    <th><span class="time-abbr">09:40-11:10</span></th>
+                    <th><span class="time-abbr">11:20-12:50</span></th>
+                    <th><span class="time-abbr">01:00-02:30</span></th>
+                    <th><span class="time-abbr">02:40-04:10</span></th>
+                    <th><span class="time-abbr">04:20-05:50</span></th>
+                    <th><span class="time-abbr">06:00-07:30</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="day-cell">Sunday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Monday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Tuesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Wednesday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Thursday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Friday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td class="day-cell">Saturday</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" id="savePdfBtn">
+              <i class="bi bi-file-earmark-pdf me-1"></i> Save as PDF
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
     <!-- <script data-goatcounter="https://coderay.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script> -->
-</body>
-
+  </body>
 </html>
