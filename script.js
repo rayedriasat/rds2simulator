@@ -7,6 +7,20 @@ let isViewingChanges = false;
 let isViewingStarred = false;
 let starredCourses = new Set();
 
+// Helper function to format timestamps for display only
+function formatTimestampForDisplay(timestamp) {
+    if (!timestamp) return "Unknown date";
+    return new Date(timestamp).toLocaleString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        timeZoneName: 'short'
+    });
+}
+
 // Pagination variables
 let currentPage = 1;
 let pageSize = 25;
@@ -65,10 +79,55 @@ function toggleStar(courseIdentifier) {
     }
 }
 
-// Function to fetch course data from CSV file
+// Function to fetch course data from Google Sheets or CSV file
 async function fetchCourseData() {
+    // Check if Google Sheets is configured and enabled
+    if (window.GAS_CONFIG && window.GAS_CONFIG.USE_GOOGLE_SHEETS && window.GAS_CONFIG.WEB_APP_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+        return fetchFromGoogleSheets('current');
+    } else {
+        // Fallback to local CSV file
+        return fetchFromLocalCSV('course_data.csv');
+    }
+}
+
+// Function to fetch data from Google Sheets
+async function fetchFromGoogleSheets(type = 'current') {
     try {
-        const response = await fetch('course_data.csv');
+        const url = `${window.GAS_CONFIG.WEB_APP_URL}?type=${type}`;
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        
+        if (!result.success) {
+            throw new Error(result.error || 'Failed to fetch data from Google Sheets');
+        }
+
+        const courses = result.data || [];
+        
+        // Format timestamp for display only
+        const lastUpdatedDisplay = formatTimestampForDisplay(result.lastUpdated);
+
+        // Update last updated time
+        document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
+
+        return courses;
+    } catch (error) {
+        console.error('Error fetching data from Google Sheets:', error);
+        
+        // Try fallback to local CSV
+        console.log('Attempting fallback to local CSV...');
+        return fetchFromLocalCSV(type === 'current' ? 'course_data.csv' : 'OLDcourse_data.csv');
+    }
+}
+
+// Function to fetch course data from local CSV file (fallback)
+async function fetchFromLocalCSV(filename) {
+    try {
+        const response = await fetch(filename);
 
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
@@ -84,7 +143,7 @@ async function fetchCourseData() {
             const metadataLine = lines[0].trim();
             const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
             if (lastUpdatedMatch && lastUpdatedMatch[1]) {
-                lastUpdated = new Date(lastUpdatedMatch[1]).toLocaleString();
+                lastUpdated = formatTimestampForDisplay(lastUpdatedMatch[1]);
             }
             // Remove metadata line before parsing
             lines.shift();
@@ -93,45 +152,63 @@ async function fetchCourseData() {
         // Parse the remaining CSV data
         const courses = parseCSV(lines.join('\n'));
 
-        // Update last updated time
-        document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+        // Update last updated time only if this is current data
+        if (filename === 'course_data.csv') {
+            document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+        }
 
         return courses;
     } catch (error) {
-        console.error('Error fetching course data:', error);
-        document.getElementById('courseTableBody').innerHTML = `
-                    <!-- In the loading spinner row -->
-                    <tr>
-                        <td colspan="9">
-                            <div class="loading-spinner">
-                                <div class="spinner-border text-primary" role="status">
-                                    <span class="visually-hidden">Loading...</span>
-                                </div>
+        console.error(`Error fetching ${filename}:`, error);
+        
+        // Only show error in table if this is the main data fetch
+        if (filename === 'course_data.csv') {
+            document.getElementById('courseTableBody').innerHTML = `
+                        <tr>
+                            <td colspan="9" class="text-danger text-center p-4">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                Error loading course data. Please check your Google Sheets configuration or ensure ${filename} exists.
                             </td>
                         </tr>
-                    
-                    <!-- In the error message for course data -->
-                    <tr>
-                        <td colspan="9" class="text-danger text-center p-4">
-                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                            Error loading course data. Please check if course_data.csv exists in the same directory.
-                        </td>
-                    </tr>
-                
-                    <!-- In the no results message -->
-                    <tr>
-                        <td colspan="9" class="no-results">
-                            <i class="bi bi-search me-2"></i>
-                            No courses found matching your criteria.
-                        </td>
-                    </tr>
-                `;
+                    `;
+        }
         return [];
     }
 }
 
 // Function to fetch old course data
 async function fetchOldCourseData() {
+    // Check if Google Sheets is configured and enabled
+    if (window.GAS_CONFIG && window.GAS_CONFIG.USE_GOOGLE_SHEETS && window.GAS_CONFIG.WEB_APP_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+        try {
+            const courses = await fetchFromGoogleSheets('old');
+            
+            // Get the timestamp for old data
+            const url = `${window.GAS_CONFIG.WEB_APP_URL}?type=old`;
+            const response = await fetch(url);
+            const result = await response.json();
+            
+            if (result.success && result.lastUpdated) {
+                const previousDataTimeDisplay = formatTimestampForDisplay(result.lastUpdated);
+                document.getElementById('previousDataTime').textContent = previousDataTimeDisplay;
+            } else {
+                document.getElementById('previousDataTime').textContent = "No previous data available";
+            }
+            
+            return courses;
+        } catch (error) {
+            console.error('Error fetching old data from Google Sheets:', error);
+            // Fallback to local CSV
+            return fetchOldCourseDataFromCSV();
+        }
+    } else {
+        // Use local CSV file
+        return fetchOldCourseDataFromCSV();
+    }
+}
+
+// Function to fetch old course data from local CSV (fallback)
+async function fetchOldCourseDataFromCSV() {
     try {
         const response = await fetch('OLDcourse_data.csv');
 
@@ -149,7 +226,7 @@ async function fetchOldCourseData() {
             const metadataLine = lines[0].trim();
             const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
             if (lastUpdatedMatch && lastUpdatedMatch[1]) {
-                previousDataTime = new Date(lastUpdatedMatch[1]).toLocaleString();
+                previousDataTime = formatTimestampForDisplay(lastUpdatedMatch[1]);
             }
             // Remove metadata line before parsing
             lines.shift();
