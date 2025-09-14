@@ -10,6 +10,7 @@ let starredCourses = new Set();
 // Cache management
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes in milliseconds
 const CACHE_KEY = 'nsu_course_data_cache';
+const OLD_DATA_CACHE_KEY = 'nsu_old_course_data_cache';
 
 // Load cache from localStorage
 function loadCacheFromStorage() {
@@ -46,6 +47,43 @@ function saveCacheToStorage(data) {
         console.log('Cache saved to localStorage');
     } catch (error) {
         console.error('Error saving cache to localStorage:', error);
+    }
+}
+
+// Load old data cache from localStorage
+function loadOldDataCacheFromStorage() {
+    try {
+        const cached = localStorage.getItem(OLD_DATA_CACHE_KEY);
+        if (cached) {
+            const parsedCache = JSON.parse(cached);
+            const now = Date.now();
+            if (parsedCache.timestamp && (now - parsedCache.timestamp) < CACHE_DURATION) {
+                console.log(`Old data cache loaded from localStorage (${Math.round((now - parsedCache.timestamp) / 1000)} seconds old)`);
+                return parsedCache;
+            } else {
+                console.log('Old data cache expired, removing...');
+                localStorage.removeItem(OLD_DATA_CACHE_KEY);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading old data cache from localStorage:', error);
+        localStorage.removeItem(OLD_DATA_CACHE_KEY);
+    }
+    return null;
+}
+
+// Save old data cache to localStorage
+function saveOldDataCacheToStorage(data) {
+    try {
+        const cacheData = {
+            courses: data.courses,
+            previousDataTime: data.previousDataTime,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(OLD_DATA_CACHE_KEY, JSON.stringify(cacheData));
+        console.log('Old data cache saved to localStorage');
+    } catch (error) {
+        console.error('Error saving old data cache to localStorage:', error);
     }
 }
 
@@ -270,6 +308,19 @@ async function fetchFromLocalCSV(filename) {
 
 // Function to fetch old course data
 async function fetchOldCourseData() {
+    // Check for cached old data first
+    const cachedOldData = loadOldDataCacheFromStorage();
+    if (cachedOldData) {
+        console.log('Using cached old course data');
+        // Update the UI with cached timestamp
+        if (cachedOldData.previousDataTime) {
+            document.getElementById('previousDataTime').textContent = cachedOldData.previousDataTime;
+        }
+        return cachedOldData.courses;
+    }
+
+    console.log('No valid old data cache, fetching fresh data...');
+    
     // Check if Google Sheets is configured and enabled
     if (window.GAS_CONFIG && window.GAS_CONFIG.USE_GOOGLE_SHEETS && window.GAS_CONFIG.WEB_APP_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
         try {
@@ -280,12 +331,20 @@ async function fetchOldCourseData() {
             const response = await fetch(url);
             const result = await response.json();
             
+            let previousDataTimeDisplay = "No previous data available";
             if (result.success && result.lastUpdated) {
-                const previousDataTimeDisplay = formatTimestampForDisplay(result.lastUpdated);
+                previousDataTimeDisplay = formatTimestampForDisplay(result.lastUpdated);
                 document.getElementById('previousDataTime').textContent = previousDataTimeDisplay;
             } else {
-                document.getElementById('previousDataTime').textContent = "No previous data available";
+                document.getElementById('previousDataTime').textContent = previousDataTimeDisplay;
             }
+            
+            // Cache the old data
+            const cacheData = {
+                courses: courses,
+                previousDataTime: previousDataTimeDisplay
+            };
+            saveOldDataCacheToStorage(cacheData);
             
             return courses;
         } catch (error) {
@@ -329,6 +388,13 @@ async function fetchOldCourseDataFromCSV() {
 
         // Update previous data timestamp
         document.getElementById('previousDataTime').textContent = previousDataTime;
+
+        // Cache the old data
+        const cacheData = {
+            courses: courses,
+            previousDataTime: previousDataTime
+        };
+        saveOldDataCacheToStorage(cacheData);
 
         return courses;
     } catch (error) {
@@ -925,11 +991,30 @@ const filterTable = debounce(function () {
 
 // Function to toggle between current view and changes view
 function toggleView(viewChanges) {
-    // Show loading during transition
-    showLoading(viewChanges ? 'Loading changes...' : 'Loading current data...');
+    // Check if we need to show loading
+    let shouldShowLoading = false;
+    
+    if (viewChanges) {
+        // For changes view, only show loading if we don't have cached old data and no old data is loaded
+        const cachedOldData = loadOldDataCacheFromStorage();
+        if (!cachedOldData && oldCourseData.length === 0) {
+            shouldShowLoading = true;
+        }
+    } else {
+        // For current view, only show loading if we don't have cached current data
+        const cachedData = loadCacheFromStorage();
+        if (!cachedData) {
+            shouldShowLoading = true;
+        }
+    }
+    
+    // Only show loading if necessary
+    if (shouldShowLoading) {
+        showLoading(viewChanges ? 'Loading changes...' : 'Loading current data...');
+    }
     
     // Use requestAnimationFrame to ensure smooth transition
-    requestAnimationFrame(() => {
+    requestAnimationFrame(async () => {
         isViewingChanges = viewChanges;
 
         // Toggle active class on buttons with proper state management
@@ -958,6 +1043,15 @@ function toggleView(viewChanges) {
 
         // Update the data and filters
         if (viewChanges) {
+            // If we don't have old data loaded, fetch it
+            if (oldCourseData.length === 0) {
+                try {
+                    oldCourseData = await fetchOldCourseData();
+                } catch (error) {
+                    console.error('Error fetching old course data:', error);
+                }
+            }
+            
             // If we haven't compared the data yet, do it now
             if (courseData.length > 0 && oldCourseData.length > 0 && !courseData[0].hasOwnProperty('change')) {
                 courseData = compareCoursesData(courseData, oldCourseData);
@@ -970,6 +1064,11 @@ function toggleView(viewChanges) {
         // Update stats and table
         updateStats(courseData);
         filterTable();
+        
+        // Hide loading if it was shown
+        if (shouldShowLoading) {
+            hideLoading();
+        }
     });
 }
 
