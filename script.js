@@ -7,6 +7,62 @@ let isViewingChanges = false;
 let isViewingStarred = false;
 let starredCourses = new Set();
 
+// Cache management
+const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes in milliseconds
+const CACHE_KEY = 'nsu_course_data_cache';
+
+// Load cache from localStorage
+function loadCacheFromStorage() {
+    try {
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+            const parsedCache = JSON.parse(cached);
+            const now = Date.now();
+            if (parsedCache.timestamp && (now - parsedCache.timestamp) < CACHE_DURATION) {
+                console.log(`Cache loaded from localStorage (${Math.round((now - parsedCache.timestamp) / 1000)} seconds old)`);
+                return parsedCache;
+            } else {
+                console.log('Cache in localStorage is expired, removing...');
+                localStorage.removeItem(CACHE_KEY);
+            }
+        }
+    } catch (error) {
+        console.error('Error loading cache from localStorage:', error);
+        localStorage.removeItem(CACHE_KEY);
+    }
+    return null;
+}
+
+// Save cache to localStorage
+function saveCacheToStorage(data) {
+    try {
+        const cacheData = {
+            courses: data.courses,
+            lastUpdated: data.lastUpdated,
+            contributorName: data.contributorName,
+            timestamp: Date.now()
+        };
+        localStorage.setItem(CACHE_KEY, JSON.stringify(cacheData));
+        console.log('Cache saved to localStorage');
+    } catch (error) {
+        console.error('Error saving cache to localStorage:', error);
+    }
+}
+
+// Helper function to update UI with data
+function updateUIWithData(data) {
+    const lastUpdatedDisplay = formatTimestampForDisplay(data.lastUpdated);
+    document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
+    if (data.contributorName && data.contributorName !== 'Unknown User') {
+        const contributorThanks = document.getElementById('contributorThanks');
+        const thankYouText = document.getElementById('thankYouText');
+        thankYouText.textContent = `Thank you ${data.contributorName} for contributing this course data!`;
+        contributorThanks.style.display = 'block';
+    } else {
+        document.getElementById('contributorThanks').style.display = 'none';
+    }
+}
+
 // Helper function to format timestamps for display only
 function formatTimestampForDisplay(timestamp) {
     if (!timestamp) return "Unknown date";
@@ -81,6 +137,20 @@ function toggleStar(courseIdentifier) {
 
 // Function to fetch course data from Google Sheets or CSV file
 async function fetchCourseData() {
+    // Check for cached data first
+    const cachedData = loadCacheFromStorage();
+    if (cachedData) {
+        console.log('Using cached data - loading instantly with NO delay');
+        
+        // Update UI with cached data
+        updateUIWithData(cachedData);
+        
+        // Return cached data immediately - no delay
+        return Promise.resolve(cachedData.courses);
+    }
+    
+    console.log('No valid cache found, fetching fresh data...');
+    
     // Check if Google Sheets is configured and enabled
     if (window.GAS_CONFIG && window.GAS_CONFIG.USE_GOOGLE_SHEETS && window.GAS_CONFIG.WEB_APP_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
         return fetchFromGoogleSheets('current');
@@ -111,17 +181,20 @@ async function fetchFromGoogleSheets(type = 'current') {
         // Format timestamp for display only
         const lastUpdatedDisplay = formatTimestampForDisplay(result.lastUpdated);
 
-        // Update last updated time
-        document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
-        
-        // Show contributor thank you message
-        if (result.contributorName && result.contributorName !== 'Unknown User') {
-            const contributorThanks = document.getElementById('contributorThanks');
-            const thankYouText = document.getElementById('thankYouText');
-            thankYouText.textContent = `Thank you ${result.contributorName} for contributing this course data!`;
-            contributorThanks.style.display = 'block';
+        // Cache the data to localStorage (only for current data)
+        if (type === 'current') {
+            const cacheData = {
+                courses: courses,
+                lastUpdated: result.lastUpdated,
+                contributorName: result.contributorName
+            };
+            saveCacheToStorage(cacheData);
+            
+            // Update UI with the new data
+            updateUIWithData(cacheData);
         } else {
-            document.getElementById('contributorThanks').style.display = 'none';
+            // For old data, just update the timestamp display
+            document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
         }
 
         return courses;
@@ -162,8 +235,17 @@ async function fetchFromLocalCSV(filename) {
         // Parse the remaining CSV data
         const courses = parseCSV(lines.join('\n'));
 
-        // Update last updated time only if this is current data
+        // Cache and update UI only if this is current data
         if (filename === 'course_data.csv') {
+            // Cache the data to localStorage
+            const cacheData = {
+                courses: courses,
+                lastUpdated: lastUpdated,
+                contributorName: '@nihalxx3'
+            };
+            saveCacheToStorage(cacheData);
+            
+            // Update last updated time
             document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
         }
 
@@ -1002,34 +1084,63 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load starred courses first before anything else
     loadStarredCourses();
 
-    // Show initial loading indicator
-    showLoading('Fetching course data...');
-
-    // Fetch course data
-    fetchCourseData().then(courses => {
-        courseData = courses;
-        filteredData = courses;
-
-        // Build indexes for faster filtering
-        buildIndexes(courses);
-
-        // Populate filters
-        populateFilters(courses);
-
-        // Populate the table
-        populateTable(courses);
-
-        // Update statistics
-        updateStats(courses);
-
-        // Fetch old course data for comparison
-        fetchOldCourseData().then(oldCourses => {
-            oldCourseData = oldCourses;
+    // Check for cached data first
+    const cachedData = loadCacheFromStorage();
+    
+    if (cachedData) {
+        console.log('Loading from cache immediately - NO loading screen');
+        
+        // Update UI with cached data
+        updateUIWithData(cachedData);
+        
+        // Initialize with cached data immediately
+        initializeWithData(cachedData.courses);
+    } else {
+        // No valid cache, show loading and fetch data
+        console.log('No valid cache, showing loading and fetching fresh data...');
+        showLoading('Fetching course data...');
+        
+        // Fetch course data
+        fetchCourseData().then(courses => {
+            initializeWithData(courses);
         }).catch(error => {
-            console.error('Error fetching old course data:', error);
+            console.error('Error fetching course data:', error);
+            hideLoading();
+            showError('Failed to load course data. Please refresh the page.');
         });
-    });
+    }
+});
 
+// Helper function to initialize with data
+function initializeWithData(courses) {
+    courseData = courses;
+    filteredData = courses;
+
+    // Build indexes for faster filtering
+    buildIndexes(courses);
+
+    // Populate filters
+    populateFilters(courses);
+
+    // Populate the table
+    populateTable(courses);
+
+    // Update statistics
+    updateStats(courses);
+
+    // Fetch old course data for comparison
+    fetchOldCourseData().then(oldCourses => {
+        oldCourseData = oldCourses;
+    }).catch(error => {
+        console.error('Error fetching old course data:', error);
+    });
+    
+    // Hide loading indicator
+    hideLoading();
+}
+
+// Add event listeners after DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
     // Add event listeners for filters
     document.getElementById('courseFilter').addEventListener('change', filterTable);
     document.getElementById('facultyFilter').addEventListener('change', filterTable);
@@ -1057,16 +1168,28 @@ document.addEventListener('DOMContentLoaded', function () {
     // Add event listener for view current button - using toggleView function
     document.getElementById('viewCurrentBtn').addEventListener('click', function () {
         if (isViewingChanges) {
-            // Fetch fresh current data when switching back
-            showLoading('Refreshing current data...');
-            fetchCourseData().then(courses => {
-                courseData = courses;
-                filteredData = courses;
+            // Check cache first, then fetch if needed
+            const cachedData = loadCacheFromStorage();
+            
+            if (cachedData) {
+                console.log('Using cached data for current view');
+                updateUIWithData(cachedData);
+                courseData = cachedData.courses;
+                filteredData = cachedData.courses;
                 toggleView(false);
-            }).catch(error => {
-                console.error('Error refreshing current data:', error);
-                hideLoading();
-            });
+            } else {
+                // Fetch fresh current data when switching back
+                showLoading('Refreshing current data...');
+                fetchCourseData().then(courses => {
+                    courseData = courses;
+                    filteredData = courses;
+                    toggleView(false);
+                    hideLoading();
+                }).catch(error => {
+                    console.error('Error refreshing current data:', error);
+                    hideLoading();
+                });
+            }
         }
     });
 
