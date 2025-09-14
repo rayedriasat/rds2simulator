@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Online Portal | North South University</title>
+    <meta name="description" content="NSU Student Information Management System">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 400;
+            line-height: 1.42em;
+            color: #000;
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 3em;
+            font-weight: 400;
+            line-height: 1em;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            display: block;
+            line-height: 1em;
+            color: #2B7DBC;
+            margin-top: 30px;
+        }
+
+        .table tr td, .table tr th {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        table tr td.full {
+            color: #fff;
+            background: #B94836 !important;
+            text-shadow: none;
+        }
+
+        table tr td.available {
+            color: #fff;
+            background: #28a745 !important;
+            text-shadow: none;
+        }
+
+        .yellow {
+            color: #FFF842;
+        }
+
+        .header-container {
+            background: linear-gradient(135deg, #2B7DBC, #1e5a8a);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .search-container .form-control {
+            padding-left: 45px;
+            border-radius: 25px;
+            border: 2px solid #2B7DBC;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2B7DBC;
+            z-index: 10;
+        }
+
+        .filters {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-item {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-item .form-select {
+            border: 2px solid #2B7DBC;
+            border-radius: 8px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #2B7DBC, #1e5a8a);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .table thead th {
+            background: #2B7DBC;
+            color: white;
+            border: none;
+            font-weight: 500;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .pagination-info {
+            color: #666;
+        }
+
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-button {
+            background: #2B7DBC;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin: 0 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .page-button:hover {
+            background: #1e5a8a;
+        }
+
+        .page-button.active {
+            background: #1e5a8a;
+        }
+
+        .page-ellipsis {
+            padding: 8px 4px;
+            color: #666;
+        }
+
+        .last-updated {
+            text-align: center;
+            color: #666;
+            margin: 10px 0;
+            font-style: italic;
+        }
+
+        .contributor-thanks {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .thank-you-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .pagination-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="container">
+            <!-- Navigation Links -->
+            <div class="navigation-links" style="text-align: center; margin-bottom: 20px;">
+                <a href="index.html" class="btn btn-outline-light me-2">
+                    <i class="bi bi-arrow-left me-1"></i>Advanced View
+                </a>
+                <span class="text-light">|</span>
+                <span class="ms-2 text-light">Current: NSU Portal View</span>
+            </div>
+            
+            <h1>Online Portal | North South University</h1>
+            <p class="text-center mb-0">Course Registration System</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="last-updated" id="lastUpdated">Loading course data...</div>
+        
+        <!-- Thank you section for contributors -->
+        <div class="contributor-thanks" id="contributorThanks" style="display: none;">
+            <div class="thank-you-message">
+                <i class="bi bi-heart-fill"></i>
+                <span id="thankYouText"></span>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="stats" id="statsContainer">
+            <!-- Stats will be populated by JavaScript -->
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <div class="filter-item">
+                <select id="courseFilter" class="form-select">
+                    <option value="">All Courses</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <select id="facultyFilter" class="form-select">
+                    <option value="">All Faculty</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <select id="roomFilter" class="form-select">
+                    <option value="">All Rooms</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <select id="statusFilter" class="form-select">
+                    <option value="">All Status</option>
+                    <option value="Available">Available</option>
+                    <option value="Full">Full</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <i class="bi bi-search search-icon"></i>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search for courses, faculty, rooms, or times...">
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-hover" id="courseTable">
+                    <thead>
+                        <tr>
+                            <th>Serial</th>
+                            <th>Course Code</th>
+                            <th>Section</th>
+                            <th>Faculty</th>
+                            <th>Course Time</th>
+                            <th>Room</th>
+                            <th>Available Seats</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courseTableBody">
+                        <tr>
+                            <td colspan="7">
+                                <div class="loading-spinner">
+                                    <div class="spinner-border text-primary" role="status">
+                                        <span class="visually-hidden">Loading...</span>
+                                    </div>
+                                    <div class="mt-2">Loading course data...</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <div class="pagination-info">
+                Showing <span id="paginationStart">0</span>-<span id="paginationEnd">0</span>
+                of <span id="paginationTotal">0</span> courses
+            </div>
+            <div class="pagination-controls">
+                <button id="paginationPrev" class="btn btn-sm btn-outline-primary" disabled>
+                    <i class="bi bi-chevron-left"></i> Previous
+                </button>
+                <select id="pageSizeSelect" class="form-select form-select-sm" style="width: auto;">
+                    <option value="25" selected>25 per page</option>
+                    <option value="50">50 per page</option>
+                    <option value="100">100 per page</option>
+                </select>
+                <div id="paginationPages" class="pagination-pages"></div>
+                <button id="paginationNext" class="btn btn-sm btn-outline-primary" disabled>
+                    Next <i class="bi bi-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+    <!-- Configuration for Google Apps Script endpoint -->
+    <script>
+        // Replace this with your actual Google Apps Script Web App URL
+        window.GAS_CONFIG = {
+            WEB_APP_URL: 'https://script.google.com/macros/s/AKfycbyqH7LTcO6fxk0dcdf1-myF5EfvG-g599nY6L_WATsKw_VWyiVVjrrGjOh3F6r7wL-Q/exec',
+            // Set to true when you have deployed the GAS web app
+            USE_GOOGLE_SHEETS: true
+        };
+    </script>
+
+    <script>
+        // Store the course data
+        let courseData = [];
+        let filteredData = [];
+        
+        // Pagination variables
+        let currentPage = 1;
+        let pageSize = 25;
+        let totalPages = 1;
+
+        // Helper function to format timestamps for display only
+        function formatTimestampForDisplay(timestamp) {
+            if (!timestamp) return "Unknown date";
+            return new Date(timestamp).toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZoneName: 'short'
+            });
+        }
+
+        // Function to fetch course data from Google Sheets or CSV file
+        async function fetchCourseData() {
+            // Check if Google Sheets is configured and enabled
+            if (window.GAS_CONFIG && window.GAS_CONFIG.USE_GOOGLE_SHEETS && window.GAS_CONFIG.WEB_APP_URL !== 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec') {
+                return fetchFromGoogleSheets('current');
+            } else {
+                // Fallback to local CSV file
+                return fetchFromLocalCSV('course_data.csv');
+            }
+        }
+
+        // Function to fetch data from Google Sheets
+        async function fetchFromGoogleSheets(type = 'current') {
+            try {
+                const url = `${window.GAS_CONFIG.WEB_APP_URL}?type=${type}`;
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (!result.success) {
+                    throw new Error(result.error || 'Failed to fetch data from Google Sheets');
+                }
+
+                const courses = result.data || [];
+                
+                // Format timestamp for display only
+                const lastUpdatedDisplay = formatTimestampForDisplay(result.lastUpdated);
+
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
+                
+                // Show contributor thank you message
+                if (result.contributorName && result.contributorName !== 'Unknown User') {
+                    const contributorThanks = document.getElementById('contributorThanks');
+                    const thankYouText = document.getElementById('thankYouText');
+                    thankYouText.textContent = `Thank you ${result.contributorName} for contributing this course data!`;
+                    contributorThanks.style.display = 'block';
+                } else {
+                    document.getElementById('contributorThanks').style.display = 'none';
+                }
+
+                return courses;
+            } catch (error) {
+                console.error('Error fetching data from Google Sheets:', error);
+                
+                // Try fallback to local CSV
+                console.log('Attempting fallback to local CSV...');
+                return fetchFromLocalCSV('course_data.csv');
+            }
+        }
+
+        // Function to fetch course data from local CSV file (fallback)
+        async function fetchFromLocalCSV(filename) {
+            try {
+                const response = await fetch(filename);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const csvText = await response.text();
+                const lines = csvText.split('\n');
+                let lastUpdated = "Unknown date";
+
+                // Check if first line contains metadata (starts with #)
+                if (lines[0].trim().startsWith('#')) {
+                    // Extract lastUpdated timestamp from the comment
+                    const metadataLine = lines[0].trim();
+                    const lastUpdatedMatch = metadataLine.match(/# lastUpdated: (.+)/);
+                    if (lastUpdatedMatch && lastUpdatedMatch[1]) {
+                        lastUpdated = formatTimestampForDisplay(lastUpdatedMatch[1]);
+                    }
+                    // Remove metadata line before parsing
+                    lines.shift();
+                }
+
+                // Parse the remaining CSV data
+                const courses = parseCSV(lines.join('\n'));
+
+                // Update last updated time
+                document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdated}`;
+
+                return courses;
+            } catch (error) {
+                console.error(`Error fetching ${filename}:`, error);
+                
+                document.getElementById('courseTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-danger text-center p-4">
+                            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            Error loading course data. Please check your Google Sheets configuration or ensure ${filename} exists.
+                        </td>
+                    </tr>
+                `;
+                return [];
+            }
+        }
+
+        // Function to parse CSV data
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            if (lines.length < 2) return [];
+
+            const headers = lines[0].split(',').map(header => header.trim());
+            const headerCount = headers.length;
+            const courses = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+
+                const values = parseCSVLine(lines[i]);
+                if (values.length !== headerCount) continue;
+
+                const course = {};
+                for (let j = 0; j < headerCount; j++) {
+                    course[headers[j]] = values[j] || '';
+                }
+                courses.push(course);
+            }
+
+            return courses;
+        }
+
+        // Helper function to parse CSV line with quoted values
+        function parseCSVLine(line) {
+            const values = [];
+            let inQuotes = false;
+            let currentValue = '';
+
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+
+                if (char === '"' && (i === 0 || line[i - 1] !== '\\')) {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    values.push(currentValue.trim());
+                    currentValue = '';
+                } else {
+                    currentValue += char;
+                }
+            }
+
+            values.push(currentValue.trim());
+
+            return values.map(value => {
+                if (value.startsWith('"') && value.endsWith('"')) {
+                    return value.substring(1, value.length - 1);
+                }
+                return value;
+            });
+        }
+
+        // Function to populate the table with course data
+        function populateTable(courses) {
+            filteredData = courses;
+
+            // Calculate pagination
+            totalPages = Math.ceil(filteredData.length / pageSize);
+            if (currentPage > totalPages && totalPages > 0) {
+                currentPage = totalPages;
+            }
+
+            renderCurrentPage();
+            renderPagination();
+        }
+
+        // Function to render the current page of courses
+        function renderCurrentPage() {
+            const tableBody = document.getElementById('courseTableBody');
+
+            tableBody.innerHTML = '';
+
+            if (filteredData.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="no-results">
+                            <i class="bi bi-search me-2"></i>
+                            No courses found matching your criteria.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * pageSize;
+            const endIndex = Math.min(startIndex + pageSize, filteredData.length);
+            const coursesToRender = filteredData.slice(startIndex, endIndex);
+
+            coursesToRender.forEach((course, index) => {
+                const row = document.createElement('tr');
+                
+                const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                const status = availableSeats > 0 ? "Available" : "Full";
+                const statusClass = status === 'Available' ? 'available' : 'full';
+                
+                row.innerHTML = `
+                    <td>${startIndex + index + 1}</td>
+                    <td>${course.CourseCode}</td>
+                    <td>${course.Section}</td>
+                    <td>${course.Faculty}</td>
+                    <td>${course.CourseTime}</td>
+                    <td>${course.Room || "TBA"}</td>
+                    <td class="${statusClass}">${availableSeats}/${course.TotalSeat}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to populate filter dropdowns
+        function populateFilters(courses) {
+            const courseFilter = document.getElementById('courseFilter');
+            const facultyFilter = document.getElementById('facultyFilter');
+            const roomFilter = document.getElementById('roomFilter');
+
+            // Clear existing options except the first one
+            while (courseFilter.options.length > 1) {
+                courseFilter.remove(1);
+            }
+            while (facultyFilter.options.length > 1) {
+                facultyFilter.remove(1);
+            }
+            while (roomFilter.options.length > 1) {
+                roomFilter.remove(1);
+            }
+
+            // Get unique values
+            const uniqueCourses = [...new Set(courses.map(course => course.CourseCode))].sort();
+            const uniqueFaculty = [...new Set(courses.map(course => course.Faculty))].sort();
+            const uniqueRooms = [...new Set(courses.map(course => course.Room).filter(room => room))].sort();
+
+            // Add options
+            uniqueCourses.forEach(code => {
+                const option = document.createElement('option');
+                option.value = code;
+                option.textContent = code;
+                courseFilter.appendChild(option);
+            });
+
+            uniqueFaculty.forEach(faculty => {
+                const option = document.createElement('option');
+                option.value = faculty;
+                option.textContent = faculty;
+                facultyFilter.appendChild(option);
+            });
+
+            uniqueRooms.forEach(room => {
+                const option = document.createElement('option');
+                option.value = room;
+                option.textContent = room;
+                roomFilter.appendChild(option);
+            });
+        }
+
+        // Function to update statistics
+        function updateStats(courses) {
+            const statsContainer = document.getElementById('statsContainer');
+
+            const totalCourses = courses.length;
+            const availableCourses = courses.filter(course => {
+                const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                return availableSeats > 0;
+            }).length;
+            const fullCourses = totalCourses - availableCourses;
+            const uniqueCourses = new Set(courses.map(course => course.CourseCode)).size;
+
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-value">${totalCourses}</div>
+                    <div class="stat-label">Total Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${uniqueCourses}</div>
+                    <div class="stat-label">Unique Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${availableCourses}</div>
+                    <div class="stat-label">Available Sections</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">${fullCourses}</div>
+                    <div class="stat-label">Full Sections</div>
+                </div>
+            `;
+        }
+
+        // Debounce function for search
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Function to filter the table
+        const filterTable = debounce(function() {
+            const courseValue = document.getElementById('courseFilter').value;
+            const facultyValue = document.getElementById('facultyFilter').value;
+            const roomValue = document.getElementById('roomFilter').value;
+            const statusValue = document.getElementById('statusFilter').value;
+            const searchValue = document.getElementById('searchInput').value.toLowerCase();
+
+            filteredData = courseData.filter(course => {
+                // Course filter
+                if (courseValue && course.CourseCode !== courseValue) {
+                    return false;
+                }
+
+                // Faculty filter
+                if (facultyValue && course.Faculty !== facultyValue) {
+                    return false;
+                }
+
+                // Room filter
+                if (roomValue && course.Room !== roomValue) {
+                    return false;
+                }
+
+                // Status filter
+                if (statusValue) {
+                    const availableSeats = parseInt(course.TotalSeat) - parseInt(course.TakenSeat);
+                    const status = availableSeats > 0 ? "Available" : "Full";
+                    if (status !== statusValue) {
+                        return false;
+                    }
+                }
+
+                // Search filter
+                if (searchValue) {
+                    const searchableText = `${course.CourseCode} ${course.Section} ${course.Faculty} ${course.CourseTime} ${course.Room}`.toLowerCase();
+                    return searchableText.includes(searchValue);
+                }
+
+                return true;
+            });
+
+            currentPage = 1;
+            populateTable(filteredData);
+        }, 300);
+
+        // Function to render pagination controls
+        function renderPagination() {
+            const totalItems = filteredData.length;
+            totalPages = Math.ceil(totalItems / pageSize);
+
+            // Update pagination info
+            document.getElementById('paginationTotal').textContent = totalItems;
+            const start = totalItems === 0 ? 0 : (currentPage - 1) * pageSize + 1;
+            const end = Math.min(currentPage * pageSize, totalItems);
+            document.getElementById('paginationStart').textContent = start;
+            document.getElementById('paginationEnd').textContent = end;
+
+            // Update pagination buttons
+            document.getElementById('paginationPrev').disabled = currentPage <= 1;
+            document.getElementById('paginationNext').disabled = currentPage >= totalPages;
+
+            // Generate page buttons
+            const pagesContainer = document.getElementById('paginationPages');
+            pagesContainer.innerHTML = '';
+
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+
+            if (endPage - startPage < 4 && startPage > 1) {
+                startPage = Math.max(1, endPage - 4);
+            }
+
+            // First page button
+            if (startPage > 1) {
+                const firstBtn = document.createElement('button');
+                firstBtn.className = 'page-button';
+                firstBtn.textContent = '1';
+                firstBtn.addEventListener('click', () => goToPage(1));
+                pagesContainer.appendChild(firstBtn);
+
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'page-ellipsis';
+                    ellipsis.textContent = '...';
+                    pagesContainer.appendChild(ellipsis);
+                }
+            }
+
+            // Page buttons
+            for (let i = startPage; i <= endPage; i++) {
+                const pageBtn = document.createElement('button');
+                pageBtn.className = 'page-button' + (i === currentPage ? ' active' : '');
+                pageBtn.textContent = i;
+                pageBtn.addEventListener('click', () => goToPage(i));
+                pagesContainer.appendChild(pageBtn);
+            }
+
+            // Last page button
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.className = 'page-ellipsis';
+                    ellipsis.textContent = '...';
+                    pagesContainer.appendChild(ellipsis);
+                }
+
+                const lastBtn = document.createElement('button');
+                lastBtn.className = 'page-button';
+                lastBtn.textContent = totalPages;
+                lastBtn.addEventListener('click', () => goToPage(totalPages));
+                pagesContainer.appendChild(lastBtn);
+            }
+        }
+
+        // Function to navigate to a specific page
+        function goToPage(page) {
+            currentPage = page;
+            renderCurrentPage();
+            renderPagination();
+            // Scroll to top of table
+            document.querySelector('.table-container').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch course data
+            fetchCourseData().then(courses => {
+                courseData = courses;
+                filteredData = courses;
+
+                // Populate filters
+                populateFilters(courses);
+
+                // Populate the table
+                populateTable(courses);
+
+                // Update statistics
+                updateStats(courses);
+            });
+
+            // Add event listeners for filters
+            document.getElementById('courseFilter').addEventListener('change', filterTable);
+            document.getElementById('facultyFilter').addEventListener('change', filterTable);
+            document.getElementById('roomFilter').addEventListener('change', filterTable);
+            document.getElementById('statusFilter').addEventListener('change', filterTable);
+
+            // Add event listener for search input
+            document.getElementById('searchInput').addEventListener('input', filterTable);
+
+            // Add pagination event listeners
+            document.getElementById('paginationPrev').addEventListener('click', () => {
+                if (currentPage > 1) {
+                    goToPage(currentPage - 1);
+                }
+            });
+
+            document.getElementById('paginationNext').addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    goToPage(currentPage + 1);
+                }
+            });
+
+            document.getElementById('pageSizeSelect').addEventListener('change', (e) => {
+                pageSize = parseInt(e.target.value);
+                currentPage = 1;
+                renderCurrentPage();
+                renderPagination();
+            });
+        });
+    </script>
+</body>
+</html>
