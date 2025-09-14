@@ -113,6 +113,16 @@ async function fetchFromGoogleSheets(type = 'current') {
 
         // Update last updated time
         document.getElementById('lastUpdated').textContent = `Last updated: ${lastUpdatedDisplay}`;
+        
+        // Show contributor thank you message
+        if (result.contributorName && result.contributorName !== 'Unknown User') {
+            const contributorThanks = document.getElementById('contributorThanks');
+            const thankYouText = document.getElementById('thankYouText');
+            thankYouText.textContent = `Thank you ${result.contributorName} for contributing this course data!`;
+            contributorThanks.style.display = 'block';
+        } else {
+            document.getElementById('contributorThanks').style.display = 'none';
+        }
 
         return courses;
     } catch (error) {
@@ -376,6 +386,7 @@ function populateTable(courses) {
 // Function to render the current page of courses
 function renderCurrentPage() {
     const tableBody = document.getElementById('courseTableBody');
+    const colSpan = isViewingChanges ? '10' : '9';
 
     // Clear the table body - use faster innerHTML method for bulk removal
     tableBody.innerHTML = '';
@@ -383,12 +394,13 @@ function renderCurrentPage() {
     if (filteredData.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="9" class="no-results">
+                <td colspan="${colSpan}" class="no-results">
                     <i class="bi bi-search me-2"></i>
                     No courses found matching your criteria.
                 </td>
             </tr>
         `;
+        hideLoading();
         return;
     }
 
@@ -415,6 +427,9 @@ function renderCurrentPage() {
 
     // Append all rows to the table body
     tableBody.appendChild(fragment);
+    
+    // Hide loading after rendering
+    hideLoading();
 }
 
 // Helper function to render a single course row - optimized version
@@ -722,8 +737,8 @@ const filterTable = debounce(function () {
     const changeValue = isViewingChanges ? document.getElementById('changeFilter').value : '';
 
     // Show loading indicator for better UX during filtering
-    if (courseData.length > 500) {
-        showLoading();
+    if (courseData.length > 300) {
+        showLoading('Filtering courses...');
     }
 
     // Use requestAnimationFrame to prevent UI blocking
@@ -828,43 +843,78 @@ const filterTable = debounce(function () {
 
 // Function to toggle between current view and changes view
 function toggleView(viewChanges) {
-    isViewingChanges = viewChanges;
+    // Show loading during transition
+    showLoading(viewChanges ? 'Loading changes...' : 'Loading current data...');
+    
+    // Use requestAnimationFrame to ensure smooth transition
+    requestAnimationFrame(() => {
+        isViewingChanges = viewChanges;
 
-    // Toggle active class on buttons
-    document.getElementById('viewCurrentBtn').classList.toggle('active', !viewChanges);
-    document.getElementById('viewChangesBtn').classList.toggle('active', viewChanges);
+        // Toggle active class on buttons with proper state management
+        const currentBtn = document.getElementById('viewCurrentBtn');
+        const changesBtn = document.getElementById('viewChangesBtn');
+        
+        currentBtn.classList.toggle('active', !viewChanges);
+        changesBtn.classList.toggle('active', viewChanges);
 
-    // Toggle visibility of change-related elements
-    document.getElementById('changeHeader').style.display = viewChanges ? 'table-cell' : 'none';
-    document.getElementById('changeFilterContainer').style.display = viewChanges ? 'block' : 'none';
-    document.getElementById('changesSummary').style.display = viewChanges ? 'block' : 'none';
-
-    // Update the data and filters
-    if (viewChanges) {
-        // If we haven't compared the data yet, do it now
-        if (!courseData[0].hasOwnProperty('change')) {
-            courseData = compareCoursesData(courseData, oldCourseData);
+        // Toggle visibility of change-related elements
+        const changeHeader = document.getElementById('changeHeader');
+        const changeFilterContainer = document.getElementById('changeFilterContainer');
+        const changesSummary = document.getElementById('changesSummary');
+        const courseTable = document.getElementById('courseTable');
+        
+        changeHeader.style.display = viewChanges ? 'table-cell' : 'none';
+        changeFilterContainer.style.display = viewChanges ? 'block' : 'none';
+        changesSummary.style.display = viewChanges ? 'block' : 'none';
+        
+        // Manage table class for styling consistency
+        if (viewChanges) {
+            courseTable.classList.add('with-change-column');
+        } else {
+            courseTable.classList.remove('with-change-column');
         }
-    }
 
-    // Update stats and table
-    updateStats(courseData);
-    filterTable();
+        // Update the data and filters
+        if (viewChanges) {
+            // If we haven't compared the data yet, do it now
+            if (courseData.length > 0 && oldCourseData.length > 0 && !courseData[0].hasOwnProperty('change')) {
+                courseData = compareCoursesData(courseData, oldCourseData);
+            } else if (oldCourseData.length === 0) {
+                // If no old data is available, show a message
+                console.warn('No old course data available for comparison');
+            }
+        }
+
+        // Update stats and table
+        updateStats(courseData);
+        filterTable();
+    });
 }
 
-// Show loading indicator
-function showLoading() {
-    document.getElementById('courseTableBody').innerHTML = `
+// Show loading indicator with smooth transition
+function showLoading(message = 'Loading...') {
+    const tableBody = document.getElementById('courseTableBody');
+    const colSpan = isViewingChanges ? '10' : '9';
+    
+    tableBody.style.opacity = '0.6';
+    tableBody.innerHTML = `
                 <tr>
-                    <td colspan="9">
+                    <td colspan="${colSpan}">
                         <div class="loading-spinner">
                             <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading...</span>
+                                <span class="visually-hidden">${message}</span>
                             </div>
+                            <div class="loading-text">${message}</div>
                         </div>
                     </td>
                 </tr>
             `;
+}
+
+// Hide loading with smooth transition
+function hideLoading() {
+    const tableBody = document.getElementById('courseTableBody');
+    tableBody.style.opacity = '1';
 }
 
 // Function to render pagination controls
@@ -952,8 +1002,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Load starred courses first before anything else
     loadStarredCourses();
 
-    // Show loading indicator
-    showLoading();
+    // Show initial loading indicator
+    showLoading('Fetching course data...');
 
     // Fetch course data
     fetchCourseData().then(courses => {
@@ -997,53 +1047,31 @@ document.addEventListener('DOMContentLoaded', function () {
         this.setAttribute('spellcheck', 'false');
     });
 
-    // Add event listener for view changes button
+    // Add event listener for view changes button - using toggleView function
     document.getElementById('viewChangesBtn').addEventListener('click', function () {
         if (!isViewingChanges) {
-            isViewingChanges = true;
-            document.getElementById('viewCurrentBtn').classList.remove('active');
-            this.classList.add('active');
-            document.getElementById('changeHeader').style.display = '';
-            document.getElementById('changeFilterContainer').style.display = '';
-            document.getElementById('changesSummary').style.display = 'block';
-            document.getElementById('courseTable').classList.add('with-change-column');
-
-            // Add event listener for change filter
-            document.getElementById('changeFilter').addEventListener('change', filterTable);
-
-            // Compare course data
-            const comparedData = compareCoursesData(courseData, oldCourseData);
-            courseData = comparedData;
-            filteredData = comparedData;
-
-            // Update the table
-            filterTable();
-            // Update stats
-            updateStats(courseData);
+            toggleView(true);
         }
     });
 
-    // Add event listener for view current button
+    // Add event listener for view current button - using toggleView function
     document.getElementById('viewCurrentBtn').addEventListener('click', function () {
         if (isViewingChanges) {
-            isViewingChanges = false;
-            document.getElementById('viewChangesBtn').classList.remove('active');
-            this.classList.add('active');
-            document.getElementById('changeHeader').style.display = 'none';
-            document.getElementById('changeFilterContainer').style.display = 'none';
-            document.getElementById('changesSummary').style.display = 'none';
-            document.getElementById('courseTable').classList.remove('with-change-column');
-
-            // Fetch fresh course data
+            // Fetch fresh current data when switching back
+            showLoading('Refreshing current data...');
             fetchCourseData().then(courses => {
                 courseData = courses;
                 filteredData = courses;
-
-                // Update the table
-                filterTable();
+                toggleView(false);
+            }).catch(error => {
+                console.error('Error refreshing current data:', error);
+                hideLoading();
             });
         }
     });
+
+    // Add event listener for change filter (only once)
+    document.getElementById('changeFilter').addEventListener('change', filterTable);
 
     // Add event listener for view starred button
     document.getElementById('viewStarredBtn').addEventListener('click', function () {
