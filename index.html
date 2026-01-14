@@ -102,6 +102,7 @@
 
   <body>
     <div class="container">
+      <!-- Compact Header -->
       <div class="credits-header">
         <span>Made with ❤️ by Rayed Riasat | </span>
         <a href="https://www.facebook.com/rayed.riasat.5" target="_blank"
@@ -114,41 +115,33 @@
         >
       </div>
 
-      <!-- Navigation Links -->
-      <div class="navigation-links" style="text-align: center; margin: 20px 0;">
-        <a href="nsu-portal.html" class="btn btn-outline-primary me-2">
-          <i class="bi bi-building me-1"></i>NSU Portal View
+      <!-- Compact Navigation -->
+      <div class="navigation-links">
+        <a href="nsu-portal.html" class="btn btn-sm btn-outline-primary">
+          <i class="bi bi-building"></i> NSU Portal View
         </a>
-        <span class="text-muted">|</span>
-        <span class="ms-2 text-muted">Current: Advanced View</span>
-      </div>
-
-      <!-- Special Thanks -->
-      <div class="special-thanks" style="background: linear-gradient(135deg, #28a745, #20c997); color: white; padding: 15px; border-radius: 10px; text-align: center; margin: 20px 0;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-          <i class="bi bi-star-fill"></i>
-          <span>Special thanks to the contributor who inspired the NSU Portal view design!</span>
-          <i class="bi bi-star-fill"></i>
-        </div>
-      </div>
-
-      <h1>Course Information</h1>
-      <div class="last-updated" id="lastUpdated"></div>
+        <span class="text-muted ms-2">Current: Advanced View</span>
       
-      <!-- Thank you section for contributors -->
-      <div class="contributor-thanks" id="contributorThanks" style="display: none;">
-        <div class="thank-you-message">
-          <i class="bi bi-heart-fill me-2"></i>
-          <span id="thankYouText"></span>
-        </div>
-      </div>
 
       <!-- Comparison toggle buttons -->
       <div class="comparison-toggle">
         <button id="viewCurrentBtn" class="btn-toggle active">
-          View Current Data
+          Current Data
         </button>
-        <button id="viewChangesBtn" class="btn-toggle">View Changes</button>
+        <button id="viewChangesBtn" class="btn-toggle">Changes</button>
+      </div>
+    </div>
+      <!-- Add Star Filter Toggle Button -->
+      <div class="star-filter-toggle mb-3">
+        <button id="viewStarredBtn" class="btn btn-outline-warning">
+          <i class="bi bi-star-fill me-1"></i>
+          <span class="d-none d-md-inline">Starred Courses</span>
+        </button>
+      
+        <button id="generateRoutineBtn" class="btn btn-outline-primary ms-2">
+          <i class="bi bi-calendar-week me-1"></i>
+          <span class="d-none d-md-inline">Generate Routine</span>
+        </button>
       </div>
 
       <!-- Changes summary section -->
@@ -184,10 +177,7 @@
         </div>
       </div>
 
-      <div class="stats" id="statsContainer">
-        <!-- Stats will be populated by JavaScript -->
-      </div>
-
+      <!-- Filters -->
       <div class="filters">
         <div class="filter-item">
           <select id="courseFilter" class="form-select">
@@ -226,17 +216,6 @@
             <option value="noChange">No Change</option>
           </select>
         </div>
-      </div>
-
-      <!-- Add Star Filter Toggle Button -->
-      <div class="star-filter-toggle mb-3">
-        <button id="viewStarredBtn" class="btn btn-outline-warning">
-          <i class="bi bi-star-fill me-1"></i> View Starred Courses
-        </button>
-        <!-- Add Generate Routine Button -->
-        <button id="generateRoutineBtn" class="btn btn-outline-primary ms-2">
-          <i class="bi bi-calendar-week me-1"></i> Generate Routine
-        </button>
       </div>
 
       <div class="search-container">
@@ -313,6 +292,24 @@
           >
             Next <i class="bi bi-chevron-right"></i>
           </button>
+        </div>
+      </div>
+
+      <!-- Stats moved to bottom -->
+      <div class="stats-section">
+        <h3 class="stats-heading">Analytics</h3>
+        <div class="last-updated" id="lastUpdated"></div>
+        
+        <!-- Thank you section for contributors -->
+        <div class="contributor-thanks" id="contributorThanks" style="display: none;">
+          <div class="thank-you-message">
+            <i class="bi bi-heart-fill me-2"></i>
+            <span id="thankYouText"></span>
+          </div>
+        </div>
+
+        <div class="stats" id="statsContainer">
+          <!-- Stats will be populated by JavaScript -->
         </div>
       </div>
     </div>

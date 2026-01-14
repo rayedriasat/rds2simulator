@@ -26,18 +26,19 @@ h1 {
     background-color: #0a1a30;
     color: white;
     text-align: center;
-    padding: 10px 0;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-size: 0.9em;
+    padding: 6px 0;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    font-size: 0.75em;
     border: 1px solid #0f2547;
 }
 
 .credits-header a {
     color: #90caf9;
     text-decoration: none;
-    margin: 0 10px;
+    margin: 0 8px;
     transition: color 0.3s;
+    font-size: 0.95em;
 }
 
 .credits-header a:hover {
@@ -46,12 +47,30 @@ h1 {
 }
 
 .credits-header i {
-    margin-right: 5px;
+    margin-right: 3px;
+    font-size: 0.9em;
+}
+
+/* Navigation Links - Compact */
+.navigation-links {
+    text-align: center;
+    margin: 8px 0;
+    font-size: 0.85em;
+}
+
+.navigation-links .btn {
+    padding: 4px 12px;
+    font-size: 0.85em;
 }
 
 .search-container {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     position: relative;
+}
+
+.search-container .form-control {
+    padding: 8px 8px 8px 35px;
+    font-size: 0.9em;
 }
 
 .search-icon {
@@ -124,10 +143,10 @@ h1 {
 }
 
 .last-updated {
-    text-align: right;
-    font-size: 0.9em;
+    text-align: center;
+    font-size: 0.85em;
     color: #90caf9;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .contributor-thanks {
@@ -219,7 +238,12 @@ h1 {
 
 .star-filter-toggle {
     text-align: center;
-    margin-top: 10px;
+    margin: 8px 0;
+}
+
+.star-filter-toggle .btn {
+    padding: 6px 14px;
+    font-size: 0.9em;
 }
 
 .btn-outline-warning {
@@ -253,20 +277,40 @@ h1 {
 
 .filters {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 8px;
+    margin-bottom: 12px;
     flex-wrap: wrap;
 }
 
 .filter-item {
     flex: 1;
-    min-width: 150px;
+    min-width: 100px;
+}
+
+.filter-item .form-select {
+    padding: 6px 10px;
+    font-size: 0.9em;
 }
 
 .form-select {
     background-color: #0a1a30;
     color: #e9ecef;
     border-color: #0f2547;
+}
+
+/* Stats Section - Moved to Bottom */
+.stats-section {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #0f2547;
+}
+
+.stats-heading {
+    color: #4dabf7;
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    font-weight: 500;
 }
 
 .stats {
@@ -452,16 +496,17 @@ h1 {
 
 /* New styles for comparison feature */
 .comparison-toggle {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    gap: 10px;
+    display: inline-block;
+    /* display: flex; */
+    /* justify-content: center; */
+    margin-top: 8px;
+    gap: 5px;
 }
 
 /* Prevent button state conflicts */
 .comparison-toggle .btn-toggle {
     margin: 0;
-    min-width: 140px;
+    min-width: 100px;
     text-align: center;
 }
 
@@ -469,13 +514,14 @@ h1 {
     background-color: #0a1a30;
     color: #e9ecef;
     border: 1px solid #0f2547;
-    padding: 8px 16px;
-    border-radius: 20px;
+    padding: 6px 14px;
+    border-radius: 18px;
     transition: all 0.3s ease;
     margin: 0 5px;
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    font-size: 0.9em;
 }
 
 .btn-toggle::before {
@@ -624,10 +670,85 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
 
-    .filter-item,
+    .container {
+        padding: 12px;
+    }
+
+    .credits-header {
+        font-size: 0.7em;
+        padding: 5px 0;
+        margin-bottom: 6px;
+    }
+
+    .navigation-links {
+        font-size: 0.8em;
+        margin: 6px 0;
+    }
+
+    .navigation-links .btn {
+        padding: 3px 10px;
+        font-size: 0.8em;
+    }
+
+    .comparison-toggle {
+        margin-bottom: 10px;
+    }
+
+    .btn-toggle {
+        padding: 5px 12px;
+        font-size: 0.85em;
+        min-width: 120px;
+    }
+
+    .filters {
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .filter-item .form-select {
+        padding: 5px 8px;
+        font-size: 0.85em;
+    }
+
+    .star-filter-toggle {
+        margin: 2px 0;
+    }
+
+    .star-filter-toggle .btn {
+        padding: 2px 8px;
+        font-size: 0.80em;
+    }
+
+    .search-container {
+        margin-bottom: 10px;
+    }
+
+    .search-container .form-control {
+        padding: 6px 6px 6px 32px;
+        font-size: 0.85em;
+    }
+
     .stat-card {
         min-width: 100%;
+        padding: 12px;
+    }
+
+    .stat-value {
+        font-size: 1.5em;
+    }
+
+    .stats-section {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+
+    .stats-heading {
+        font-size: 1.3em;
+        margin-bottom: 12px;
     }
 
     .scroll-indicator {
@@ -658,6 +779,14 @@ h1 {
 
     .day-cell {
         width: 60px;
+    }
+
+    .pagination-container {
+        gap: 8px;
+    }
+
+    .pagination-controls {
+        gap: 5px;
     }
 }
 .change-facultyChanged {
